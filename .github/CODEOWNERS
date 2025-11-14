@@ -5,3 +5,4 @@
 /app/      @nova-ecosystem/maintainers-core
 /auth/     @nova-ecosystem/maintainers-core
 /website/  @nova-ecosystem/maintainers-core
+/tests/    @nova-ecosystem/maintainers-core

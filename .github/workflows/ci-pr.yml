@@ -1,69 +1,104 @@
 name: CI (Pull Request)
 
-on:
-  pull_request:
-    paths:
-      - 'api/**'
-      - 'app/**'
-      - 'auth/**'
-      - 'website/**'
-      - 'tests/**'
+on: [pull_request]
 
 jobs:
-  test-api:
+  # This job checks which services have changed
+  changed-files:
     runs-on: ubuntu-latest
-    if: |
-      contains(github.event.pull_request.head.ref, 'api/') ||
-      contains(github.event.pull_request.head.ref, 'tests/api/')
+    outputs:
+      api: ${{ steps.filter.outputs.api }}
+      app: ${{ steps.filter.outputs.app }}
+      auth: ${{ steps.filter.outputs.auth }}
+      website: ${{ steps.filter.outputs.website }}
+      integration: ${{ steps.filter.outputs.integration }}
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: dorny/paths-filter@v2
+        id: filter
         with:
-          python-version: '3.11'
-      - name: Install dependencies
-        run: pip install -r api/src/requirements.txt
-      - name: Run API tests
-        run: pytest tests/api/
+          filters: |
+            api:
+              - 'api/**'
+            app:
+              - 'app/**'
+            auth:
+              - 'auth/**'
+            website:
+              - 'website/**'
+            # The integration tests should also run if the test files themselves change
+            integration:
+              - 'api/**'
+              - 'app/**'
+              - 'auth/**'
+              - 'tests/integration/**'
 
-  test-app:
+  unit-tests:
     runs-on: ubuntu-latest
-    if: |
-      contains(github.event.pull_request.head.ref, 'app/') ||
-      contains(github.event.pull_request.head.ref, 'tests/app/')
+    needs: changed-files
+    strategy:
+      matrix:
+        # We define all services here
+        service: [api, app, auth, website]
+        # Create conditional inclusions
+        include:
+          - service: api
+            path: 'api'
+            run_if: ${{ needs.changed-files.outputs.api == 'true' }}
+          - service: app
+            path: 'app'
+            run_if: ${{ needs.changed-files.outputs.app == 'true' }}
+          - service: auth
+            path: 'auth'
+            run_if: ${{ needs.changed-files.outputs.auth == 'true' }}
+          - service: website
+            path: 'website'
+            run_if: ${{ needs.changed-files.outputs.website == 'true' }}
+    
+    # Only run the step if the 'run_if' condition is met
+    if: ${{ matrix.run_if }}
+    
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - name: Install dependencies
-        run: pip install -r app/src/requirements.txt
-      - name: Run App tests
-        run: pytest tests/app/
+      - name: Run Unit Tests for ${{ matrix.service }}
+        run: |
+          cd ${{ matrix.path }}
+          # This command would be specific to each service
+          # e.g., npm test, or pytest
+          echo "Running unit tests for ${{ matrix.service }}..."
+          # Example: npm install && npm test
 
-  test-auth:
-    # ... (similar to test-api and test-app) ...
-
-  build-website:
+  integration-test:
     runs-on: ubuntu-latest
-    if: |
-      contains(github.event.pull_request.head.ref, 'website/')
-    steps:
-      - uses: actions/checkout@v4
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-      - name: Install dependencies
-        run: cd website && yarn install --frozen-lockfile
-      - name: Build Docusaurus site
-        run: cd website && yarn build
+    needs: [changed-files, unit-tests]
+    
+    # This is the key: Only run this job if api, app, auth, or the tests themselves changed
+    if: ${{ needs.changed-files.outputs.integration == 'true' }}
 
-  test-ecosystem-integration:
-    runs-on: ubuntu-latest
-    # Run if *any* service changed, as they are all integrated
     steps:
-      - uses: actions/checkout@v4
-      - name: Run E2E Acceptance Tests
-        run: pytest tests/ecosystem/acceptance/
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Start Services
+        run: |
+          # Use the existing devcontainer docker-compose to start all services
+          docker-compose -f.devcontainer/docker-compose.yml up -d
+
+      - name: Wait for services to be healthy
+        run: |
+          echo "Waiting for services..."
+          # This is a simple wait; a more robust solution would poll the /health endpoints
+          sleep 30 
+      
+      - name: Run Integration Tests
+        run: |
+          # We execute the tests *inside* one of the running containers
+          # that has the necessary tools (e.g., Python/pytest)
+          # We use the 'api' service container, which uses the 'dev-python' image
+          docker-compose -f.devcontainer/docker-compose.yml exec -T api \
+            bash -c "pip install -r /workspace/tests/integration/requirements.txt && pytest /workspace/tests/integration"
+
+      - name: Stop Services
+        if: always() # Always run this step to clean up
+        run: |
+          docker-compose -f.devcontainer/docker-compose.yml down

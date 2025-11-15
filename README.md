@@ -34,28 +34,46 @@ Once the container is running, the services are available locally:
 
 ## 🛠️ Development Workflow
 
+The ecosystem runs as **4 separate containers** (App, Website, API, Auth).
+When you open this repo in VS Code, it attaches to the **App** service by default. The other services (`website`, `api`, `auth`) are running in the background.
+
+### 💻 Switching to Website, API, or Auth
+
+To run commands for a specific service (e.g., installing a new npm package for the website), you must **attach** to its container.
+
+1.  **Click the "Remote Explorer" icon** in the VS Code sidebar (looks like a monitor).
+2.  Look under the **"Other Containers"** list.
+3.  Right-click the service you want (e.g., `ecosystem-core_devcontainer-website-1`).
+4.  Select **"Attach to Visual Studio Code"**.
+
+**Result:** A **new VS Code window** opens for that service. You can use the terminal in this new window to run service-specific commands (e.g., `npm install`, `pip install`).
+
+### ⚠️ "Port Already in Use" Warning
+
+If you attach to the **Website** container and try to run `npm start`, you might see:
+
+> *" Something is already running on port 3000"*
+
+**This is normal/good.** It means the container automatically started the server for you.
+
+  * **You do NOT need to run `npm start` manually.**
+  * Just edit your files. The running server will detect changes and **hot-reload automatically**.
+  * Use the terminal only for tasks like adding dependencies (`npm install <package>`).
+
 ### Running Tests
 
-Since most of our stack is Python, we primarily use `pytest`.
-
-  * **Run All Python Tests (App, API, Auth):**
+  * **Python Tests (App, API, Auth):**
     ```bash
-    # Runs tests for all Python services
+    # Run in the main window (App) or API/Auth attached windows
     pytest
     ```
-  * **Run Website Tests (Node.js):**
+  * **Website Tests (Node.js):**
     ```bash
-    cd website && npm test
+    # You MUST attach to the Website container first
+    npm test
     ```
-  * **Run Integration Tests:**
+  * **Integration Tests:**
     ```bash
-    # Runs the top-level integration suite
+    # Run in the main window
     pytest tests/integration
     ```
-
-### Accessing Terminals
-
-To run commands for a specific service, open a terminal in VS Code and navigate to the service folder:
-
-  * `cd app` / `cd api` / `cd auth` -\> Run **Python** commands (`pip`, `flask`, `pytest`)
-  * `cd website` -\> Run **Node** commands (`npm`, `docusaurus`)

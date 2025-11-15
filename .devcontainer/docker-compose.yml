@@ -9,8 +9,8 @@ services:
     working_dir: /workspace/website
     ports:
       - "3000:3000" # Docusaurus port
-    # Auto-install Node dependencies on startup
-    command: sh -c "npm install && sleep infinity"
+    # Installs deps and starts Docusaurus
+    command: sh -c "npm install && npm start"
 
   app:
     # USE THE PRE-BUILT IMAGE
@@ -27,7 +27,7 @@ services:
     environment:
       - API_URL=http://api:8000
       - AUTH_URL=http://auth:9000
-    # The 'app' dependencies are handled by devcontainer.json postCreateCommand
+    # We keep 'app' sleeping so you can run it manually/debug it in VS Code
     command: sleep infinity
 
   api:
@@ -38,8 +38,8 @@ services:
     working_dir: /workspace/api
     ports:
       - "8000:8000" # Python/Flask port
-    # Auto-install Python dependencies on startup
-    command: sh -c "pip install -r requirements.txt && sleep infinity"
+    # Auto-install and START the server
+    command: sh -c "pip install -r requirements.txt && python src/main.py"
 
   auth:
     # USE THE PRE-BUILT IMAGE
@@ -49,5 +49,5 @@ services:
     working_dir: /workspace/auth
     ports:
       - "9000:9000" # Auth port
-    # Auto-install Python dependencies on startup
-    command: sh -c "pip install -r requirements.txt && sleep infinity"
+    # Auto-install and START the server
+    command: sh -c "pip install -r requirements.txt && python src/main.py"

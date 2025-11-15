@@ -1,0 +1,39 @@
+name: Publish Website Artifact
+
+on:
+  push:
+    branches: [ main ]
+    paths: [ 'website/**' ]
+
+permissions:
+  contents: write
+
+jobs:
+  publish-website:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Website version is in package.json, not VERSION file
+      - name: Read Version
+        run: echo "VERSION=$(jq -r.version website/package.json)" >> $GITHUB_ENV
+
+      - name: Install & Build
+        run: |
+          cd website
+          npm install
+          npm run build
+
+      - name: Package Artifact
+        run: |
+          # Docusaurus builds to /build directory
+          # We package the BUILD output, not the source
+          tar -czf website-release.tar.gz -C website/build.
+
+      - name: Create GitHub Pre-release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: "website-v${{ env.VERSION }}"
+          name: "Website v${{ env.VERSION }}"
+          files: website-release.tar.gz
+          prerelease: true

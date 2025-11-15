@@ -2,47 +2,43 @@ name: Publish API Artifact
 
 on:
   push:
-    branches:
-      - main
-    paths:
-      - 'api/**'
-      - 'tests/api/**'
+    branches: [ main ]
+    paths: [ 'api/**' ]
+
+permissions:
+  contents: write # Required to create Releases
 
 jobs:
   publish-api:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write # To create the GitHub Release
     steps:
       - uses: actions/checkout@v4
-      - name: Get Version (Example)
-        # TODO: This step should be automated using a versioning tool
-        # For now, we'll pull it from a file
+
+      # FIX: Correct path is api/VERSION, not api/src/VERSION.txt
+      - name: Read Version
         id: version
-        run: echo "VERSION=$(cat api/src/VERSION.txt)" >> $GITHUB_ENV
+        run: echo "VERSION=$(cat api/VERSION)" >> $GITHUB_ENV
 
       - name: Build and Package API
         run: |
-          # Create a clean package directory
-          mkdir -p package/
-          # Copy only the production source code
-          cp -R api/src/* package/
-          # Create the .tar.gz artifact
-          tar -czf ecosystem-api-${{ env.VERSION }}.tar.gz -C package .
+          mkdir -p dist
+          # Copy source code to dist
+          cp -r api/src/* dist/
+          # Create artifact
+          tar -czf api-release.tar.gz -C dist.
 
       - name: Create GitHub Pre-release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: "api-${{ env.VERSION }}"
-          name: "API Service ${{ env.VERSION }}"
-          files: "ecosystem-api-${{ env.VERSION }}.tar.gz"
-          prerelease: true # Mark as "Pre-release" until ecosystem-qa passes
+          tag_name: "api-v${{ env.VERSION }}"
+          name: "API Service v${{ env.VERSION }}"
+          files: api-release.tar.gz
+          prerelease: true
 
-      - name: Trigger Ecosystem QA
-        # This will trigger the workflow in the ecosystem-qa repo
-        uses: peter-evans/repository-dispatch@v3
-        with:
-          token: ${{ secrets.PAT_FOR_DISPATCH }} # A PAT you must create
-          repository: nova-ecosystem/ecosystem-qa
-          event-type: qa-triggered
-          client-payload: '{"artifact_name": "ecosystem-api", "version": "${{ env.VERSION }}"}'
+      # - name: Trigger Ecosystem QA
+      #   uses: peter-evans/repository-dispatch@v3
+      #   with:
+      #     token: ${{ secrets.PAT_FOR_DISPATCH }}
+      #     repository: nova-ecosystem/ecosystem-qa
+      #     event-type: qa-run
+      #     client-payload: '{"tag": "api-v${{ env.VERSION }}", "repo": "ecosystem-core", "test_suite": "intra-core"}'

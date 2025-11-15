@@ -1,0 +1,32 @@
+name: Publish Auth Artifact
+
+on:
+  push:
+    branches: [ main ]
+    paths: [ 'auth/**' ]
+
+permissions:
+  contents: write
+
+jobs:
+  publish-auth:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read Version
+        run: echo "VERSION=$(cat auth/VERSION)" >> $GITHUB_ENV
+
+      - name: Build and Package Auth
+        run: |
+          mkdir -p dist
+          cp -r auth/src/* dist/
+          tar -czf auth-release.tar.gz -C dist.
+
+      - name: Create GitHub Pre-release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: "auth-v${{ env.VERSION }}"
+          name: "Auth Service v${{ env.VERSION }}"
+          files: auth-release.tar.gz
+          prerelease: true

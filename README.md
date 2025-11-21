@@ -37,7 +37,27 @@ Once the container is running, the services are available locally:
 
 The ecosystem runs as **4 separate containers** (App, Website, API, Auth).
 When you open this repo in VS Code, it attaches to the **App** service by default.
-The other services (`website`, `api`, `auth`) are running in the background.
+
+**✅ All services start automatically.**
+You do not need to run `python app.py` or `npm start` manually. All four services launch immediately, connect to each other, and watch your files for changes (hot-reload).
+
+### 🐛 Debugging the App (Manual Start)
+
+By default, the App runs in the background. If you want to **attach a debugger (F5)** or control the execution manually, you need to switch the container to "sleep" mode.
+
+1.  Open `.devcontainer/docker-compose.yml`.
+2.  Find the `app` service and change the `command` line:
+
+    ```yaml
+    # CHANGE FROM (Auto-Start):
+    # command: sh -c "pip install -r requirements.txt && python app.py"
+
+    # TO (Debug Mode):
+    command: sleep infinity
+    ```
+
+3.  Open the Command Palette (`Ctrl+Shift+P` / `F1`) and select **"Dev Containers: Rebuild Container"**.
+4.  Once rebuilt, the App will **not** be running. You can now press **F5** or run `python app.py` in the terminal to start it with the debugger attached.
 
 ### 🧰 Developer Tools (Nova CLI)
 

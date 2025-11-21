@@ -27,8 +27,8 @@ services:
     environment:
       - API_URL=http://api:8000
       - AUTH_URL=http://auth:9000
-    # We keep 'app' sleeping so you can run it manually/debug it in VS Code
-    command: sleep infinity
+    # Auto-install and START the server
+    command: sh -c "pip install -r requirements.txt && python app.py"
 
   api:
     # USE THE PRE-BUILT IMAGE

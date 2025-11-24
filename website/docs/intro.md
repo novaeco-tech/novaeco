@@ -1,7 +1,66 @@
-## sidebar\_position: 1
-
 # Introduction
 
-Welcome to the Nova Ecosystem documentation\!
+Welcome to the **Nova Ecosystem Documentation**!
 
-This site is built using([https://docusaurus.io/](https://docusaurus.io/)).
+This site is the single source of truth for contributors, developers, and stakeholders. It explains the architecture, requirements, use cases, APIs, developer workflows, and best practices that power the ecosystem.
+
+---
+
+## 📐 Architecture
+Learn how the ecosystem is structured, including core services and documented **Architecture Decision Records (ADRs)**.  
+➡️ See [Architecture Overview](./architecture/overview.md)
+
+---
+
+## 📋 Requirements
+Understand the **functional, non‑functional, and sustainability requirements** that guide design and implementation.  
+➡️ See [Requirements](./requirements/functional.md)
+
+---
+
+## 📊 Use Cases
+Explore real‑world scenarios across four levels:
+- **Level 1:** Onboarding & Control  
+- **Level 2:** Transactional Efficiency  
+- **Level 3:** Value Chain Coordination  
+- **Level 4:** Systemic Transformation  
+➡️ See [Use Cases](./usecases/level-1-onboarding.md)
+
+---
+
+## 🔌 API
+Reference the **Gateway** and **Auth APIs**, with examples and testing strategies.  
+➡️ See [API Overview](./api/overview.md)
+
+---
+
+## 👩‍💻 Developers
+Step‑by‑step guides for setting up local environments, using the Nova CLI, and contributing via CI/CD workflows.  
+➡️ See [Developer Setup](./developers/setup.md)
+
+---
+
+## 📚 Guides
+Best practices, testing strategies, and sustainability guidelines for building within the ecosystem.  
+➡️ See [Developer Guide](./guides/dev-guide.md)
+
+---
+
+## 📖 Glossary
+A shared vocabulary of ecosystem terms, from **Enablers** and **Sectors** to **Workers** and **Products**.  
+➡️ See [Glossary](./glossary.md)
+
+---
+
+## 🚀 Getting Started
+If you’re new:
+1. Start with [Architecture Overview](./architecture/overview.md).
+2. Review [Functional Requirements](./requirements/functional.md).
+3. Explore [Use Cases](./usecases/level-1-onboarding.md).
+4. Try the [API Examples](./api/examples.md).
+5. Follow the [Developer Guide](./guides/dev-guide.md).
+
+---
+
+## ➡️ Next Steps
+[Next: Architecture Overview →](./architecture/overview.md)

@@ -22,6 +22,37 @@
     padding: 0 var(--ifm-pre-padding);
 }
 
+/* Global wrapper for all pages */
+.main-wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    /* center horizontally */
+}
+
+/* Content containers (docs, blog, etc.) */
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* Limit navbar inner content */
+.navbar__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    /* optional side padding */
+}
+
+/* Limit footer inner content */
+.footer__links,
+.footer__bottom {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
 html[data-theme='dark'].docusaurus-highlight-code-line {
     background-color: rgba(0, 0, 0, 0.3);
 }

@@ -28,6 +28,10 @@ const config = {
                     sidebarPath: require.resolve('./sidebars.js'),
                     editUrl: 'https://github.com/novaeco-tech/ecosystem-core/tree/main/website/',
                 },
+                blog: {
+                    showReadingTime: true,
+                    onInlineAuthors: 'ignore',
+                },
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),
                 },

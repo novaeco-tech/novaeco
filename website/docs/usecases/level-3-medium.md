@@ -37,10 +37,10 @@ Siemens sells 500 used chairs to Munich Re.
 Extends product life; reduces furniture waste.
 
 **User Interaction**  
-Siemens lists assets on NovaMarkets → Munich Re buys → NovaMobility auto‑books truck → NovaBuild updates building inventory.
+Siemens lists assets on NovaTrade → Munich Re buys → NovaMobility auto‑books truck → NovaBuild updates building inventory.
 
 **Ecosystem Usage**  
-NovaMarkets, NovaMobility, NovaBuild
+NovaTrade, NovaMobility, NovaBuild
 
 ---
 
@@ -177,10 +177,10 @@ Bank refurbishes 500 laptops for resale.
 Extends electronics life; reduces e‑waste.
 
 **User Interaction**  
-Bank sends units to NovaTronix partner → Data wipe certified → Listed on NovaMarkets → NovaSkills tracks technician labor.
+Bank sends units to NovaTronix partner → Data wipe certified → Listed on NovaTrade → NovaSkills tracks technician labor.
 
 **Ecosystem Usage**  
-NovaTronix, NovaMarkets, NovaSkills
+NovaTronix, NovaTrade, NovaSkills
 
 ---
 

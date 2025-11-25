@@ -37,10 +37,10 @@ Building designed as material bank; components tracked for future resale.
 Eliminates demolition waste; preserves material value.
 
 **User Interaction**  
-Architect designs in NovaBuild → Materials passported in NovaMaterial → Futures contracts listed on NovaMarkets → NovaBalance tracks embodied carbon.
+Architect designs in NovaBuild → Materials passported in NovaMaterial → Futures contracts listed on NovaTrade → NovaBalance tracks embodied carbon.
 
 **Ecosystem Usage**  
-NovaBuild, NovaMaterial, NovaMarkets, NovaBalance
+NovaBuild, NovaMaterial, NovaTrade, NovaBalance
 
 ---
 
@@ -97,10 +97,10 @@ Sensors verify forest capture; credits minted and sold to steel plant.
 Verified carbon removal; financial flow to nature.
 
 **User Interaction**  
-NovaAir sensors detect CO₂ flux → NovaBalance verifies → NovaMarkets mints credit → Steel plant buys → NovaEquity pays dividend to locals.
+NovaAir sensors detect CO₂ flux → NovaBalance verifies → NovaTrade mints credit → Steel plant buys → NovaEquity pays dividend to locals.
 
 **Ecosystem Usage**  
-NovaBalance, NovaMarkets, NovaAir, NovaEquity
+NovaBalance, NovaTrade, NovaAir, NovaEquity
 
 ---
 
@@ -138,10 +138,10 @@ EU laws encoded as rules; non-compliant suppliers blocked.
 Automated, inescapable regulatory compliance.
 
 **User Interaction**  
-EU releases new directive → NovaPolicy updates rule engine → `audit-worker-compliance` scans all NovaMarkets suppliers → Blocks non-compliant ones.
+EU releases new directive → NovaPolicy updates rule engine → `audit-worker-compliance` scans all NovaTrade suppliers → Blocks non-compliant ones.
 
 **Ecosystem Usage**  
-NovaPolicy, NovaMarkets, Identity
+NovaPolicy, NovaTrade, Identity
 
 ---
 

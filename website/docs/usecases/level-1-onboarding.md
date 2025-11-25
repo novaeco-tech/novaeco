@@ -102,7 +102,7 @@ Circular solutions exist but are invisible. Centralized discovery drives adoptio
 User browses `novaeco.tech/marketplace` → Clicks “Electronics Repair” → Redirects to `novatronix.tech` with Auth Token.
 
 **Ecosystem Usage**  
-NovaMarkets (Directory), Identity (SSO), NovaTronix (Target)
+NovaTrade (Directory), Identity (SSO), NovaTronix (Target)
 
 ---
 
@@ -139,7 +139,7 @@ Large organizations manage teams, roles, and granular permissions across the eco
 Corporate silos. The ESG team needs to see what Procurement is buying to align goals.
 
 **User Interaction**  
-Admin creates “Procurement Team” in Identity → Assigns read/write to NovaMarkets and read-only to NovaBalance.
+Admin creates “Procurement Team” in Identity → Assigns read/write to NovaTrade and read-only to NovaBalance.
 
 **Ecosystem Usage**  
 Identity (RBAC), NovaHub (Team View)

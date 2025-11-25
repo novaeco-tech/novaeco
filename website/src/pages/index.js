@@ -73,7 +73,7 @@ export default function Home() {
                                     <td title="Smart reusable packaging with tracker and e-ink label">NovaBox — reusable packaging</td>
                                 </tr>
                                 <tr>
-                                    <td title="Exchange for materials and environmental assets"><a href="https://novatrade.markets">NovaMarkets — trading backbone</a></td>
+                                    <td title="Exchange for materials and environmental assets"><a href="https://novatrade.markets">NovaTrade — trading backbone</a></td>
                                     <td title="Circular construction & buildings-as-material-banks"><a href="https://novabuild.tech">NovaBuild — construction</a></td>
                                     <td title="Finds waste-to-resource symbiosis matches">NovaHub — symbiosis matcher</td>
                                     <td title="Retrofit robotic arm with vision for AI sorting">SortBotX1 — sorting robot</td>
@@ -176,7 +176,7 @@ export default function Home() {
                         <li><Link to="/docs/usecases/level-2-easy#E3">[E3] Ride to Factory</Link> — BMW employees carpool using NovaMobility, micro‑pay via NovaFin.</li>
                         <li><Link to="/docs/usecases/level-2-easy#E4">[E4] Citizen Sensor</Link> — River water testing uploaded via NovaWater; verified by NovaBalance.</li>
                         <li><Link to="/docs/usecases/level-2-easy#E5">[E5] Material Scout</Link> — Architect catalogs reusable bricks using AI vision; passported in NovaMaterial.</li>
-                        <li><Link to="/docs/usecases/level-2-easy#E6">[E6] Ugly Veggie Box</Link> — Farm lists imperfect produce for direct sale on NovaMarkets.</li>
+                        <li><Link to="/docs/usecases/level-2-easy#E6">[E6] Ugly Veggie Box</Link> — Farm lists imperfect produce for direct sale on NovaTrade.</li>
                         <li><Link to="/docs/usecases/level-2-easy#E7">[E7] Solar Log</Link> — Homeowner logs daily green energy with NovaEnergy; impact in NovaBalance.</li>
                         <li><Link to="/docs/usecases/level-2-easy#E8">[E8] Device Return</Link> — Clinic requests pickup via NovaHealth & NovaWaste.</li>
                         <li><Link to="/docs/usecases/level-2-easy#E9">[E9] Pollen Alert</Link> — Hyper‑local air quality notifications via NovaAir & NovaSapien.</li>
@@ -198,7 +198,7 @@ export default function Home() {
                         <li><Link to="/docs/usecases/level-3-medium#M6">[M6] V2G Balancing</Link> — EV fleet sells capacity via NovaEnergy; settlement via NovaFin.</li>
                         <li><Link to="/docs/usecases/level-3-medium#M7">[M7] Plastic Passport</Link> — DPP for rPET via NovaMaterial & NovaPolicy.</li>
                         <li><Link to="/docs/usecases/level-3-medium#M8">[M8] Greywater Share</Link> — Data center heat/greywater to greenhouse via NovaInfra; audited in NovaBalance.</li>
-                        <li><Link to="/docs/usecases/level-3-medium#M9">[M9] Corporate Refurb</Link> — Bank laptops refurbished, data‑wipe certified; resale via NovaMarkets.</li>
+                        <li><Link to="/docs/usecases/level-3-medium#M9">[M9] Corporate Refurb</Link> — Bank laptops refurbished, data‑wipe certified; resale via NovaTrade.</li>
                         <li><Link to="/docs/usecases/level-3-medium#M10">[M10] Solvent Lease</Link> — Filtration via NovaWater; QA via NovaSapien.</li>
                     </ul>
                     <p style={{ marginTop: '1rem' }}>
@@ -210,12 +210,12 @@ export default function Home() {
                     <p><em>Focus: system‑of‑systems, real‑time AI optimization, policy‑as‑code, cross‑border compliance.</em></p>
                     <ul>
                         <li><Link to="/docs/usecases/level-4-complex#C1">[C1] City Challenge</Link> — Munich consortium (Agro, Waste, Logistics), grants via NovaFin, governance via NovaPolicy.</li>
-                        <li><Link to="/docs/usecases/level-4-complex#C2">[C2] Building‑as‑Bank</Link> — Assets tracked for futures; LCA via NovaBalance; listing via NovaMarkets.</li>
+                        <li><Link to="/docs/usecases/level-4-complex#C2">[C2] Building‑as‑Bank</Link> — Assets tracked for futures; LCA via NovaBalance; listing via NovaTrade.</li>
                         <li><Link to="/docs/usecases/level-4-complex#C3">[C3] Fiber‑to‑Fiber</Link> — AI sorting via NovaSapien; chemical recycling via NovaMaterial; logistics via NovaMobility.</li>
                         <li><Link to="/docs/usecases/level-4-complex#C4">[C4] Circular Hospital</Link> — Pay‑per‑scan leasing via NovaFin; sterilization hub via NovaInfra.</li>
-                        <li><Link to="/docs/usecases/level-4-complex#C5">[C5] Automated Carbon Trading</Link> — Sensors verify capture; credits via NovaMarkets; community dividend via NovaEquity.</li>
+                        <li><Link to="/docs/usecases/level-4-complex#C5">[C5] Automated Carbon Trading</Link> — Sensors verify capture; credits via NovaTrade; community dividend via NovaEquity.</li>
                         <li><Link to="/docs/usecases/level-4-complex#C6">[C6] Autonomous Logistics</Link> — DurasAGV swarm coordinated by NovaSapien; charging via NovaEnergy.</li>
-                        <li><Link to="/docs/usecases/level-4-complex#C7">[C7] Algorithmic Governance</Link> — EU laws as code; gatekeeping via NovaMarkets; Identity and NovaMaterial compliance.</li>
+                        <li><Link to="/docs/usecases/level-4-complex#C7">[C7] Algorithmic Governance</Link> — EU laws as code; gatekeeping via NovaTrade; Identity and NovaMaterial compliance.</li>
                         <li><Link to="/docs/usecases/level-4-complex#C8">[C8] Urban Air Twin</Link> — Dynamic toll pricing via NovaFin; pollution data via NovaAir.</li>
                         <li><Link to="/docs/usecases/level-4-complex#C9">[C9] Global Green Corps</Link> — Remote ops via NovaInfra; fair pay audited via NovaEquity.</li>
                         <li><Link to="/docs/usecases/level-4-complex#C10">[C10] City‑Wide Loop</Link> — Unified cup deposit; washing via NovaWater; logistics via NovaMobility.</li>

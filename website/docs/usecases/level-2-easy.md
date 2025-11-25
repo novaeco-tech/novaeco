@@ -20,7 +20,7 @@ Diverts organic waste from landfill; provides cheap local feedstock.
 Bakery posts "50kg Bread" on NovaHub → Insect Farm gets alert → Accepts → NovaFin processes payment.
 
 **Ecosystem Usage**  
-NovaHub, NovaWaste, NovaMarkets
+NovaHub, NovaWaste, NovaTrade
 
 ---
 
@@ -113,10 +113,10 @@ Farm sells "imperfect" produce directly to consumers.
 Reduces food waste at source; supports local agro.
 
 **User Interaction**  
-Farm lists "5kg Box" on NovaAgro → Consumer buys on NovaMarkets → NovaMobility schedules pickup.
+Farm lists "5kg Box" on NovaAgro → Consumer buys on NovaTrade → NovaMobility schedules pickup.
 
 **Ecosystem Usage**  
-NovaAgro, NovaMarkets, NovaMobility
+NovaAgro, NovaTrade, NovaMobility
 
 ---
 

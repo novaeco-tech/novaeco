@@ -88,4 +88,4 @@ Flagship applications that consume multiple enablers/sectors:
 
 ---
 
-For diagrams and flows, see the [Architecture Overview](../docs/architecture/overview).
+For diagrams and flows, see the [Architecture Overview](/docs/architecture/overview).

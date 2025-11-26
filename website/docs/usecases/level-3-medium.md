@@ -146,21 +146,21 @@ NovaMaterial, NovaPolicy, NovaWaste
 
 ## <a id="M8"></a> [M8] Greywater Share
 
-**Description**  
-Data center pipes waste heat/water to greenhouse.
+**Description** 
+Industrial symbiosis project where a data center pipes waste heat/water to a greenhouse.
 
-**Challenges**  
-- Physical infrastructure cost  
+**Challenges** - 
+Physical infrastructure cost  
 - Contractual reliability  
 
-**Sustainability Problem**  
+**Sustainability Problem** 
 Industrial symbiosis; energy/water efficiency.
 
-**User Interaction**  
-Match made on NovaHub → NovaInfra monitors flow sensors → NovaBalance audits savings → Billing via NovaFin.
+**User Interaction** 
+Project specs (flow rates, pipe requirements) defined in NovaHub → Partners matched and contract executed on NovaTrade → NovaInfra monitors real-time flow → NovaBalance audits savings → Billing via NovaFin.
 
-**Ecosystem Usage**  
-NovaHub, NovaInfra, NovaBalance
+**Ecosystem Usage** 
+NovaHub, NovaTrade, NovaInfra, NovaBalance, NovaFin
 
 ---
 

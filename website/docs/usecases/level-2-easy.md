@@ -6,21 +6,21 @@
 
 ## <a id="E1"></a> [E1] The Waste Match
 
-**Description**  
-Bakery lists waste. NovaHub defines the resource requirement. NovaTrade executes the match and transfer..
+**Description** 
+Bakery lists waste. NovaHub defines the resource requirement structure. NovaTrade executes the match and transfer.
 
-**Challenges**  
+**Challenges** 
 - Small volume logistics  
 - Freshness  
 
-**Sustainability Problem**  
+**Sustainability Problem** 
 Diverts organic waste from landfill; provides cheap local feedstock.
 
-**User Interaction**  
-Bakery posts "50kg Bread" on NovaHub → Insect Farm gets alert → Accepts → NovaFin processes payment.
+**User Interaction** 
+Bakery defines "Waste Stream Project" on NovaHub → Listing automatically published to NovaTrade → Insect Farm accepts offer on NovaTrade → NovaFin processes payment.
 
-**Ecosystem Usage**  
-NovaHub, NovaWaste, NovaTrade
+**Ecosystem Usage** 
+NovaHub, NovaTrade, NovaWaste, NovaFin
 
 ---
 

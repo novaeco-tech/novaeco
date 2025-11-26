@@ -21,7 +21,7 @@ Lack of trust prevents circular collaboration (e.g., *“Is this recycled plasti
 User visits `auth.novaeco.tech` → Registers via Email → Uploads proof of business → Admin verifies → “Verified” badge issued.
 
 **Ecosystem Usage**  
-Identity (Core), NovaPolicy (Verification Standards), Central App (Profile Display)
+Identity (OAuth2), NovaPolicy (Verification Standards), Central App (Profile Display)
 
 ---
 
@@ -62,7 +62,7 @@ Users view a personalized dashboard aggregating real-time impact metrics (CO₂,
 Login to `app.novaeco.tech` → NovaBalance queries workers → Dashboard renders “CO₂ Saved” widget from NovaAir and “Water Saved” from NovaWater.
 
 **Ecosystem Usage**  
-NovaBalance (Aggregator), Identity (Preferences), NovaAir/Water (Data Sources)
+NovaBalance (Aggregator), Identity (Preferences), NovaAir/NovaWater (Data Sources)
 
 ---
 

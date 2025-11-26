@@ -24,7 +24,7 @@ These services provide the foundation for onboarding, governance, API integratio
 
 Cross‑cutting foundational services:
 
-- **NovaHub** – Innovation Wizard & Orchestrator. Decomposes high-level intent (e.g., "Start a circular farm") into atomic requirements (assets, skills, infrastructure) to be fulfilled by other pillars.
+- **NovaHub** – innovation wizard, complex problem decomposition, orchestration.
 - **NovaFin** – tokens, staking, payments, revenue sharing, investment.  
 - **NovaTrade** – decentralized marketplace for goods, services, and assets.  
 - **NovaSapien** – shared artificial intelligence and ML models.  
@@ -92,13 +92,28 @@ Flagship applications that consume multiple enablers and sectors:
 
 ---
 
+## 🛠️ Technical Standards
+
+To ensure scalability and decoupling, the ecosystem adheres to strict communication and interface standards:
+
+### Communication Protocols
+- **External (Public):** **REST/JSON** via the API Gateway. All 3rd-party apps and frontend clients consume this.
+- **Internal (Pillar-to-Pillar):** **gRPC/ProtoBuf**. Used for high-performance, type-safe communication between Enablers and Sectors (e.g., NovaAgro API calling NovaFin API).
+- **Asynchronous:** **RabbitMQ/NATS**. Used for Pillar-to-Worker tasks (e.g., triggering an LCA calculation).
+
+### User Interface Strategy
+- **Federated UIs:** Instead of a single monolithic frontend, each Pillar (NovaAgro, NovaHealth, NovaFin) hosts its own dedicated "micro-frontend" or standalone web app.
+- **Unified Identity:** A seamless SSO (Single Sign-On) session persists across all domain boundaries (`*.novaeco.tech`).
+
+---
+
 ## 🔄 Interaction Flow
 
 1. **Onboarding**: Identity service creates Trust Profiles.  
 2. **Integration**: Gateway issues API keys for external systems.  
-3. **Transactions**: Markets + Finance enable secure exchanges.  
-4. **Data Aggregation**: Balance + Material + Sector workers provide sustainability metrics.  
-5. **Governance**: Policy enforces rules; Equity ensures fairness.  
+3. **Transactions**: NovaTrade + NovaFin enable secure exchanges.  
+4. **Data Aggregation**: NovaBalance + NovaMaterial + Sector workers provide sustainability metrics.  
+5. **Governance**: NovaPolicy enforces rules; NovaEquity ensures fairness.  
 6. **Visibility**: Dashboard aggregates results; Docs provide transparency.
 
 ---
@@ -112,8 +127,8 @@ graph TD
   Gateway --> Dashboard
   Docs --> User
   Dashboard --> Docs
-  Gateway --> Enablers[Hub / Finance / Markets / AI / Energy / Material / Mobility / Infra / Skills / Policy / Balance / Equity]
-  Enablers --> Sectors[Agro / Water / Build / Textile / Waste / Air / Health / Chem]
+  Gateway --> Enablers[NovaHub / NovaFin / NovaTrade / NovaSapien / NovaEnergy / NovaMaterial / NovaMobility / NovaInfra / NovaSkills / NovaPolicy / NovaBalance / NovaEquity]
+  Enablers --> Sectors[NovaAgro / NovaWater / NovaBuild / NovaTextile / NovaWaste / NovaAir / NovaHealth / NovaChem / NovaTronix / NovaPack]
   Sectors --> Workers[Background Jobs / Calculators / Sync Services]
   Workers --> Products[Flagship Apps: DurasAGV / Urban Mining / Reusable Packaging / City-Wide Loop / Circular Hospital]
 ```
@@ -125,7 +140,7 @@ graph TD
 - **Open Source** – all repos are public, community‑driven.  
 - **Transparency** – ADRs, Use Cases, Guides, and Glossary ensure clarity.  
 - **Scalability** – monorepo model with containerized services.  
-- **Auditability** – Balance and Equity enablers provide verifiable impact.  
+- **Auditability** – NovaBalance and NovaEquity enablers provide verifiable impact.  
 - **Circularity** – every sector and product reinforces sustainable loops.
 
 ---

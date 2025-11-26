@@ -6,7 +6,7 @@ export default function Home() {
     return (
         <Layout
             title="NovaEco"
-            description="The Open-Source Operating System for a Circular Economy"
+            description="Open-source operating system for circular economy and sustainability"
         >
             <main>
 
@@ -20,18 +20,24 @@ export default function Home() {
                     }}
                 >
                     <h1>🌍 NovaEco</h1>
-                    <p style={{ maxWidth: 960, margin: '0 auto' }}>
-                        The <strong>NovaEco</strong> is an open‑source operating system for the circular economy.
+                    <p style={{ maxWidth: 960, margin: '0 auto', fontSize: '1.0rem', lineHeight: '1.8' }}>
+                        <strong>NovaEco</strong> is the open‑source operating system for the circular economy —
+                        empowering individuals, communities, and organizations to design, share, and scale sustainable solutions together.
                     </p>
                     <div style={{ marginTop: '2rem' }}>
                         <Link className="button button--primary" to="/docs/intro">
                             Get Started
                         </Link>
-                        <Link className="button button--secondary" to="https://app.novaeco.tech" style={{ marginLeft: '0.75rem' }}>
+                        <Link
+                            className="button button--secondary"
+                            to="https://app.novaeco.tech"
+                            style={{ marginLeft: '0.75rem' }}
+                        >
                             Launch App
                         </Link>
                     </div>
                 </section>
+
 
                 {/* Four-column Ecosystem Table (short descriptions + tooltips) */}
                 <section style={{ padding: '2rem 4rem' }}>

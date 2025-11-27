@@ -10,7 +10,7 @@ export default function Home() {
         >
             <main>
 
-                {/* Hero Section */}
+                {/* Hero Section (Executive Summary) */}
                 <section
                     style={{
                         padding: '4rem 4rem',
@@ -25,7 +25,16 @@ export default function Home() {
                         It connects individuals and siloed sectors to <strong>foster innovation</strong>, measure impact, and <strong>collaborate</strong> within a federated system-of-systems.
                     </p>
                     <div style={{ marginTop: '2rem' }}>
-                        {/* ... buttons ... */}
+                        <Link className="button button--primary" to="/docs/intro">
+                            Get Started
+                        </Link>
+                        <Link
+                            className="button button--secondary"
+                            to="https://app.novaeco.tech"
+                            style={{ marginLeft: '0.75rem' }}
+                        >
+                            Launch App
+                        </Link>
                     </div>
                 </section>
 
@@ -40,7 +49,7 @@ export default function Home() {
                         <li><strong><a href="https://app.novaeco.tech">App</a></strong> — Mission Control for onboarding, discovery, and ecosystem management.</li>
                         <li><strong><a href="https://auth.novaeco.tech">Identity</a></strong> — Digital Passport & Trust Profile for unified login.</li>
                         <li><strong><a href="https://api.novaeco.tech">Gateway</a></strong> — API gateway for secure, managed access to all services.</li>
-                        <li><strong><Link to="/docs/intro">Docs</Link></strong> — Architecture, use cases, and developer guides.</li>
+                        <li><strong><Link to="/docs/intro">Docs</Link></strong> — Comprehensive documentation hub for architecture, use cases, and developer guides.</li>
                     </ul>
                     <p>
                         It is designed as a <strong>System‑of‑Systems</strong>: interconnected <strong>Horizontal Enablers</strong> (services), <strong>Vertical Sectors</strong> (application industries), <strong>Workers</strong> (microservices), and <strong>Products</strong> (hardware/software innovations) that together enable sustainable collaboration, compliance, and innovation.

@@ -1,5 +1,26 @@
 const lightCodeTheme = require('prism-react-renderer').themes.github;
 const darkCodeTheme = require('prism-react-renderer').themes.dracula;
+const fs = require('fs');
+const path = require('path');
+
+// --- DYNAMIC VERSION LOGIC ---
+// Priority 1: Environment Variable (Used in CI/CD for CalVer releases)
+// Priority 2: GLOBAL_VERSION file (Used for local dev / component version)
+// Priority 3: package.json (Fallback)
+let currentVersion = process.env.NOVA_VERSION;
+
+if (!currentVersion) {
+    try {
+        const globalVersionPath = path.resolve(__dirname, '../GLOBAL_VERSION');
+        if (fs.existsSync(globalVersionPath)) {
+            currentVersion = fs.readFileSync(globalVersionPath, 'utf8').trim();
+        } else {
+            currentVersion = require('./package.json').version;
+        }
+    } catch (err) {
+        currentVersion = 'Dev';
+    }
+}
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -74,7 +95,8 @@ const config = {
                     ],
                 },
             ],
-            copyright: `Copyright © ${new Date().getFullYear()} Circular Engineering Nova GmbH.`,
+            // Displays: "System Version: v2025.11.01" in Prod, or "v0.1.0" in Dev
+            copyright: `Copyright © ${new Date().getFullYear()} Circular Engineering Nova GmbH. <br/> <span style="font-size: 0.8em; opacity: 0.6;">System Version: ${currentVersion}</span>`,
         },
         prism: { theme: lightCodeTheme, darkTheme: darkCodeTheme },
     },

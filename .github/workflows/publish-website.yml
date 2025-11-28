@@ -11,39 +11,82 @@ permissions:
   contents: write
 
 jobs:
-  publish-website:
+  check-and-release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      # Website version is in package.json, not VERSION file
-      - name: Read Version
-        run: echo "VERSION=$(jq -r .version website/package.json)" >> $GITHUB_ENV
+      # 1. Check if Version Bumped (using package.json)
+      - name: Check Version & Tag
+        id: check
+        run: |
+          VERSION=$(jq -r .version website/package.json)
+          TAG_NAME="ecosystem-core-website-v$VERSION"
+          
+          if git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
+            echo "Tag $TAG_NAME already exists. Skipping release."
+            echo "SHOULD_RELEASE=false" >> $GITHUB_OUTPUT
+          else
+            echo "New version detected ($VERSION). Proceeding."
+            echo "SHOULD_RELEASE=true" >> $GITHUB_OUTPUT
+            echo "VERSION=$VERSION" >> $GITHUB_ENV
+            echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
+          fi
 
-      - name: Install & Build
+      # 2. Defensive Testing
+      - name: Install & Test
+        if: steps.check.outputs.SHOULD_RELEASE == 'true'
         run: |
           cd website
           npm install
-          npm run build
+          npm test
 
-      - name: Package Artifact
+      # 3. Build Package
+      - name: Build and Package Website
+        if: steps.check.outputs.SHOULD_RELEASE == 'true'
         run: |
-          # Docusaurus builds to website/build
-          
-          # Robust Tar: Change to build dir first
-          cd website/build
-          
-          # Create artifact with Fully Qualified Name (../../ to get back to repo root)
+          cd website
+          npm run build
+          # Change to build dir to package
+          cd build
+          # Create Fully Qualified Name (../../ to return to root)
           tar -czf ../../ecosystem-core-website.tar.gz .
 
-      - name: Create GitHub Pre-release
+      # 4. Generate QA Token
+      - name: Generate QA Token
+        if: steps.check.outputs.SHOULD_RELEASE == 'true'
+        id: generate_qa_token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.QA_APP_ID }}
+          private-key: ${{ secrets.QA_APP_PRIVATE_KEY }}
+          owner: novaeco-tech
+
+      # 5. Create Release & Tag
+      - name: Create GitHub Release
+        if: steps.check.outputs.SHOULD_RELEASE == 'true'
         uses: softprops/action-gh-release@v2
         with:
-          # Tag: ecosystem-core-website-v1.2.4
-          tag_name: "ecosystem-core-website-v${{ env.VERSION }}"
+          tag_name: ${{ env.TAG_NAME }}
           name: "Ecosystem Core Website v${{ env.VERSION }}"
-          
-          # File to upload
           files: ecosystem-core-website.tar.gz
-          
           prerelease: true
+          generate_release_notes: true
+
+      # 6. Signal QA
+      - name: Dispatch to Ecosystem QA
+        if: steps.check.outputs.SHOULD_RELEASE == 'true'
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ steps.generate_qa_token.outputs.token }}
+          repository: novaeco-tech/ecosystem-qa
+          event-type: qa-run
+          client-payload: >-
+            {
+              "repo": "ecosystem-core", 
+              "service": "website",
+              "tag": "${{ env.TAG_NAME }}", 
+              "artifact_name": "ecosystem-core-website.tar.gz"
+            }

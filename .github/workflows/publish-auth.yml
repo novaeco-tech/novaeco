@@ -48,6 +48,7 @@ jobs:
         run: |
           mkdir -p dist
           cp -r auth/src/* dist/
+          cp auth/requirements.txt dist/
           cd dist
           tar -czf ../ecosystem-core-auth.tar.gz .
 

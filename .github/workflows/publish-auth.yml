@@ -30,12 +30,18 @@ jobs:
           
           # Robust Tar
           cd dist
-          tar -czf ../auth-release.tar.gz .
+          
+          # Create artifact with Fully Qualified Name
+          tar -czf ../ecosystem-core-auth.tar.gz .
 
       - name: Create GitHub Pre-release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: "auth-v${{ env.VERSION }}"
-          name: "Auth Service v${{ env.VERSION }}"
-          files: auth-release.tar.gz
+          # Tag: ecosystem-core-auth-v1.1.0
+          tag_name: "ecosystem-core-auth-v${{ env.VERSION }}"
+          name: "Ecosystem Core Auth v${{ env.VERSION }}"
+          
+          # File to upload
+          files: ecosystem-core-auth.tar.gz
+          
           prerelease: true

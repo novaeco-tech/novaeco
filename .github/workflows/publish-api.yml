@@ -32,12 +32,18 @@ jobs:
           
           # Robust Tar: Change directory first to avoid path issues
           cd dist
-          tar -czf ../api-release.tar.gz .
+          
+          # Create artifact with Fully Qualified Name (repo-service.tar.gz)
+          tar -czf ../ecosystem-core-api.tar.gz .
 
       - name: Create GitHub Pre-release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: "api-v${{ env.VERSION }}"
-          name: "API Service v${{ env.VERSION }}"
-          files: api-release.tar.gz
+          # Tag format: [repo]-[service]-v[version]
+          tag_name: "ecosystem-core-api-v${{ env.VERSION }}"
+          name: "Ecosystem Core API v${{ env.VERSION }}"
+          
+          # Must match the filename created in the previous step
+          files: ecosystem-core-api.tar.gz
+          
           prerelease: true

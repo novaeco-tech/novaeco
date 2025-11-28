@@ -32,12 +32,18 @@ jobs:
           
           # Robust Tar: Change to build dir first
           cd website/build
-          tar -czf ../../website-release.tar.gz .
+          
+          # Create artifact with Fully Qualified Name (../../ to get back to repo root)
+          tar -czf ../../ecosystem-core-website.tar.gz .
 
       - name: Create GitHub Pre-release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: "website-v${{ env.VERSION }}"
-          name: "Website v${{ env.VERSION }}"
-          files: website-release.tar.gz
+          # Tag: ecosystem-core-website-v1.2.4
+          tag_name: "ecosystem-core-website-v${{ env.VERSION }}"
+          name: "Ecosystem Core Website v${{ env.VERSION }}"
+          
+          # File to upload
+          files: ecosystem-core-website.tar.gz
+          
           prerelease: true

@@ -36,12 +36,18 @@ jobs:
           
           # Robust Tar
           cd dist
-          tar -czf ../app-release.tar.gz .
+          
+          # Create artifact with Fully Qualified Name
+          tar -czf ../ecosystem-core-app.tar.gz .
 
       - name: Create GitHub Pre-release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: "app-v${{ env.VERSION }}"
-          name: "App Service v${{ env.VERSION }}"
-          files: app-release.tar.gz
+          # Tag: ecosystem-core-app-v1.2.1
+          tag_name: "ecosystem-core-app-v${{ env.VERSION }}"
+          name: "Ecosystem Core App v${{ env.VERSION }}"
+          
+          # File to upload
+          files: ecosystem-core-app.tar.gz
+          
           prerelease: true

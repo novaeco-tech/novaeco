@@ -3,23 +3,23 @@
 **NovaEco** is the open‑source **Digital Public Infrastructure** for the circular economy.  
 It connects individuals and siloed sectors to **foster innovation**, measure impact, and **collaborate** within a federated system-of-systems.
 
-This repository (`ecosystem-core`) is the "heart" of the system. It is a monorepo containing the four central services that anchor the entire platform.
+This repository (`novaeco`) is the "heart" of the system. It is a monorepo containing the four central services that anchor the entire platform.
 
 ## 🏗️ Architecture Overview
 
-The ecosystem is anchored by these **four core services**:
+The NovaEco is anchored by these **four core services**:
 
 | Service | Path | Type | Port | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| **App** | `/app` | **Python/Flask** | `5000` | **Mission Control.** Onboarding, discovery, and ecosystem management. |
+| **App** | `/app` | **Python/Flask** | `5000` | **Mission Control.** Onboarding, discovery, and NovaEco management. |
 | **Identity** | `/auth` | **Python/Flask** | `9000` | **Digital Passport.** SSO & Trust Profile for unified login. |
 | **Gateway** | `/api` | **Python/Flask** | `8000` | **API Gateway.** Secure, managed access to all services. |
 | **Website** | `/website` | **Node.js** | `3000` | **Docs & Landing.** Architecture, use cases, and guides. |
 
 ### 🎮 The "Mission Control" Concept
-The **App** (`/app`) acts as the "Home Screen" for the ecosystem. It is **read-heavy** and focuses on three specific functions:
+The **App** (`/app`) acts as the "Home Screen" for the NovaEco. It is **read-heavy** and focuses on three specific functions:
 1.  **Onboarding & Identity:** Handles Sign-up, Profile management, and Trust verification.
-2.  **Aggregated Dashboard:** Displays a high-level summary of user activity across the ecosystem (e.g., "Total CO₂ Saved", "3 Active Projects").
+2.  **Aggregated Dashboard:** Displays a high-level summary of user activity across the NovaEco (e.g., "Total CO₂ Saved", "3 Active Projects").
 3.  **App Launchpad:** Provides deep-links to jump into specific Sector/Enabler apps (e.g., clicking a project takes you to `novaagro.tech` for execution).
 
 ---
@@ -30,7 +30,7 @@ This repository is configured to use **DevContainers** for a one-click setup.
 
 1.  Make sure you have [docker desktop](https://www.docker.com/products/docker-desktop/) installed and running.
 2.  Install the [remote containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) in VS Code.
-3.  Clone this repository: `git clone https://github.com/novaeco-tech/ecosystem-core.git`
+3.  Clone this repository: `git clone https://github.com/novaeco-tech/novaeco.git`
 4.  Open the cloned folder in VS Code.
 5.  A pop-up will appear: "Folder contains a Dev Container... Reopen in Container?". Click **"Reopen in Container"**.
 
@@ -47,7 +47,7 @@ Once the container is running, the services are available locally:
 
 ## 🛠️ Development Workflow
 
-The ecosystem runs as **4 separate containers** (App, Website, API, Auth).
+The NovaEco Core runs as **4 separate containers** (App, Website, API, Auth).
 When you open this repo in VS Code, it attaches to the **App** service by default.
 
 **✅ All services start automatically.**
@@ -79,7 +79,7 @@ We use the internal `novaeco` CLI to manage versions and automation.
 The CLI is installed automatically in the DevContainer. If you need to reinstall it manually:
 
 ```bash
-pip install "git+https://github.com/novaeco-tech/ecosystem-devtools.git@main#subdirectory=novaeco-cli"
+pip install "git+https://github.com/novaeco-tech/novaeco-devtools.git@main#subdirectory=novaeco-cli"
 ```
 
 **Usage**
@@ -104,7 +104,7 @@ To run commands for a specific service (e.g., installing a new npm package for t
 
 1.  **Click the "Remote Explorer" icon** in the VS Code sidebar (looks like a monitor).
 2.  Look under the **"Other Containers"** list.
-3.  Right-click the service you want (e.g., `ecosystem-core_devcontainer-website-1`).
+3.  Right-click the service you want (e.g., `novaeco_devcontainer-website-1`).
 4.  Select **"Attach to Visual Studio Code"**.
 
 **Result:** A **new VS Code window** opens for that service.

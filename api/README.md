@@ -1,6 +1,6 @@
 # ⛩️ NovaEco API Gateway
 
-> **The Front Door of the Ecosystem.**
+> **The Front Door of the NovaEco.**
 > A unified REST interface that routes public traffic to internal microservices (Enablers & Sectors).
 
 ## 📖 Overview

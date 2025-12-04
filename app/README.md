@@ -1,6 +1,6 @@
 # 🎮 NovaEco Mission Control (App)
 
-> **The Dashboard of the Ecosystem.**
+> **The Dashboard of the NovaEco.**
 > The central launchpad for discovering sectors, managing identity, and viewing system-wide status.
 
 ## 📖 Overview

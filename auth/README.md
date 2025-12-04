@@ -1,6 +1,6 @@
 # 🔐 NovaEco Identity Service (Auth)
 
-**The Digital Passport of the Ecosystem.**  
+**The Digital Passport of the NovaEco.**  
 Centralized authentication (SSO), token verification, and user profile management.
 
 ## 📖 Overview

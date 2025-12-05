@@ -10,17 +10,23 @@ from main import app
 @pytest.fixture
 def client():
     """Creates a test client for the Flask application."""
+    # Enable testing mode (propagates exceptions, etc.)
+    app.config['TESTING'] = True
     with app.test_client() as client:
         yield client
 
-def test_health_check(client):
+@pytest.mark.requirement("REQ-CORE-OPS-001")
+def test_health_endpoint_contract(client):
     """
-    Sanity Check:
-    Ensures the application can start and respond to the basic health probe.
+    Verifies that the service exposes a standardized /health endpoint.
+    Requirement: REQ-CORE-OPS-001 (Container Health)
     """
     response = client.get('/health')
     
+    # 1. Check HTTP Status
     assert response.status_code == 200
+    
+    # 2. Check Payload Structure
     json_data = response.get_json()
     assert json_data["status"] == "ok"
     assert json_data["service"] == "novaeco-api-gateway"

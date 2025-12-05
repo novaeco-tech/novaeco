@@ -1,18 +1,8 @@
 # Sustainability Requirements
 
-The NovaEco embeds circular economy principles into its technical and governance design.
+These requirements ensure the platform itself minimizes its ecological footprint.
 
-## Environmental
-- Support for Digital Product Passports (DPP).
-- Automated Life Cycle Assessment (LCA) calculations.
-- Integration with renewable energy and carbon trading.
-
-## Social
-- Fair wage auditing via NovaEquity.
-- Inclusive onboarding for displaced experts.
-- Transparent governance participation.
-
-## Economic
-- Product‑as‑a‑Service models.
-- Circular marketplaces for reuse and refurbishment.
-- Financing mechanisms aligned with ESG standards.
+| ID | Title | Description | Metric |
+| :--- | :--- | :--- | :--- |
+| **REQ-CORE-SUS-001** | **Dark Mode Default** | To reduce energy consumption on OLED screens, the default UI theme must be Dark. | Default CSS variable `--bg` is `#0f2027` (or similar dark hex). |
+| **REQ-CORE-SUS-002** | **Payload Efficiency** | APIs should support field filtering (GraphQL style or partial response) to minimize data transfer energy. | API responses should be GZIP compressed. |

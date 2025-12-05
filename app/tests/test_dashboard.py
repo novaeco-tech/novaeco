@@ -2,7 +2,7 @@ import pytest
 import sys
 import os
 
-# Ensure we can import from the parent directory (where app.py resides)
+# Ensure we can import from the parent directory
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from app import app
@@ -14,11 +14,12 @@ def client():
     with app.test_client() as client:
         yield client
 
+@pytest.mark.requirement("REQ-CORE-FUNC-003")
 def test_dashboard_loads(client):
     """
     Sanity Check:
-    Ensures the Mission Control dashboard renders (HTTP 200)
-    even if the backend API is offline.
+    Ensures the Mission Control dashboard renders (HTTP 200).
+    Verifies REQ-CORE-FUNC-003 (Launchpad Discovery).
     """
     response = client.get('/')
     

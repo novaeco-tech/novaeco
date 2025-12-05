@@ -42,10 +42,11 @@ This matrix maps every test type to its owner, environment, and V-Model level.
 | **L5** | **Unit Testing** | Local Repo | CI / DevContainer | Mocked Dependencies |
 | **L5** | **Static Analysis** | Local Repo | CI | N/A |
 | **L5** | **Security (SAST)** | Local Repo | CI | N/A |
+| **L5** | **Micro-Benchmarking** | Local Repo | CI | N/A |
 | **L4** | **Local Integration** | Local Repo | Docker Compose | Local Seeding / Stubs |
 | **L4** | **API Contract** | Local Repo | CI | Pact / Schemas |
 | **L3** | **Local E2E** | Local Repo | CI (Headless) | Stubbed Backend |
-| **L3** | **Component Sanity** | NovaEco QA | Docker Swarm | Health Checks |
+| **L3** | **Usability (Automated)** | Local Repo | CI (Headless) | Synthetic |
 | **L2** | **System Integration** | NovaEco QA | Docker Swarm | Real Inter-service Traffic |
 | **L1** | **Acceptance (Global)** | NovaEco QA | Docker Swarm | Synthetic User Flows |
 | **L1** | **Smoke Testing** | NovaEco QA | Docker Swarm | Critical Path Only |
@@ -53,6 +54,7 @@ This matrix maps every test type to its owner, environment, and V-Model level.
 | **Ops**| **Performance (Load)** | Private Ops | Staging | Synthetic Traffic |
 | **Ops**| **Chaos / Resilience** | Private Ops | Staging / Prod | Fault Injection |
 | **Ops**| **Usability (Human)** | Private Ops | Beta / UAT | Real Users |
+| **Ops**| **Compliance** | Private Ops | Staging | Policy-as-Code Scans |
 
 > **Note:** For detailed definitions of each test type, see [Test Types Reference](./testing-types.md).
 
@@ -66,25 +68,24 @@ The `novaeco-qa` repository acts as the central verification hub. It follows thi
 novaeco-qa/
 ├── tests/
 │   ├── e2e/                        # End-to-End System Tests
-│   │   ├── acceptance/             # L1: Global User Journeys (e.g., "City Challenge")
+│   │   ├── acceptance/             # L1: Global User Journeys (Uses Level 4 Use Cases)
 │   │   │   └── level4_complex/
-│   │   ├── system/                 # L2: Inter-service Functionality
+│   │   ├── system/                 # L2: Inter-service Functionality (Uses Level 2/3 Use Cases)
 │   │   │   ├── level2_easy/
 │   │   │   └── level3_medium/
 │   │   └── specs/                  # Shared test specifications (Playwright/Cypress)
 │   │
 │   ├── integration/                # API-Level Tests (No UI)
-│   │   ├── contracts/              # API Contract verifications (Pact)
 │   │   └── workflows/              # Multi-step API sequences (Pytest)
 │   │
-│   ├── performance/                # Load Testing Scripts
+│   ├── performance/                # Load Testing Scripts (Executed in Staging)
 │   │   ├── k6/                     # k6 scripts for generic load
 │   │   └── scenarios/              # Specific profiles (Spike, Soak)
 │   │
-│   ├── security/                   # Security Scans
+│   ├── security/                   # Security Scans (Executed in Staging)
 │   │   └── dast/                   # OWASP ZAP configurations
 │   │
-│   ├── chaos/                      # Resilience Experiments
+│   ├── chaos/                      # Resilience Experiments (Executed in Staging)
 │   │   └── chaostoolkit/           # Declarative chaos definitions
 │   │
 │   └── shared/                     # Utilities

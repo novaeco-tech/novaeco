@@ -84,7 +84,7 @@ Every definition artifact on the **Left** corresponds to a specific test suite o
 | Phase | Responsibility | Inputs | Action | Artifact (Output) |
 | :--- | :--- | :--- | :--- | :--- |
 | **Definition**<br/>(Left) | **Developer**<br/>(Local) | API Specs,<br/>Algorithms | Write code logic, algorithmic efficiency rules, and docstrings. | **Source Code**<br/>`[repo]/api/src/`<br/>*(e.g., calculations.py)* |
-| **Verification**<br/>(Right) | **Developer**<br/>(Local) | Source Code | Test logic with mocked dependencies. | **Unit Test Report**<br/>`[repo]/api/tests/`<br/>*(Coverage %, Benchmark)* |
+| **Verification**<br/>(Right) | **Developer**<br/>(Local) | Source Code | Test logic with mocked dependencies. | **Unit Test Report**<br/>`[repo]/api/tests/unit/`<br/>*(Coverage %, Benchmark)* |
 
 **Example Requirements:**
 * **Functional:** `REQ-CODE-FUNC-001` "Function `calculate_npk()` returns correct float."
@@ -97,28 +97,29 @@ Every definition artifact on the **Left** corresponds to a specific test suite o
 This table assigns every test type from our **Test Strategy** (`test-types.md`) to a specific owner and repository.
 
 ### Phase 1: Local (The Developer Loop)
-**Owner:** `novaeco-tech/[repo]`  
+**Owner:** `novaeco-tech/[repo]`
 **Env:** DevContainer / CI
 
 | Test Type | V-Model Level | Directory Path | Purpose |
 | :--- | :--- | :--- | :--- |
 | **Unit Testing** | **L5** | `api/tests/unit/` | Verify logic correctness (Mocked IO). |
 | **Micro-Benchmarking** | **L5** | `tests/performance/micro/` | Verify algorithmic speed (NFR). |
+| **Static Analysis** | **L5** | `.github/workflows/lint.yml` | Code style and security scanning. |
+| **API Contract** | **L4** | `tests/integration/contracts/` | Verify Pact contracts against local schema. |
 | **Local Integration** | **L4** | `tests/integration/` | Verify service contracts (Container startup). |
 | **Local E2E** | **L3** | `tests/e2e/specs/` | Verify UI/Dashboard functionality (Stubbed API). |
-| **Static Analysis** | **N/A** | `.github/workflows/lint.yml` | Code style and security scanning. |
+| **Usability (Automated)** | **L3** | `tests/accessibility/` | Automated Lighthouse/Axe scans (NFR). |
+| **Security (SAST)** | **L5** | `.github/workflows/sast.yml` | CodeQL / SonarQube scans. |
 
 ### Phase 2: Global (The QA Loop)
-**Owner:** `novaeco-tech/novaeco-qa`  
+**Owner:** `novaeco-tech/novaeco-qa`
 **Env:** Docker Compose (Ephemeral)
 
 | Test Type | V-Model Level | Directory Path | Purpose |
 | :--- | :--- | :--- | :--- |
 | **System Testing** | **L2** | `tests/e2e/system/` | Verify Functional Requirements (Real Inter-service). |
 | **Acceptance Testing** | **L1** | `tests/e2e/acceptance/` | Verify Global Use Cases (Full User Journey). |
-| **API Contract Testing** | **L4** | `tests/integration/contracts/` | Prevent breaking API changes between sectors. |
-| **Compatibility** | **N/A** | `.github/workflows/matrix.yml` | Test against Postgres/MySQL/MariaDB matrix. |
-| **Usability (Automated)** | **L3** | `tests/accessibility/` | Automated Lighthouse/Axe scans (NFR). |
+| **Smoke Testing** | **L1** | `tests/e2e/smoke/` | Critical Path Sanity Check. |
 
 ### Phase 3: Operational (The Staging Loop)
 **Owner:** `circular-engineering/novaeco-operations`  
@@ -129,6 +130,8 @@ This table assigns every test type from our **Test Strategy** (`test-types.md`) 
 | **Security (DAST)** | **Private Ops** | Requires a running, accessible URL. |
 | **Performance (Load)** | **Private Ops** | Requires massive infrastructure to simulate city-scale traffic. |
 | **Usability (Human)** | **Private Ops** | Requires real humans clicking through a Staging environment. |
+| **Compliance** | **Private Ops** | Automated Policy-as-Code checks (GDPR/Audit). |
+| **Chaos / Resilience** | **Private Ops** | Fault injection (latency, kill pods). |
 
 ---
 

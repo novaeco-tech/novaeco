@@ -19,6 +19,22 @@ Use this reference to understand *how* to implement a specific test type listed 
 * **Tools:** `Ruff` / `Flake8` (Python), `ESLint` (Node).
 * **Best Practices:** Run on every file save (Pre-commit hook).
 
+### Local E2E (Component)
+* **Goal:** Verify UI logic and frontend routing in isolation.
+* **Tools:** `Playwright`, `Cypress`.
+* **Context:** Runs in Local CI. Backend is **stubbed/mocked**.
+* **Input:** Source Code + Mock Data.
+
+### Micro-Benchmarking
+* **Goal:** Verify algorithmic efficiency of critical hot-paths.
+* **Tools:** `pytest-benchmark`.
+* **Constraint:** Strict timing budgets (e.g., "Hashing must take < 5ms").
+
+### API Contract Testing
+* **Goal:** Generate and verify Pact contracts between Consumer and Producer.
+* **Tools:** `Pact`.
+* **Context:** Runs in Local CI. Prevents breaking changes before merge.
+
 ### Security (SAST)
 * **Goal:** Static Application Security Testing. Scan code for known vulnerabilities.
 * **Tools:** GitHub Advanced Security, SonarQube.
@@ -28,6 +44,11 @@ Use this reference to understand *how* to implement a specific test type listed 
 * **Goal:** Validate interactions between the service and its *immediate* dependencies (DB, Cache).
 * **Tools:** `Testcontainers`, `Docker Compose`.
 * **Best Practices:** Use real database containers, but stub external HTTP APIs (e.g., mock the Gateway).
+
+### Usability & Accessibility (Automated)
+* **Goal:** Compliance with WCAG standards during development.
+* **Tools:** `Axe`, `Lighthouse` (CI).
+* **Context:** Runs in Local CI (Headless). Fails build on accessibility violations.
 
 ---
 
@@ -44,11 +65,6 @@ Use this reference to understand *how* to implement a specific test type listed 
 * **Tools:** `Pytest-BDD` or standard `Pytest`.
 * **Context:** Runs in `novaeco-qa`. Uses **Global Use Cases** (Level 1).
 * **Example:** "Bakery lists waste -> Trade matches -> Logistics moves."
-
-### API Contract Testing
-* **Goal:** Ensure producers (API) and consumers (App) agree on schema.
-* **Tools:** `Pact`.
-* **Best Practices:** Version your contracts. Run whenever an API schema changes.
 
 ### Smoke Testing
 * **Goal:** Quick sanity check on a Release Candidate.
@@ -77,11 +93,11 @@ Use this reference to understand *how* to implement a specific test type listed 
 * **Tools:** `Chaos Toolkit`.
 * **Scenarios:** "Kill the Auth DB", "Add 500ms latency to Gateway", "Partition the network".
 
-### Usability & Accessibility (Automated)
-* **Goal:** Compliance with WCAG standards.
-* **Tools:** `Axe`, `Lighthouse`.
-* **Context:** Can be run in CI (Headless) or Staging.
-
 ### Compliance & Auditing
 * **Goal:** Verify adherence to regulations (GDPR, EU Taxonomy).
 * **Method:** Policy-as-Code checks (e.g., verifying Audit Logs are being written).
+
+### Usability (Human)
+* **Goal:** Verify user experience with real humans (UAT).
+* **Context:** Beta / UAT environment.
+* **Method:** Manual testing scripts executed by Product Owners or Beta Testers.

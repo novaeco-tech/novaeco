@@ -48,7 +48,8 @@ jobs:
         # Only install external libs for unit tests to keep it fast
         run: pip install -r api/requirements.txt
       - name: Run Unit Tests
-        run: cd api && pytest
+        # Run from service root to ensure src/ imports work
+        run: cd api && pytest tests/unit
 
   # Job 3: Unit Test App (Python)
   test-app:
@@ -63,7 +64,8 @@ jobs:
       - name: Install Dependencies
         run: pip install -r app/requirements.txt
       - name: Run Unit Tests
-        run: cd app && pytest
+        # Run from service root
+        run: cd app && pytest tests/unit
 
   # Job 4: Unit Test Auth (Python)
   test-auth:
@@ -78,7 +80,8 @@ jobs:
       - name: Install Dependencies
         run: pip install -r auth/requirements.txt
       - name: Run Unit Tests
-        run: cd auth && pytest
+        # Run from service root
+        run: cd auth && pytest tests/unit
 
   # Job 5: Unit Test Website (Node.js)
   test-website:
@@ -93,7 +96,8 @@ jobs:
       - name: Install Dependencies
         run: cd website && npm install
       - name: Run Tests
-        run: cd website && npm test
+        # Run from website root where package.json lives
+        run: cd website && npm test -- tests/unit
 
   # Job 6: Integration Tests (Docker Compose)
   # This spins up the full environment to test communication between containers

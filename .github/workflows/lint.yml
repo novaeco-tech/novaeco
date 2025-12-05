@@ -1,0 +1,95 @@
+name: NovaEco Static Analysis
+
+on:
+  pull_request:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  # Job 1: Smart Path Filtering (Same as CI)
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      api: ${{ steps.filter.outputs.api }}
+      app: ${{ steps.filter.outputs.app }}
+      auth: ${{ steps.filter.outputs.auth }}
+      website: ${{ steps.filter.outputs.website }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            api: ['api/**']
+            app: ['app/**']
+            auth: ['auth/**']
+            website: ['website/**']
+
+  # Job 2: Lint Python Services (Ruff)
+  # We group these into one matrix job for efficiency, but only run if changed
+  lint-python:
+    needs: changes
+    # Run if ANY Python service changed
+    if: ${{ needs.changes.outputs.api == 'true' || needs.changes.outputs.app == 'true' || needs.changes.outputs.auth == 'true' }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        service: [api, app, auth]
+    steps:
+      - uses: actions/checkout@v4
+      
+      # We skip the step logic if this specific service didn't change
+      # This allows us to use one matrix job for all 3 services
+      - name: Check if service changed
+        id: check
+        run: |
+          CHANGED="${{ needs.changes.outputs[matrix.service] }}"
+          echo "should_run=$CHANGED" >> $GITHUB_OUTPUT
+
+      - name: Set up Python
+        if: steps.check.outputs.should_run == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Ruff
+        if: steps.check.outputs.should_run == 'true'
+        run: pip install ruff
+
+      - name: Run Ruff (Linting)
+        if: steps.check.outputs.should_run == 'true'
+        run: |
+          echo "🔍 Linting ${{ matrix.service }}..."
+          # Run check on the service directory
+          ruff check ${{ matrix.service }}
+          
+      - name: Run Ruff (Formatting Check)
+        if: steps.check.outputs.should_run == 'true'
+        run: |
+          echo "🔍 Checking format for ${{ matrix.service }}..."
+          # Fails if code is not formatted correctly
+          ruff format --check ${{ matrix.service }}
+
+  # Job 3: Lint Website (ESLint)
+  lint-website:
+    needs: changes
+    if: ${{ needs.changes.outputs.website == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: website/package-lock.json
+
+      - name: Install Dependencies
+        run: cd website && npm ci
+
+      - name: Run ESLint
+        # Assumes you have a 'lint' script in package.json or runs directly
+        run: cd website && npx eslint . --ext .js,.jsx,.ts,.tsx

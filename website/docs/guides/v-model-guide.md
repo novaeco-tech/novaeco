@@ -6,143 +6,151 @@
 
 ## 📖 The Philosophy: The 5-Level V-Model
 
-NovaEco uses a **5-Level V-Model** to manage complexity. This structure separates **Definition** (designing the right thing) from **Verification** (building the thing right).
-
-Crucially, verification happens in two distinct scopes:
-1.  **Local Scope (Levels 3-5):** Executed inside individual repositories (e.g., `novaagro`, `novaeco`). Verifies that the component functions correctly in isolation.
-2.  **Global Scope (Levels 1-2):** Executed inside `novaeco-qa`. Verifies that components interact correctly as a System-of-Systems.
+NovaEco uses a **5-Level V-Model** to manage complexity. This model enforces **Bidirectional Traceability** to ensure we build the right thing (Validation) and build it correctly (Verification).
 
 ![V-Model Diagram](../../static/img/guides/v-model.jpg)
 
----
+### 1. Vertical Traceability (Decomposition)
+**"Why are we building this?"** (Top-Down)
+Requirements flow downwards. High-level goals are broken into technical specifications.
+* **Trace:** **L1 User Need** ("Recycle Phone") $\to$ **L2 System Req** ("Identify Model") $\to$ **L4 Component Spec** ("API accepts Serial Number").
+* **Benefit:** Change Impact Analysis. If a Strategic Goal changes, we know exactly which API endpoints are affected.
 
-## Level 1: Systemic Needs (Acceptance)
-
-**Scope:** The entire ecosystem working in concert to solve a real-world problem. 
-
-**Goal:** Verify that multiple sectors (Enablers + Verticals) can coordinate to achieve a user outcome.
-
-* **Definition (Left Side):**
-    * **Artifact:** Global Use Cases.
-    * **Location:** `novaeco/website/docs/usecases/level-4-complex.md`
-    * *Example:* `[C1] City Challenge` (Waste + Logistics + Finance).
-
-* **Verification (Right Side):**
-    * **Test Type:** System Acceptance Tests (End-to-End).
-    * **Location:** `novaeco-qa/tests/level4_complex/`
-    * *Execution:* Runs against the full production-like cluster.
+### 2. Horizontal Traceability (Verification)
+**"Did we build it right?"** (Left-Right)
+Every definition artifact on the **Left** corresponds to a specific test suite on the **Right**.
+* **Trace:** **Requirement ID** (`REQ-AGRO-001`) $\leftrightarrow$ **Test Tag** (`@pytest.mark.requirement(...)`).
+* **Benefit:** Coverage Analysis. We can mathematically prove that every requirement has a passing test.
 
 ---
 
-## Level 2: System Requirements (Integration)
+## 📐 The 5 Levels: Inputs, Outputs & Artifacts
 
-**Scope:** Interactions between two or more specific services via network protocols.
+### Level 1: Systemic Needs (Acceptance)
+**Scope:** The entire ecosystem working in concert to solve a real-world problem.
 
-**Goal:** Verify contracts, latency constraints, and data flow between containers.
-
-* **Definition (Left Side):**
-    * **Artifact:** Functional Requirements (Inter-service).
-    * **Location:** `[repo]/website/docs/requirements/functional.md`
-    * *Example:* `REQ-AGRO-FUNC-001` "Agro API must query Mind API for image analysis."
-
-* **Verification (Right Side):**
-    * **Test Type:** Global Integration Tests.
-    * **Location:** `novaeco-qa/tests/level2_easy/` & `level3_medium/`
-    * *Execution:* Real traffic (gRPC/REST) between Docker containers.
+| Phase | Responsibility | Inputs | Action | Artifact (Output) |
+| :--- | :--- | :--- | :--- | :--- |
+| **Definition**<br/>(Left) | **Product Owner**<br/>(Global) | Strategic Roadmap,<br/>Sustainability Goals | Define cross-sector User Journeys. | **Global Use Cases**<br/>`novaeco/website/docs/usecases/level4.md`<br/>*(e.g., [C1] City Challenge)* |
+| **Verification**<br/>(Right) | **NovaEco QA**<br/>(Global) | Global Use Cases,<br/>Stable Release | Simulate full user flows across containers. | **Acceptance Test Report**<br/>`novaeco-qa/tests/e2e/acceptance/`<br/>*(Pass/Fail of Use Case)* |
 
 ---
 
-## Level 3: Component E2E (System E2E)
+### Level 2: System Requirements (Integration)
+**Scope:** Interactions between multiple services via network protocols.
 
+| Phase | Responsibility | Inputs | Action | Artifact (Output) |
+| :--- | :--- | :--- | :--- | :--- |
+| **Definition**<br/>(Left) | **System Architect**<br/>(Global/Local) | Global Use Cases,<br/>ADRs | Decompose journeys into functional rules and performance constraints. | **Functional & Non-Functional Reqs**<br/>`[repo]/docs/requirements/functional.md`<br/>*(e.g., REQ-AGRO-FUNC-001)* |
+| **Verification**<br/>(Right) | **NovaEco QA**<br/>(Global) | Functional Reqs,<br/>Docker Containers | Execute inter-service API calls (Real Traffic). | **System Integration Report**<br/>`novaeco-qa/tests/e2e/system/`<br/>*(Traceability Matrix)* |
+
+**Example Requirements:**
+* **Functional:** `REQ-AGRO-FUNC-001` "Agro API must query Mind API for image analysis."
+* **Non-Functional:** `REQ-AGRO-PERF-001` "End-to-end analysis must complete in < 200ms."
+
+---
+
+### Level 3: Component E2E (System E2E)
 **Scope:** The user interface or entry point of a single component, treated as a "Black Box."
 
-**Goal:** Verify that the application launches, renders, and handles user input correctly before backend logic is involved.
+| Phase | Responsibility | Inputs | Action | Artifact (Output) |
+| :--- | :--- | :--- | :--- | :--- |
+| **Definition**<br/>(Left) | **UX Designer**<br/>(Local) | Functional Reqs,<br/>UI Mockups | Define UI behavior, Accessibility rules, and Local Use Cases. | **UI/UX Specs**<br/>`[repo]/docs/requirements/non-functional.md`<br/>*(e.g., REQ-UI-ACCESS-001)* |
+| **Verification**<br/>(Right) | **Developer**<br/>(Local) | Local Use Case,<br/>Frontend Build | Run Playwright/Cypress/Lighthouse. | **Local E2E Report**<br/>`[repo]/tests/e2e/`<br/>*(e.g., test_homepage.spec.ts)* |
 
-* **Definition (Left Side):**
-    * **Artifact:** User Interface & Experience Specs.
-    * **Location:** `[repo]/website/docs/requirements/non-functional.md` (Usability section).
+**Example Requirements:**
+* **Functional:** `REQ-UI-FUNC-001` "Clicking 'Scan' opens the camera."
+* **Non-Functional:** `REQ-UI-ACCESS-001` "All buttons must have ARIA labels (Lighthouse Score 100)."
 
-* **Verification (Right Side):**
-    * **Test Type:** Local E2E / UI Tests (Playwright/Cypress/Selenium).
-    * **Location:** `[repo]/tests/e2e/`
-    * *Execution:* Runs in the repository's CI pipeline using mocked backends or stubbed data.
+---
 
-| Component | Concrete Example File | Purpose |
+### Level 4: Service Integration (Component Integration)
+**Scope:** The internal plumbing of a monorepo (API $\leftrightarrow$ Auth $\leftrightarrow$ DB).
+
+| Phase | Responsibility | Inputs | Action | Artifact (Output) |
+| :--- | :--- | :--- | :--- | :--- |
+| **Definition**<br/>(Left) | **Tech Lead**<br/>(Local) | System Reqs,<br/>Architecture Patterns | Define API Contracts (Proto/OpenAPI) and Security Policies. | **API Specs & Security Policy**<br/>`[repo]/api/proto/v1/*.proto`<br/>*(e.g., REQ-SEC-AUTH-001)* |
+| **Verification**<br/>(Right) | **Developer**<br/>(Local) | API Specs,<br/>Docker Compose | Test container startup, internal wiring, and contract adherence. | **Local Integration Report**<br/>`[repo]/tests/integration/`<br/>*(e.g., test_auth_flow.py)* |
+
+**Example Requirements:**
+* **Functional:** `REQ-API-FUNC-001` "The `/health` endpoint returns 200 OK."
+* **Non-Functional:** `REQ-SEC-AUTH-001` "The service must verify JWT signatures using the public key."
+
+---
+
+### Level 5: Implementation (Unit)
+**Scope:** Individual functions, classes, and logic blocks.
+
+| Phase | Responsibility | Inputs | Action | Artifact (Output) |
+| :--- | :--- | :--- | :--- | :--- |
+| **Definition**<br/>(Left) | **Developer**<br/>(Local) | API Specs,<br/>Algorithms | Write code logic, algorithmic efficiency rules, and docstrings. | **Source Code**<br/>`[repo]/api/src/`<br/>*(e.g., calculations.py)* |
+| **Verification**<br/>(Right) | **Developer**<br/>(Local) | Source Code | Test logic with mocked dependencies. | **Unit Test Report**<br/>`[repo]/api/tests/`<br/>*(Coverage %, Benchmark)* |
+
+**Example Requirements:**
+* **Functional:** `REQ-CODE-FUNC-001` "Function `calculate_npk()` returns correct float."
+* **Non-Functional:** `REQ-CODE-PERF-001` "Function execution time < 5ms (Micro-benchmark)."
+
+---
+
+## 🗺️ The Master Testing Matrix
+
+This table assigns every test type from our **Test Strategy** (`test-types.md`) to a specific owner and repository.
+
+### Phase 1: Local (The Developer Loop)
+**Owner:** `novaeco-tech/[repo]`  
+**Env:** DevContainer / CI
+
+| Test Type | V-Model Level | Directory Path | Purpose |
+| :--- | :--- | :--- | :--- |
+| **Unit Testing** | **L5** | `api/tests/unit/` | Verify logic correctness (Mocked IO). |
+| **Micro-Benchmarking** | **L5** | `tests/performance/micro/` | Verify algorithmic speed (NFR). |
+| **Local Integration** | **L4** | `tests/integration/` | Verify service contracts (Container startup). |
+| **Local E2E** | **L3** | `tests/e2e/specs/` | Verify UI/Dashboard functionality (Stubbed API). |
+| **Static Analysis** | **N/A** | `.github/workflows/lint.yml` | Code style and security scanning. |
+
+### Phase 2: Global (The QA Loop)
+**Owner:** `novaeco-tech/novaeco-qa`  
+**Env:** Docker Compose (Ephemeral)
+
+| Test Type | V-Model Level | Directory Path | Purpose |
+| :--- | :--- | :--- | :--- |
+| **System Testing** | **L2** | `tests/e2e/system/` | Verify Functional Requirements (Real Inter-service). |
+| **Acceptance Testing** | **L1** | `tests/e2e/acceptance/` | Verify Global Use Cases (Full User Journey). |
+| **API Contract Testing** | **L4** | `tests/integration/contracts/` | Prevent breaking API changes between sectors. |
+| **Compatibility** | **N/A** | `.github/workflows/matrix.yml` | Test against Postgres/MySQL/MariaDB matrix. |
+| **Usability (Automated)** | **L3** | `tests/accessibility/` | Automated Lighthouse/Axe scans (NFR). |
+
+### Phase 3: Operational (The Staging Loop)
+**Owner:** `circular-engineering/novaeco-operations`  
+**Env:** Kubernetes Staging / Production
+
+| Test Type | Responsibility | Why here? |
 | :--- | :--- | :--- |
-| **NovaEco Core** | `novaeco/tests/e2e/test_homepage.py` | Verifies the "Mission Control" dashboard renders and Launchpad links exist. |
-| **NovaAgro** | `novaagro/tests/e2e/test_homepage.spec.ts` | Verifies the Farmer Dashboard map loads and controls are interactive. |
+| **Security (DAST)** | **Private Ops** | Requires a running, accessible URL. |
+| **Performance (Load)** | **Private Ops** | Requires massive infrastructure to simulate city-scale traffic. |
+| **Usability (Human)** | **Private Ops** | Requires real humans clicking through a Staging environment. |
 
 ---
 
-## Level 4: Service Integration (Component Integration)
+## 🔗 Traceability Tooling
 
-**Scope:** The internal plumbing of a monorepo. Verifying that the API service connects to its Auth middleware, Database, or internal gRPC clients.
+We enforce the link between Definition and Verification using the `novaeco` CLI.
 
-**Goal:** Verify the service "stands up" and respects its internal architecture.
+### 1. The ID System
+Every requirement must have a unique ID: `REQ-{COMPONENT}-{CATEGORY}-{ID}`.
 
-* **Definition (Left Side):**
-    * **Artifact:** API Specifications (OpenAPI / Proto).
-    * **Location:** `[repo]/api/proto/v1/`
+### 2. The Verification Tag
+Tests must "claim" a requirement using decorators.
 
-* **Verification (Right Side):**
-    * **Test Type:** Local Integration Tests.
-    * **Location:** `[repo]/tests/integration/`
-    * *Execution:* Runs via `docker-compose` in the repository's CI pipeline.
-
-| Component | Concrete Example File | Purpose |
-| :--- | :--- | :--- |
-| **NovaEco Core** | `novaeco/tests/integration/test_core_flows.py` | Verifies the API Gateway container correctly routes requests to the Auth container. |
-| **NovaAgro** | `novaagro/tests/integration/test_auth_flow.py` | Verifies the Agro API container successfully validates a token against a (mocked) Auth service. |
-
----
-
-## Level 5: Implementation (Unit)
-
-**Scope:** Individual functions, classes, and modules within a specific service.
-
-**Goal:** Verify logic correctness, edge cases, and error handling. External dependencies (DB, Network) are **always mocked**.
-
-* **Definition (Left Side):**
-    * **Artifact:** Technical Design / Code Comments.
-    * **Location:** Source code docstrings.
-
-* **Verification (Right Side):**
-    * **Test Type:** Unit Tests.
-    * **Location:** Co-located with the source code service folder.
-    * *Execution:* Runs via `pytest` or `npm test` instantly.
-
-| Service Type | Location Pattern |
-| :--- | :--- |
-| **Python APIs** | `[repo]/api/tests/` (e.g., `novaagro/api/tests/test_calculations.py`) |
-| **Web Apps** | `[repo]/app/tests/` (e.g., `novaeco/app/tests/test_routes.py`) |
-| **Workers** | `[repo]/tests/` (Workers are single-folder structures) |
-| **Auth Service** | `novaeco/auth/tests/` |
-
----
-
-## 🔗 Traceability & Auditing
-
-To ensure strict alignment between **Definition** and **Verification**, we use specific tagging and auditing tools.
-
-### 1. The Requirement ID
-Every requirement defined in `docs/` must be assigned a unique ID.
-* **Format:** `REQ-{COMPONENT}-{CATEGORY}-{ID}`
-* **Example:** `REQ-AGRO-FUNC-005`
-
-### 2. The Test Tag
-Every test in `novaeco-qa` (Levels 1-2) must tag which requirement it verifies.
-
+**Python (Pytest):**
 ```python
-import pytest
-
 @pytest.mark.requirement("REQ-AGRO-FUNC-005")
-def test_nitrogen_calculation():
-    # ...
+def test_nitrogen_calculation(): ...
 ````
 
-### 3\. The Audit Command
+### 3\. The Audit
 
-The `novaeco-devtools` CLI provides a command to generate the **Traceability Matrix**.
+Run the audit command to generate the **Traceability Matrix**:
 
 ```bash
 novaeco audit traceability
@@ -151,6 +159,6 @@ novaeco audit traceability
 **Output:**
 
 ```text
-[PASS] REQ-AGRO-FUNC-005: Verified by tests/level2_easy/test_agro.py
-[FAIL] REQ-AGRO-FUNC-006: No verification found in novaeco-qa.
+[PASS] REQ-AGRO-FUNC-005 (Level 2) -> Verified by novaeco-qa/tests/e2e/system/test_agro.py
+[FAIL] REQ-AGRO-PERF-001 (Level 2) -> No verification found.
 ```

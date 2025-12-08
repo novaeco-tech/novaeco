@@ -1,4 +1,5 @@
 import os
+
 import requests
 from flask import Flask, jsonify, request
 
@@ -23,9 +24,9 @@ def proxy(service, subpath):
     """Minimal Proxy: Forwards requests to internal microservices."""
     if service not in SERVICES:
         return jsonify({"error": "Service not found"}), 404
-    
+
     target_url = f"{SERVICES[service]}/{subpath}"
-    
+
     try:
         # Forward the request
         resp = requests.request(

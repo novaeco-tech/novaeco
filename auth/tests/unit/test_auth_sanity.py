@@ -1,6 +1,7 @@
-import pytest
-import sys
 import os
+import sys
+
+import pytest
 
 # Point sys.path to the 'auth' directory (the parent of 'src')
 # This allows us to see 'src' as a package.
@@ -8,8 +9,7 @@ SEARCH_PATH_PRIORITY_INDEX = 0
 sys.path.insert(SEARCH_PATH_PRIORITY_INDEX, os.path.join(os.path.dirname(__file__), '../../'))
 
 # Import via the package name
-# NEW: from src.app_service import app
-from src.auth_service import app
+from src.auth_service import app  # noqa: E402
 
 @pytest.fixture
 def client():
@@ -26,7 +26,7 @@ def test_health_check(client):
     Verifies REQ-CORE-OPS-001 (Container Health).
     """
     response = client.get('/health')
-    
+
     assert response.status_code == 200
     json_data = response.get_json()
     assert json_data["status"] == "ok"
@@ -42,7 +42,7 @@ def test_mock_login(client):
     response = client.post('/login')
     assert response.status_code == 200
     json_data = response.get_json()
-    
+
     # Assert we got a token back
     assert "token" in json_data
     assert json_data["token"] == "mock-jwt-token-123"

@@ -1,13 +1,14 @@
 import os
 import threading
-from concurrent import futures
-import grpc
-from flask import Flask, jsonify, request
 import time
+from concurrent import futures
 
-# --- 1. Flask App (HTTP) ---
+import grpc
+from flask import Flask, jsonify
+
 app = Flask(__name__)
 
+# --- 1. Flask App (HTTP) ---
 @app.route('/health', methods=['GET'])
 def health():
     return jsonify({"status": "ok", "service": "novaeco-auth", "protocol": "http"})
@@ -25,11 +26,11 @@ def run_flask():
 # we define the server structure. ensuring the port is open.
 def run_grpc():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    
+
     # FUTURE STEP: Import generated code and add servicer here:
     # from novaeco_auth_client import auth_pb2_grpc
     # auth_pb2_grpc.add_AuthServiceServicer_to_server(AuthServiceImplementation(), server)
-    
+
     server.add_insecure_port('[::]:9090')
     server.start()
     print("🔐 Auth gRPC server started on port 9090")

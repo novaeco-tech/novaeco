@@ -1,10 +1,7 @@
 {
     "name": "NovaEco Core",
     "dockerComposeFile": "docker-compose.yml",
-    // This is the service VS Code will 'attach' to.
-    // The other services (api, auth) will still be running.
     "service": "app",
-    // Mount the entire monorepo root into /workspace
     "workspaceFolder": "/workspace",
     "customizations": {
         "vscode": {
@@ -15,7 +12,6 @@
             ]
         }
     },
-    // Forward all ports for all running services
     "forwardPorts": [
         3000,
         5000,
@@ -25,6 +21,17 @@
     "remoteEnv": {
         "PATH": "${containerEnv:PATH}:/home/appuser/.local/bin"
     },
-    // Install App requirements AND the NovaEco CLI from the devtools repo
-    "postCreateCommand": "cd /workspace/app && pip install -r requirements-dev.txt && pip install 'git+https://github.com/novaeco-tech/novaeco-devtools.git@main#subdirectory=novaeco-cli'"
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "installSudo": true,
+            "username": "appuser",
+            "configureZshAsDefaultShell": true
+        }
+    },
+    // OPTIMIZED COMMAND:
+    // 1. Install CLI
+    // 2. Install Integration Test Deps (e.g. Faker, requests)
+    // 3. Install E2E Test Deps (e.g. pytest-playwright)
+    // 4. Install Browsers
+    "postCreateCommand": "pip install 'git+https://github.com/novaeco-tech/novaeco-devtools.git@main#subdirectory=novaeco-cli' && pip install -r /workspace/tests/integration/requirements.txt && pip install -r /workspace/tests/e2e/requirements.txt && playwright install && sudo env PYTHONPATH=/home/appuser/.local/lib/python3.11/site-packages /home/appuser/.local/bin/playwright install-deps"
 }

@@ -1,5 +1,6 @@
 from flask import Flask, render_template_string
-from src import GatewayClient, Config
+from .client import GatewayClient
+from .config import Config
 
 app = Flask(__name__)
 

@@ -3,9 +3,17 @@ import sys
 import os
 
 # Ensure we can import from src/
-sys.path.append(os.path.join(os.path.dirname(__file__), '../src'))
+SEARCH_PATH_PRIORITY_INDEX = 0  # Forces Python to look in this directory before system paths
+sys.path.insert(SEARCH_PATH_PRIORITY_INDEX, os.path.join(os.path.dirname(__file__), '../../src'))
 
-from main import app
+# Point sys.path to the 'api' directory (the parent of 'src')
+# This allows us to see 'src' as a package.
+SEARCH_PATH_PRIORITY_INDEX = 0
+sys.path.insert(SEARCH_PATH_PRIORITY_INDEX, os.path.join(os.path.dirname(__file__), '../../'))
+
+# Import via the package name
+# NEW: from src.app_service import app
+from src.api_service import app
 
 @pytest.fixture
 def client():

@@ -1,3 +1,4 @@
+import pytest
 from playwright.sync_api import Page, expect
 import os
 
@@ -19,4 +20,4 @@ def test_launchpad_links(page: Page):
     # Check for NovaAgro link
     agro_link = page.get_by_role("link", name="NovaAgro")
     expect(agro_link).to_be_visible()
-    expect(agro_link).to_have_attribute("href", "[http://agriculture.novaeco.tech](http://agriculture.novaeco.tech)")
+    expect(agro_link).to_have_attribute("href", "http://agriculture.novaeco.tech")

@@ -1,4 +1,4 @@
-name: NovaEco CI
+name: NovaEco Core CI
 
 on:
   pull_request:
@@ -16,6 +16,7 @@ jobs:
       auth: ${{ steps.filter.outputs.auth }}
       website: ${{ steps.filter.outputs.website }}
       integration: ${{ steps.filter.outputs.integration }}
+      e2e: ${{ steps.filter.outputs.e2e }}
     steps:
       - uses: actions/checkout@v4
       - uses: dorny/paths-filter@v2
@@ -26,15 +27,24 @@ jobs:
             app: ['app/**']
             auth: ['auth/**']
             website: ['website/**']
-            # Integration tests should run if ANY backend service or the tests themselves change
+            
+            # Filter A: Integration (API Level)
             integration:
               - 'api/**'
               - 'auth/**'
               - 'app/**'
               - 'tests/integration/**'
               - '.devcontainer/docker-compose.yml'
+            
+            # Filter B: E2E (UI Level) - Unique Key
+            e2e:
+              - 'api/**'
+              - 'auth/**'
+              - 'app/**'
+              - 'tests/e2e/**'
+              - '.devcontainer/docker-compose.yml'
 
-  # Job 2: Unit Test API (Python)
+  # Job 2: Unit Test API
   test-api:
     needs: changed-files
     if: ${{ needs.changed-files.outputs.api == 'true' || github.event_name == 'workflow_dispatch' }}
@@ -45,13 +55,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install Dependencies
-        # Only install external libs for unit tests to keep it fast
         run: pip install -r api/requirements.txt
       - name: Run Unit Tests
-        # Run from service root to ensure src/ imports work
         run: cd api && pytest tests/unit
 
-  # Job 3: Unit Test App (Python)
+  # Job 3: Unit Test App
   test-app:
     needs: changed-files
     if: ${{ needs.changed-files.outputs.app == 'true' || github.event_name == 'workflow_dispatch' }}
@@ -64,10 +72,9 @@ jobs:
       - name: Install Dependencies
         run: pip install -r app/requirements.txt
       - name: Run Unit Tests
-        # Run from service root
         run: cd app && pytest tests/unit
 
-  # Job 4: Unit Test Auth (Python)
+  # Job 4: Unit Test Auth
   test-auth:
     needs: changed-files
     if: ${{ needs.changed-files.outputs.auth == 'true' || github.event_name == 'workflow_dispatch' }}
@@ -80,10 +87,9 @@ jobs:
       - name: Install Dependencies
         run: pip install -r auth/requirements.txt
       - name: Run Unit Tests
-        # Run from service root
         run: cd auth && pytest tests/unit
 
-  # Job 5: Unit Test Website (Node.js)
+  # Job 5: Unit Test Website
   test-website:
     needs: changed-files
     if: ${{ needs.changed-files.outputs.website == 'true' || github.event_name == 'workflow_dispatch' }}
@@ -96,33 +102,56 @@ jobs:
       - name: Install Dependencies
         run: cd website && npm install
       - name: Run Tests
-        # Run from website root where package.json lives
         run: cd website && npm test -- tests/unit
 
-  # Job 6: Integration Tests (Docker Compose)
-  # This spins up the full environment to test communication between containers
+  # Job 6: Integration Tests (API Level)
   test-integration:
     needs: changed-files
+    # Listen only to the 'integration' signal
     if: ${{ needs.changed-files.outputs.integration == 'true' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Docker Compose
-        # We need the devtools CLI to generate the client if we were building locally,
-        # but for CI we usually rely on requirements.txt
-        run: docker compose -f .devcontainer/docker-compose.yml up -d --build
+      - name: Start Environment
+        # --wait ensures services are Healthy before proceeding (replaces sleep)
+        run: docker compose -f .devcontainer/docker-compose.yml up -d --build --wait
 
-      - name: Wait for Healthchecks
+      - name: Install Integration Dependencies
+        # Explicitly install requirements inside the container
         run: |
-          # Simple wait loop to ensure services are up
-          echo "Waiting for services..."
-          sleep 10
-          docker ps
+          docker compose -f .devcontainer/docker-compose.yml exec -T app \
+            pip install -r /workspace/tests/integration/requirements.txt
 
       - name: Run Integration Tests
-        # We run this OUTSIDE the container (on the runner) or utilize a specific service
-        # Here we use the 'app' container to run the tests since it has python access to the network
         run: |
           docker compose -f .devcontainer/docker-compose.yml exec -T app \
             pytest /workspace/tests/integration
+
+  # Job 7: E2E Tests (Playwright)
+  test-e2e:
+    needs: changed-files
+    # Listen only to the 'e2e' signal
+    if: ${{ needs.changed-files.outputs.e2e == 'true' || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install E2E Dependencies
+        run: |
+          pip install -r tests/e2e/requirements.txt
+          playwright install --with-deps
+
+      - name: Start Environment
+        run: docker compose -f .devcontainer/docker-compose.yml up -d --wait
+
+      - name: Run Playwright Tests
+        run: pytest tests/e2e
+        env:
+          # Playwright runs on the host and accesses the container via localhost
+          APP_URL: http://localhost:5000

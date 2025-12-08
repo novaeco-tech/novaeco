@@ -10,6 +10,10 @@ SERVICES = {
     "agro": os.environ.get("AGRO_URL", "http://novaagro-api:8000")
 }
 
+@app.route('/', methods=['GET'])
+def root():
+    return jsonify({"message": "Welcome to the NovaEco API Gateway", "service": "novaeco-api-gateway"})
+
 @app.route('/health', methods=['GET'])
 def health():
     return jsonify({"status": "ok", "service": "novaeco-api-gateway"})
@@ -37,4 +41,4 @@ def proxy(service, subpath):
         return jsonify({"error": "Upstream service unavailable", "details": str(e)}), 502
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000)
+    app.run(host='0.0.0.0', port=8000, debug=True)

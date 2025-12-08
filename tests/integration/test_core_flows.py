@@ -42,7 +42,7 @@ def test_gateway_health(wait_for_services):
     response = requests.get(f"{GATEWAY_URL}/health")
     assert response.status_code == 200
     data = response.json()
-    assert data["service"] == "api" # Matches api/src/main.py
+    assert data["service"] == "novaeco-api-gateway" # Matches api/src/main.py
 
 def test_auth_health(wait_for_services):
     """Verify Auth service is reachable directly."""

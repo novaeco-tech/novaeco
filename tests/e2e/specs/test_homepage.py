@@ -12,6 +12,7 @@ def test_homepage_loads(page: Page):
     # Check Header
     expect(page.locator("h1")).to_contain_text("Mission Control")
 
+@pytest.mark.requirement("REQ-CORE-FUNC-003")
 def test_launchpad_links(page: Page):
     page.goto(APP_URL)
     

@@ -36,6 +36,7 @@ def wait_for_services():
             
             time.sleep(1)
 
+@pytest.mark.requirement("REQ-CORE-OPS-001")
 def test_gateway_health(wait_for_services):
     """Verify Gateway is reachable."""
     response = requests.get(f"{GATEWAY_URL}/health")

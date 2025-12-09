@@ -1,3 +1,4 @@
+# FILE: repos/novaeco/.github/workflows/ci.yml
 name: NovaEco Core CI
 
 on:
@@ -17,6 +18,7 @@ jobs:
       website: ${{ steps.filter.outputs.website }}
       integration: ${{ steps.filter.outputs.integration }}
       e2e: ${{ steps.filter.outputs.e2e }}
+      performance: ${{ steps.filter.outputs.performance }}
     steps:
       - uses: actions/checkout@v4
       - uses: dorny/paths-filter@v2
@@ -36,13 +38,20 @@ jobs:
               - 'tests/integration/**'
               - '.devcontainer/docker-compose.yml'
             
-            # Filter B: E2E (UI Level) - Unique Key
+            # Filter B: E2E (UI Level)
             e2e:
               - 'api/**'
               - 'auth/**'
               - 'app/**'
               - 'tests/e2e/**'
               - '.devcontainer/docker-compose.yml'
+              
+            # Filter C: Performance (Micro-benchmarks)
+            performance:
+              - 'api/**'
+              - 'app/**'
+              - 'auth/**'
+              - 'tests/performance/**'
 
   # Job 2: Unit Test API
   test-api:
@@ -105,20 +114,18 @@ jobs:
         run: cd website && npm test -- tests/unit
 
   # Job 6: Integration Tests (API Level)
+  # Runs on Host to orchestrate Docker Compose
   test-integration:
     needs: changed-files
-    # Listen only to the 'integration' signal
     if: ${{ needs.changed-files.outputs.integration == 'true' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
       - name: Start Environment
-        # --wait ensures services are Healthy before proceeding (replaces sleep)
         run: docker compose -f .devcontainer/docker-compose.yml up -d --build --wait
 
       - name: Install Integration Dependencies
-        # Explicitly install requirements inside the container
         run: |
           docker compose -f .devcontainer/docker-compose.yml exec -T app \
             pip install -r /workspace/tests/integration/requirements.txt
@@ -129,9 +136,9 @@ jobs:
             pytest /workspace/tests/integration
 
   # Job 7: E2E Tests (Playwright)
+  # Runs on Host to drive browsers against the Docker stack
   test-e2e:
     needs: changed-files
-    # Listen only to the 'e2e' signal
     if: ${{ needs.changed-files.outputs.e2e == 'true' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     steps:
@@ -153,5 +160,23 @@ jobs:
       - name: Run Playwright Tests
         run: pytest tests/e2e
         env:
-          # Playwright runs on the host and accesses the container via localhost
           APP_URL: http://localhost:5000
+
+  # Job 8: Performance Tests (Micro-benchmarks)
+  # Runs INSIDE container because it tests code logic, not HTTP
+  test-performance:
+    needs: changed-files
+    if: ${{ needs.changed-files.outputs.performance == 'true' || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/novaeco-tech/dev-python:latest
+      options: --user root
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install Dependencies
+        # Only needed if requirements.txt has libs NOT in the golden image
+        run: pip install -r tests/performance/requirements.txt
+        
+      - name: Run Micro-benchmarks
+        run: pytest tests/performance/micro

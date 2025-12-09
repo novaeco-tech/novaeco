@@ -98,8 +98,8 @@ const sidebars = {
         'guides/dev-guide',
         'guides/best-practices',
         'guides/testing-guide',
-        [cite_start]'guides/testing-types', // Added: Was missing from previous list [cite: 342]
-        [cite_start]'guides/v-model-guide', // Added: Was missing from previous list [cite: 384]
+        'guides/testing-types',
+        'guides/v-model-guide',
         'guides/sustainability-guide',
         'guides/style-guide',
         'guides/guide-template',
@@ -107,7 +107,7 @@ const sidebars = {
     },
     {
       type: 'html',
-      value: '<div class="sidebar-divider" />', // Optional visual separator
+      value: '<div class="sidebar-divider" />',
     },
     'faq',
     'glossary',

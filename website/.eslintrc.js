@@ -4,6 +4,7 @@ module.exports = {
         browser: true, // For client-side React code
         node: true,    // For docusaurus.config.js and sidebars.js
         es6: true,
+        jest: true,
     },
     extends: [
         'eslint:recommended',

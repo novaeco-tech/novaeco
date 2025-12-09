@@ -3,6 +3,13 @@ import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 
 export default function Home() {
+    // Helper style for the tooltip trigger
+    const tooltipStyle = {
+        cursor: 'help',
+        borderBottom: '1px dotted #999',
+        display: 'inline-block'
+    };
+
     return (
         <Layout
             title="NovaEco"
@@ -52,9 +59,10 @@ export default function Home() {
                         <li><strong><Link to="/docs/intro">Docs</Link></strong> — Comprehensive documentation hub for architecture, use cases, and developer guides.</li>
                     </ul>
                     <p>
-                        It is designed as a <strong>System‑of‑Systems</strong>: interconnected <strong>Horizontal Enablers</strong> (services), <strong>Vertical Sectors</strong> (application industries), <strong>Workers</strong> (microservices), and <strong>Products</strong> (hardware/software innovations) that together enable sustainable collaboration, compliance, and innovation.
+                        It is designed as a <strong>System‑of‑Systems</strong>: interconnected <strong>Horizontal Enablers</strong>, <strong>Vertical Sectors</strong>, <strong>Workers</strong>, and <strong>Products</strong>. <br />
+                        <small><em>(Hover over descriptions for full details)</em></small>
                     </p>
-
+                    
                     <div style={{ overflowX: 'auto' }}>
                         <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '1rem' }}>
                             <thead>
@@ -67,88 +75,85 @@ export default function Home() {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td title="Environmental audit engine"><a href="https://balance.novaeco.tech">NovaBalance</a></td>
-                                    <td title="Regenerative agriculture"><a href="https://agriculture.novaeco.tech">NovaAgro</a></td>
-                                    <td title="Calculates real-time environmental impact">LCACalc</td>
-                                    <td title="Autonomous agricultural robot">DurasAGV</td>
+                                    <td><a href="https://balance.novaeco.tech">NovaBalance</a> <small style={tooltipStyle} title="Environmental audit engine tracking carbon, water, and mass flows.">Tracks Carbon, Water, Mass</small></td>
+                                    <td><a href="https://agriculture.novaeco.tech">NovaAgro</a> <small style={tooltipStyle} title="Regenerative agriculture management and sustainable food system tracking.">Regen-Ag & Food Systems</small></td>
+                                    <td><a href="https://lca.balance.novaeco.tech">LCACalc</a> <small style={tooltipStyle} title="Calculates real-time environmental impact from material BOMs.">Real-time Impact Calc</small></td>
+                                    <td><a href="https://duras-agv.novaeco.tech">DurasAGV</a> <small style={tooltipStyle} title="Autonomous agricultural robot for regenerative farming tasks.">Auto-Farming Robot</small></td>
                                 </tr>
                                 <tr>
-                                    <td title="Social audit engine"><a href="https://equity.novaeco.tech">NovaEquity</a></td>
-                                    <td title="Air quality monitoring"><a href="https://air.novaeco.tech">NovaAir</a></td>
-                                    <td title="Ingests air quality sensor data">Quality</td>
-                                    <td title="Innovation engine">NovaLab</td>
+                                    <td><a href="https://equity.novaeco.tech">NovaEquity</a> <small style={tooltipStyle} title="Social audit engine tracking fair wages and labor rights.">Fair Wage & Rights</small></td>
+                                    <td><a href="https://air.novaeco.tech">NovaAir</a> <small style={tooltipStyle} title="Air quality monitoring and carbon capture credit verification.">Quality & Carbon Credits</small></td>
+                                    <td><a href="https://quality.air.novaeco.tech">Quality</a> <small style={tooltipStyle} title="Ingests and normalizes data from air quality sensors.">Sensor Data Normalizer</small></td>
+                                    <td><a href="https://lab.novaeco.tech">NovaLab</a> <small style={tooltipStyle} title="Innovation engine for designing and launching circular projects.">Circular Project Launchpad</small></td>
                                 </tr>
                                 <tr>
-                                    <td title="Ledger for payments and ESG"><a href="https://finance.novaeco.tech">NovaFin</a></td>
-                                    <td title="Construction lifecycles"><a href="https://build.novaeco.tech">NovaBuild</a></td>
-                                    <td title="Batches ledger transactions">TradeSettlement</td>
-                                    <td title="E-commerce resale plugin">RetailLoop</td>
+                                    <td><a href="https://finance.novaeco.tech">NovaFin</a> <small style={tooltipStyle} title="Ledger for payments, staking, and ESG token settlements.">Payments & ESG Ledger</small></td>
+                                    <td><a href="https://build.novaeco.tech">NovaBuild</a> <small style={tooltipStyle} title="Management of construction lifecycles and material banks.">Construction & Material Banks</small></td>
+                                    <td><a href="https://settle.finance.novaeco.tech">TradeSettlement</a> <small style={tooltipStyle} title="Asynchronously batches and commits transactions to the ledger.">Batch Ledger Commits</small></td>
+                                    <td><a href="https://retail-loop.novaeco.tech">RetailLoop</a> <small style={tooltipStyle} title="E-commerce plugin for resale and product take-back.">Resale & Take-back Plugin</small></td>
                                 </tr>
                                 <tr>
-                                    <td title="IoT registry and fleet command"><a href="https://infrastructure.novaeco.tech">NovaInfra</a></td>
-                                    <td title="Chemical leasing"><a href="https://chemicals.novaeco.tech">NovaChem</a></td>
-                                    <td title="Processes raw telemetry">IoTIngest</td>
-                                    <td title="City waste dashboard">UrbanMiner</td>
+                                    <td><a href="https://infrastructure.novaeco.tech">NovaInfra</a> <small style={tooltipStyle} title="Registry for IoT devices and fleet management command.">IoT Fleet Registry</small></td>
+                                    <td><a href="https://chemicals.novaeco.tech">NovaChem</a> <small style={tooltipStyle} title="Chemical leasing models and hazardous material tracking.">Leasing & Hazmat Track</small></td>
+                                    <td><a href="https://ingest.infrastructure.novaeco.tech">IoTIngest</a> <small style={tooltipStyle} title="High-throughput processor for raw telemetry from sensors.">Raw Telemetry Processor</small></td>
+                                    <td><a href="https://urban-miner.novaeco.tech">UrbanMiner</a> <small style={tooltipStyle} title="Dashboard for city councils to map municipal waste streams.">City Waste Mapper</small></td>
                                 </tr>
                                 <tr>
-                                    <td title="Logistics optimization"><a href="https://logistics.novaeco.tech">NovaLogistics</a></td>
-                                    <td title="Renewable grid balancing"><a href="https://energy.novaeco.tech">NovaEnergy</a></td>
-                                    <td title="Identifies species from audio">Bioacoustics</td>
+                                    <td><a href="https://logistics.novaeco.tech">NovaLogistics</a> <small style={tooltipStyle} title="Optimization engine for reverse logistics and circular transport.">Reverse Logistics Engine</small></td>
+                                    <td><a href="https://energy.novaeco.tech">NovaEnergy</a> <small style={tooltipStyle} title="Renewable grid balancing and vehicle-to-grid energy coordination.">Grid & V2G Balance</small></td>
+                                    <td><a href="https://bio.nature.novaeco.tech">Bioacoustics</a> <small style={tooltipStyle} title="Identifies species from audio streams using AI models.">AI Species ID</small></td>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td title="Digital Product Passports"><a href="https://materials.novaeco.tech">NovaMaterial</a></td>
-                                    <td title="Distributed manufacturing"><a href="https://make.novaeco.tech">NovaMake</a></td>
-                                    <td title="Verifies 3D printability">SlicerCheck</td>
+                                    <td><a href="https://materials.novaeco.tech">NovaMaterial</a> <small style={tooltipStyle} title="Engine for Digital Product Passports and material lineage.">Passports & Lineage</small></td>
+                                    <td><a href="https://make.novaeco.tech">NovaMake</a> <small style={tooltipStyle} title="Distributed manufacturing via 3D printing and CNC networks.">Distributed 3D/CNC Mfg</small></td>
+                                    <td><a href="https://slicer.make.novaeco.tech">SlicerCheck</a> <small style={tooltipStyle} title="Verifies 3D model printability for manufacturing jobs.">Printability Verification</small></td>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td title="Shared AI models"><a href="https://mind.novaeco.tech">NovaMind</a></td>
-                                    <td title="Biodiversity monitoring"><a href="https://nature.novaeco.tech">NovaNature</a></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td title="Policy-as-Code engine"><a href="https://policy.novaeco.tech">NovaPolicy</a></td>
-                                    <td title="Reusable packaging"><a href="https://packaging.novaeco.tech">NovaPack</a></td>
+                                    <td><a href="https://mind.novaeco.tech">NovaMind</a> <small style={tooltipStyle} title="Shared AI models and inference engine for all sectors.">Shared AI Inference</small></td>
+                                    <td><a href="https://nature.novaeco.tech">NovaNature</a> <small style={tooltipStyle} title="Biodiversity monitoring and reforestation project management.">Biodiversity & Reforestation</small></td>
                                     <td></td>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td title="Labor verification"><a href="https://skills.novaeco.tech">NovaSkills</a></td>
-                                    <td title="Recycling management"><a href="https://recycling.novaeco.tech">NovaRecycle</a></td>
+                                    <td><a href="https://policy.novaeco.tech">NovaPolicy</a> <small style={tooltipStyle} title="Policy-as-Code engine for automated regulatory compliance checks.">Automated Compliance Checks</small></td>
+                                    <td><a href="https://packaging.novaeco.tech">NovaPack</a> <small style={tooltipStyle} title="Reusable packaging systems and deposit return schemes.">Reuse & Deposit Schemes</small></td>
                                     <td></td>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td title="Circular marketplace"><a href="https://trade.novaeco.tech">NovaTrade</a></td>
-                                    <td title="Product-as-a-Service"><a href="https://retail.novaeco.tech">NovaRetail</a></td>
+                                    <td><a href="https://skills.novaeco.tech">NovaSkills</a> <small style={tooltipStyle} title="Verification system for human labor certifications and degrees.">Labor & Cert Verification</small></td>
+                                    <td><a href="https://recycling.novaeco.tech">NovaRecycle</a> <small style={tooltipStyle} title="Management of recycling centers and urban mining recovery.">Centers & Recovery Ops</small></td>
                                     <td></td>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td></td>
-                                    <td title="E-waste management"><a href="https://electronics.novaeco.tech">NovaTronix</a></td>
+                                    <td><a href="https://trade.novaeco.tech">NovaTrade</a> <small style={tooltipStyle} title="Marketplace for matching orders and discovering circular assets.">Circular Asset Marketplace</small></td>
+                                    <td><a href="https://retail.novaeco.tech">NovaRetail</a> <small style={tooltipStyle} title="Product-as-a-Service management and consumer take-back schemes.">PaaS & Take-back</small></td>
                                     <td></td>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <td></td>
-                                    <td title="Circular fashion"><a href="https://textiles.novaeco.tech">NovaTextile</a></td>
+                                    <td><a href="https://electronics.novaeco.tech">NovaTronix</a> <small style={tooltipStyle} title="E-waste management and electronics repair documentation.">E-Waste & Repair</small></td>
                                     <td></td>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <td></td>
-                                    <td title="Water management"><a href="https://water.novaeco.tech">NovaWater</a></td>
+                                    <td><a href="https://textiles.novaeco.tech">NovaTextile</a> <small style={tooltipStyle} title="Circular fashion management and fiber-to-fiber recycling loops.">Fashion & Fiber Loops</small></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><a href="https://water.novaeco.tech">NovaWater</a> <small style={tooltipStyle} title="Management of industrial water cycles and treatment systems.">Industrial Water Cycles</small></td>
                                     <td></td>
                                     <td></td>
                                 </tr>
                             </tbody>
                         </table>
-                        <p style={{ marginTop: '0.5rem', color: '#666' }}>
-                            Note: This table represents the core pillars of the ecosystem. See documentation for full details.
-                        </p>
                         <p>
                             👉 Explore the full <Link to="/docs/architecture/overview">Architecture Overview</Link> for detailed descriptions and interactions.
                         </p>
@@ -159,85 +164,92 @@ export default function Home() {
                 <section style={{ padding: '2rem 4rem' }}>
                     <h2>📊 Use case highlights</h2>
                     <p>
-                        We demonstrate the ecosystem’s scalability and interoperability through four distinct, non‑overlapping levels: <strong> Onboarding & Control</strong>, <strong>Transactional Efficiency</strong>, <strong>Value Chain Coordination</strong>, and <strong>Systemic Transformation</strong>.<br />
-                        Together these levels provide a complete view of how the NovaEco supports individual entry, simple exchanges, coordinated value chains, and complex systemic change across the circular economy.
+                        We demonstrate scalability through four levels: <strong>Onboarding</strong>, <strong>Efficiency</strong>, <strong>Coordination</strong>, and <strong>Transformation</strong>.
                     </p>
-
-
+                    
+                    
                     {/* Level 1: Onboarding & Control */}
                     <h3>Level 1: Onboarding & Control (Foundational integration)</h3>
-                    <p><em>Focus: onboarding, IAM, API setup, inter‑enabler/sector/worker/product integration, data aggregation, dashboards, compliance.</em></p>
+                    <p><em>Focus: onboarding, IAM, API setup, integration.</em></p>
                     <ul>
-                        <li><Link to="/docs/usecases/level-1-onboarding#o1-the-citizen-passport">[O1] The Citizen Passport</Link> — Resident registers via auth to access city recycling services.</li>
-                        <li><Link to="/docs/usecases/level-1-onboarding#o2-the-corporate-kyc">[O2] The Corporate KYC</Link> — Textile factory uploads ISO 14001 certs to NovaSkills.</li>
-                        <li><Link to="/docs/usecases/level-1-onboarding#o3-sensor-enrollment">[O3] Sensor Enrollment</Link> — Technician scans QR code to register air monitor in NovaInfra.</li>
-                        <li><Link to="/docs/usecases/level-1-onboarding#o4-material-declaration">[O4] Material Declaration</Link> — Supplier defines "Bio-Solvent" SKU in NovaMaterial.</li>
-                        <li><Link to="/docs/usecases/level-1-onboarding#o5-the-innovation-profile">[O5] The Innovation Profile</Link> — Startup creates profile in NovaLab to find funding.</li>
-                        <li><Link to="/docs/usecases/level-1-onboarding#o6-wallet-creation">[O6] Wallet Creation</Link> — Farm instantiates NovaTrade wallet for carbon payments.</li>
-                        <li><Link to="/docs/usecases/level-1-onboarding#o7-printer-capability">[O7] Printer Capability</Link> — FabLab registers 3D printer specs in NovaMake.</li>
-                        <li><Link to="/docs/usecases/level-1-onboarding#o8-retailer-plugin">[O8] Retailer Plugin</Link> — Shop installs RetailLoop for "One-Click Resale".</li>
-                        <li><Link to="/docs/usecases/level-1-onboarding#o9-vehicle-registration">[O9] Vehicle Registration</Link> — Logistics firm adds electric van to NovaLogistics.</li>
-                        <li><Link to="/docs/usecases/level-1-onboarding#o10-developer-access">[O10] Developer Access</Link> — Dev generates API Key in Gateway for custom app.</li>
+                        <li><Link to="/docs/usecases/level-1-onboarding#o1-the-citizen-passport">[O1] The Citizen Passport</Link> — <span style={tooltipStyle} title="Residents securely register using NovaAuth to gain unified, single-sign-on access to municipal recycling centers and smart bins, while simultaneously tracking their personal waste reduction impact to earn civic rewards and potential local tax deductions based on verified sustainable behaviors.">Unified Resident Digital Identity Granting Secure Access to City Recycling Services</span></li>
+                        <li><Link to="/docs/usecases/level-1-onboarding#o2-the-corporate-kyc">[O2] The Corporate KYC</Link> — <span style={tooltipStyle} title="A textile manufacturing facility digitally uploads valid ISO 14001 certifications directly to the NovaSkills registry to establish a trusted corporate identity, automatically passing Know-Your-Business verification checks required to bid on government contracts and participate in the regulated circular supply chain.">Textile Factory Establishs Trusted Status by Uploading Verified ISO Certifications</span></li>
+                        <li><Link to="/docs/usecases/level-1-onboarding#o3-sensor-enrollment">[O3] Sensor Enrollment</Link> — <span style={tooltipStyle} title="Field technicians scan a cryptographically secure QR code to instantly register an air quality monitor into the NovaInfra registry, establishing immutable device identity, ownership provenance, and the authorized data streams required for the sensor to begin broadcasting telemetry to the network.">Technician Rapidly Enrolls IoT Sensor Identity via Secure QR Code Scanning</span></li>
+                        <li><Link to="/docs/usecases/level-1-onboarding#o4-material-declaration">[O4] Material Declaration</Link> — <span style={tooltipStyle} title="Chemical suppliers introduce a new Bio-Solvent SKU into NovaMaterial, meticulously defining its chemical composition, safety data sheets (SDS), and environmental attributes to ensure downstream manufacturers have instant access to compliance data and handling instructions within the Digital Product Passport.">Supplier Formally Declares New Bio-Solvent Material Properties and Safety Data</span></li>
+                        <li><Link to="/docs/usecases/level-1-onboarding#o5-the-innovation-profile">[O5] The Innovation Profile</Link> — <span style={tooltipStyle} title="An eco-innovation startup creates a verified NovaLab profile to showcase their specific technology readiness level (TRL) and impact metrics, using this trusted data to attract impact investment, secure government grants, and find pilot partners within the federated ecosystem.">Green Startup Builds Verified Profile to Attract Circular Funding and Grants</span></li>
+                        <li><Link to="/docs/usecases/level-1-onboarding#o6-wallet-creation">[O6] Wallet Creation</Link> — <span style={tooltipStyle} title="Agricultural operators instantiate a secure, multi-signature NovaTrade wallet to receive automated, smart-contract-based payments for sequestered carbon and ecosystem services, ensuring financial transparency and immediate settlement once soil sensors verify the environmental impact.">Regenerative Farm Initializes Secure Wallet for Automated Carbon Credit Payments</span></li>
+                        <li><Link to="/docs/usecases/level-1-onboarding#o7-printer-capability">[O7] Printer Capability</Link> — <span style={tooltipStyle} title="A local fabrication laboratory logs the specific technical capabilities, nozzle sizes, and material compatibilities of their 3D printers into NovaMake, allowing the machine to be discovered and automatically booked for distributed manufacturing jobs that match its precise hardware profile.">FabLab Registers 3D Printer Specs and Capabilities for Distributed Manufacturing</span></li>
+                        <li><Link to="/docs/usecases/level-1-onboarding#o8-retailer-plugin">[O8] Retailer Plugin</Link> — <span style={tooltipStyle} title="Fashion retailers integrate the RetailLoop plugin into their e-commerce storefronts to instantly enable 'one-click resale' options for customers, automatically connecting past purchase history to the circular marketplace and generating digital twins for items entering the second-hand economy.">Retail Shop Installs Plugin for One-Click Resale and Inventory Connection</span></li>
+                        <li><Link to="/docs/usecases/level-1-onboarding#o9-vehicle-registration">[O9] Vehicle Registration</Link> — <span style={tooltipStyle} title="A transport company registers their electric delivery vans into NovaLogistics, defining specific cargo capacity, battery range, and charging speeds, enabling the system to prioritize their fleet for zero-emission delivery routes and urban low-emission zone access.">Logistics Firm Onboards Electric Fleet Details for Zero-Emission Delivery Routing</span></li>
+                        <li><Link to="/docs/usecases/level-1-onboarding#o10-developer-access">[O10] Developer Access</Link> — <span style={tooltipStyle} title="Third-party developers provision secure, scoped API keys through the Gateway to build custom circular economy applications, dashboards, or integrations on top of NovaEco infrastructure, granting them controlled access to specific data streams and orchestration capabilities.">Developer Generates Secure API Keys for Building Custom Circular Applications</span></li>
+                        <li><Link to="/docs/usecases/level-1-onboarding#o11-legacy-erp-link">[O11] Legacy ERP Link</Link> — <span style={tooltipStyle} title="Manufacturing plants bridge their existing, on-premise SAP or Oracle ERP systems with the NovaEco Gateway to automate data synchronization regarding inventory and production, allowing them to participate in the ecosystem without the cost and disruption of replacing legacy software.">Factory Connects Legacy ERP System to NovaEco Gateway for Sync</span></li>
+                        <li><Link to="/docs/usecases/level-1-onboarding#o12-biogas-cert-upload">[O12] Biogas Cert Upload</Link> — <span style={tooltipStyle} title="Biogas facilities upload verified renewable energy certificates (RECs) and production logs to NovaEnergy, proving the origin and sustainability of their green gas production, which allows them to trade premium energy credits on the open market.">Energy Producer Uploads Green Gas Certification Documents for Renewable Verification</span></li>
                     </ul>
                     <p style={{ marginTop: '1rem' }}>
-                        👉 Explore the full elaboration of the use case matrix for <Link to="/docs/usecases/level-1-onboarding">Level 1: Onboarding & Control</Link>
+                        👉 Full matrix: <Link to="/docs/usecases/level-1-onboarding">Level 1: Onboarding</Link>
                     </p>
 
                     {/* Level 2: Easy (Transactional Efficiency) */}
                     <h3>Level 2: Easy (Transactional efficiency)</h3>
-                    <p><em>Focus: simple, low‑friction transactions involving 1–2 stakeholders.</em></p>
+                    <p><em>Focus: simple, low‑friction transactions.</em></p>
                     <ul>
-                        <li><Link to="/docs/usecases/level-2-easy#e1-the-waste-match">[E1] The Waste Match</Link> — Bakery lists coffee grounds on NovaTrade.</li>
-                        <li><Link to="/docs/usecases/level-2-easy#e2-print-job-request">[E2] Print Job Request</Link> — User uploads STL to NovaMake; SlicerCheck verifies.</li>
-                        <li><Link to="/docs/usecases/level-2-easy#e3-water-quality-alert">[E3] Water Quality Alert</Link> — NovaWater detects pH drop and alerts city.</li>
-                        <li><Link to="/docs/usecases/level-2-easy#e4-phone-repair-log">[E4] Phone Repair Log</Link> — Technician logs battery swap in NovaTronix.</li>
-                        <li><Link to="/docs/usecases/level-2-easy#e5-carbon-credit-buy">[E5] Carbon Credit Buy</Link> — Office buys nature credits via NovaTrade.</li>
-                        <li><Link to="/docs/usecases/level-2-easy#e6-the-crop-scan">[E6] The Crop Scan</Link> — DurasAGV scans field; NovaMind finds nitrogen deficiency.</li>
-                        <li><Link to="/docs/usecases/level-2-easy#e7-smart-bin-pickup">[E7] Smart Bin Pickup</Link> — Bin reports full; NovaRecycle requests pickup.</li>
-                        <li><Link to="/docs/usecases/level-2-easy#e8-tutor-booking">[E8] Tutor Booking</Link> — Student books circular design expert on NovaSkills.</li>
-                        <li><Link to="/docs/usecases/level-2-easy#e9-return-initiation">[E9] Return Initiation</Link> — Consumer clicks return on rented jacket via RetailLoop.</li>
-                        <li><Link to="/docs/usecases/level-2-easy#e10-compliance-check">[E10] Compliance Check</Link> — NovaPolicy checks toy BOM against restricted list.</li>
+                        <li><Link to="/docs/usecases/level-2-easy#e1-the-waste-match">[E1] The Waste Match</Link> — <span style={tooltipStyle} title="A local bakery lists surplus organic coffee grounds on the NovaTrade marketplace, making them immediately available for mushroom farmers or composters to collect, thereby diverting waste from landfills and creating a new value stream for a byproduct.">Bakery Lists Excess Coffee Grounds for Local Trade and Reuse</span></li>
+                        <li><Link to="/docs/usecases/level-2-easy#e2-print-job-request">[E2] Print Job Request</Link> — <span style={tooltipStyle} title="A maker uploads a 3D model (STL) to NovaMake, where SlicerCheck algorithms automatically analyze the file to verify structural integrity, wall thickness, and printability, ensuring the distributed manufacturing job will succeed before production begins.">User Uploads STL File for Automated Print Verification and Analysis</span></li>
+                        <li><Link to="/docs/usecases/level-2-easy#e3-water-quality-alert">[E3] Water Quality Alert</Link> — <span style={tooltipStyle} title="NovaWater IoT sensors identify a sudden, anomalous drop in pH levels in the industrial output, triggering immediate automated alerts to city management and the factory floor to prevent contamination of the municipal water supply.">System Detects Critical Drop in Water pH and Alerts Staff</span></li>
+                        <li><Link to="/docs/usecases/level-2-easy#e4-phone-repair-log">[E4] Phone Repair Log</Link> — <span style={tooltipStyle} title="Repair specialists record the specific battery serial number swap in NovaTronix, updating the device's immutable digital history to reflect the extended lifespan and validating the repair for future warranty or resale value.">Technician Logs Smartphone Battery Replacement in Digital Product History</span></li>
+                        <li><Link to="/docs/usecases/level-2-easy#e5-carbon-credit-buy">[E5] Carbon Credit Buy</Link> — <span style={tooltipStyle} title="A corporate sustainability officer purchases verified, tokenized nature restoration credits directly through NovaTrade to offset operational residual emissions, ensuring full transparency and traceability of where the funds are allocated.">Corporate Office Purchases Verified Nature Credits via Circular Marketplace</span></li>
+                        <li><Link to="/docs/usecases/level-2-easy#e6-the-crop-scan">[E6] The Crop Scan</Link> — <span style={tooltipStyle} title="The DurasAGV robot patrols fields using advanced spectral cameras, sending data to the NovaMind inference engine to detect specific nitrogen deficiencies in real-time, allowing for precision fertilizer application rather than blanket spraying.">Autonomous Robot Scans Crops to Diagnose Nitrogen Deficiency via AI</span></li>
+                        <li><Link to="/docs/usecases/level-2-easy#e7-smart-bin-pickup">[E7] Smart Bin Pickup</Link> — <span style={tooltipStyle} title="IoT-enabled public waste bins transmit real-time volume data to NovaRecycle, automatically triggering a pickup request only when the container reaches capacity, optimizing fleet fuel usage and reducing unnecessary collection trips.">Smart Bin Automatically Requests Pickup Only When Capacity Is Reached</span></li>
+                        <li><Link to="/docs/usecases/level-2-easy#e8-tutor-booking">[E8] Tutor Booking</Link> — <span style={tooltipStyle} title="A university student browses the NovaSkills directory to find and book a one-on-one mentorship session with a verified expert in circular product design, facilitating knowledge transfer and specialized education.">Student Books Mentorship Session with Circular Product Design Expert</span></li>
+                        <li><Link to="/docs/usecases/level-2-easy#e9-return-initiation">[E9] Return Initiation</Link> — <span style={tooltipStyle} title="A customer uses the RetailLoop consumer interface to signal the end of a rental period for a garment, instantly generating a pre-paid return shipping label and notifying the warehouse to expect the item.">Consumer Initiates Return for Rented Jacket via Retail Loop App</span></li>
+                        <li><Link to="/docs/usecases/level-2-easy#e10-compliance-check">[E10] Compliance Check</Link> — <span style={tooltipStyle} title="The NovaPolicy engine automatically scans the digital Bill of Materials (BOM) for a new toy design against global restricted substance lists (e.g., REACH, RoHS) to ensure safety compliance before manufacturing begins.">Policy Engine Checks Toy Materials Against Global Safety Restricted Lists</span></li>
+                        <li><Link to="/docs/usecases/level-2-easy#e11-tool-share-rent">[E11] Tool Share Rent</Link> — <span style={tooltipStyle} title="Residents utilize the NovaRetail peer-to-peer sharing interface to borrow a high-quality power drill from a neighbor for a short duration, significantly reducing the need for new tool purchases and fostering community resource efficiency.">Neighbor Rents Power Drill via Peer-to-Peer Sharing Network Application</span></li>
+                        <li><Link to="/docs/usecases/level-2-easy#e12-compost-drop-off">[E12] Compost Drop-off</Link> — <span style={tooltipStyle} title="A community member scans a location-specific QR code at the local garden compost site to log their organic waste contribution, earning verified eco-credits that can be redeemed for local services or goods.">Resident Logs Community Compost Drop-off to Earn Verified Rewards</span></li>
                     </ul>
                     <p style={{ marginTop: '1rem' }}>
-                        👉 Explore the full elaboration of the use case matrix for <Link to="/docs/usecases/level-2-easy">Level 2: Easy (Transactional Efficiency)</Link>
+                        👉 Full matrix: <Link to="/docs/usecases/level-2-easy">Level 2: Easy</Link>
                     </p>
 
                     {/* Level 3: Medium (Value Chain Coordination) */}
                     <h3>Level 3: Medium (Value chain coordination)</h3>
-                    <p><em>Focus: B2B transactions, multi‑stakeholder coordination, compliance checks, simple audits.</em></p>
+                    <p><em>Focus: B2B coordination and simple audits.</em></p>
                     <ul>
-                        <li><Link to="/docs/usecases/level-3-medium#m1-the-circular-loop">[M1] The Circular Loop</Link> — NovaLab matches demolition site with road paver.</li>
-                        <li><Link to="/docs/usecases/level-3-medium#m2-fair-wage-audit">[M2] Fair Wage Audit</Link> — NovaFin payment triggers NovaEquity worker survey.</li>
-                        <li><Link to="/docs/usecases/level-3-medium#m3-grid-balancing">[M3] Grid Balancing</Link> — NovaEnergy commands NovaLogistics chargers to pause.</li>
-                        <li><Link to="/docs/usecases/level-3-medium#m4-lca-calculation">[M4] LCA Calculation</Link> — LCACalc recalculates footprint on material change.</li>
-                        <li><Link to="/docs/usecases/level-3-medium#m5-reverse-logistics">[M5] Reverse Logistics</Link> — NovaRetail batches returns; NovaLogistics optimizes route.</li>
-                        <li><Link to="/docs/usecases/level-3-medium#m6-biodiversity-audit">[M6] Biodiversity Audit</Link> — Bioacoustics worker verifies bird return for credit payout.</li>
-                        <li><Link to="/docs/usecases/level-3-medium#m7-chemical-leasing">[M7] Chemical Leasing</Link> — Car plant pays for degreasing service via NovaChem.</li>
-                        <li><Link to="/docs/usecases/level-3-medium#m8-urban-mining-map">[M8] Urban Mining Map</Link> — UrbanMiner aggregates city copper stock data.</li>
-                        <li><Link to="/docs/usecases/level-3-medium#m9-textile-sorting">[M9] Textile Sorting</Link> — Robot uses NovaMind vision to sort clothes by fiber.</li>
-                        <li><Link to="/docs/usecases/level-3-medium#m10-green-concrete">[M10] Green Concrete</Link> — NovaBuild logs captured carbon in beam passport.</li>
+                        <li><Link to="/docs/usecases/level-3-medium#m1-the-circular-loop">[M1] The Circular Loop</Link> — <span style={tooltipStyle} title="NovaLab matching algorithms identify available crushed concrete from a registered demolition site and automatically pair it with a nearby road paving project that requires aggregate material, closing the construction waste loop locally.">Matching Demolition Debris with Road Paving Projects for Local Reuse</span></li>
+                        <li><Link to="/docs/usecases/level-3-medium#m2-fair-wage-audit">[M2] Fair Wage Audit</Link> — <span style={tooltipStyle} title="The release of supply chain funds via NovaFin automatically triggers a NovaEquity SMS survey to workers' phones, cryptographically verifying that they received their fair share of wages before the next payment tranche is unlocked.">Payment Release Triggers Automated Fair Wage Verification Survey to Workers</span></li>
+                        <li><Link to="/docs/usecases/level-3-medium#m3-grid-balancing">[M3] Grid Balancing</Link> — <span style={tooltipStyle} title="During peak electricity demand hours, the NovaEnergy grid balancing engine sends a signal to NovaLogistics to temporarily pause charging for parked EV fleets, acting as a virtual power plant to stabilize the grid.">Grid Balancing Engine Pauses Electric Fleet Charging During Peak Demand</span></li>
+                        <li><Link to="/docs/usecases/level-3-medium#m4-lca-calculation">[M4] LCA Calculation</Link> — <span style={tooltipStyle} title="When a product designer swaps a material in the digital BOM, LCACalc immediately recalculates the total environmental impact score based on the new specifications, allowing for real-time eco-design optimization decisions.">Engine Recalculates Carbon Footprint Instantly Upon Material BOM Change</span></li>
+                        <li><Link to="/docs/usecases/level-3-medium#m5-reverse-logistics">[M5] Reverse Logistics</Link> — <span style={tooltipStyle} title="NovaRetail aggregates multiple consumer returns into a single regional batch, while NovaLogistics calculates the most fuel-efficient route for collection vehicles to pick up the consolidated goods, reducing carbon emissions from reverse logistics.">Optimizing Collection Routes for Batched Retail Return Logistics Efficiency</span></li>
+                        <li><Link to="/docs/usecases/level-3-medium#m6-biodiversity-audit">[M6] Biodiversity Audit</Link> — <span style={tooltipStyle} title="Deployed Bioacoustics microphones capture forest soundscapes, which are analyzed by AI models to confirm the return of specific indicator bird species, triggering the unlocking of conditional biodiversity credit payments to the landowner.">Audio Analysis Verifies Bird Species Return to Unlock Biodiversity Credits</span></li>
+                        <li><Link to="/docs/usecases/level-3-medium#m7-chemical-leasing">[M7] Chemical Leasing</Link> — <span style={tooltipStyle} title="Instead of buying solvents as a consumable, a car factory pays a monthly service fee via NovaChem for degreasing performance, incentivizing the supplier to recover and recycle the chemicals rather than selling more volume.">Automotive Plant Pays for Chemical Degreasing Service Instead of Solvent</span></li>
+                        <li><Link to="/docs/usecases/level-3-medium#m8-urban-mining-map">[M8] Urban Mining Map</Link> — <span style={tooltipStyle} title="UrbanMiner pulls data from various demolition permits and infrastructure databases to create a visual heat map of available copper resources embedded within the city, guiding urban mining and material recovery efforts.">Aggregating Data to Map City-Wide Copper Stocks for Urban Mining</span></li>
+                        <li><Link to="/docs/usecases/level-3-medium#m9-textile-sorting">[M9] Textile Sorting</Link> — <span style={tooltipStyle} title="An industrial sorting robot utilizes NovaMind computer vision to identify garment fabric types at high speed and automatically diverts them into pure fiber streams (e.g., 100% cotton vs. poly-blends) for effective recycling.">Robotic System Sorts Clothing by Fiber Composition Using Computer Vision</span></li>
+                        <li><Link to="/docs/usecases/level-3-medium#m10-green-concrete">[M10] Green Concrete</Link> — <span style={tooltipStyle} title="NovaBuild creates an immutable blockchain log for green concrete beams, recording the exact amount of sequestered carbon inside the structure to serve as a permanent record for future carbon audits and building valuations.">Construction Log Records Carbon Captured in Concrete for Future Audits</span></li>
+                        <li><Link to="/docs/usecases/level-3-medium#m11-battery-health-log">[M11] Battery Health Log</Link> — <span style={tooltipStyle} title="Connected EVs periodically transmit detailed battery degradation, charging cycles, and health metrics to the Digital Product Passport, allowing recyclers to instantly assess the battery's potential for second-life stationary storage applications.">Electric Vehicle Logs Battery State-of-Health Data for Second-Life Assessment</span></li>
+                        <li><Link to="/docs/usecases/level-3-medium#m12-packaging-deposit">[M12] Packaging Deposit</Link> — <span style={tooltipStyle} title="Retailers scan returned reusable containers, and the system reconciles the deposit tokens with the NovaPack ledger to automate the financial reimbursement transaction between the consumer, retailer, and packaging provider.">Supermarket Reconciles Deposit Return Scheme Tokens for Automated Reimbursement</span></li>
                     </ul>
                     <p style={{ marginTop: '1rem' }}>
-                        👉 Explore the full elaboration of the use case matrix for <Link to="/docs/usecases/level-3-medium">Level 3: Medium (Value Chain Coordination)</Link>
+                        👉 Full matrix: <Link to="/docs/usecases/level-3-medium">Level 3: Medium</Link>
                     </p>
 
                     {/* Level 4: Complex (Systemic Transformation) */}
                     <h3>Level 4: Complex (Systemic transformation)</h3>
-                    <p><em>Focus: system‑of‑systems, real‑time AI optimization, policy‑as‑code, cross‑border compliance.</em></p>
+                    <p><em>Focus: system‑of‑systems and AI optimization.</em></p>
                     <ul>
-                        <li><Link to="/docs/usecases/level-4-complex#c1-fiber-to-fiber">[C1] Fiber-to-Fiber</Link> — Old shirts collected, sorted, and recycled into new yarn.</li>
-                        <li><Link to="/docs/usecases/level-4-complex#c2-the-innovation-lab">[C2] The Innovation Lab</Link> — NovaLab guides startup through permits and funding.</li>
-                        <li><Link to="/docs/usecases/level-4-complex#c3-disaster-relief">[C3] Disaster Relief</Link> — NovaWater drought detection triggers insurance payout.</li>
-                        <li><Link to="/docs/usecases/level-4-complex#c4-automated-factory">[C4] Automated Factory</Link> — NovaMake order triggers AI optimization and printing.</li>
-                        <li><Link to="/docs/usecases/level-4-complex#c5-the-circular-hospital">[C5] The Circular Hospital</Link> — MRI leasing, renewable power, and magnet recovery.</li>
-                        <li><Link to="/docs/usecases/level-4-complex#c6-global-supply-chain">[C6] Global Supply Chain</Link> — Battery moves through borders with automated compliance.</li>
-                        <li><Link to="/docs/usecases/level-4-complex#c7-city-wide-loop">[C7] City-Wide Loop</Link> — UrbanMiner dashboard shows real-time city circularity.</li>
-                        <li><Link to="/docs/usecases/level-4-complex#c8-regenerative-beef">[C8] Regenerative Beef</Link> — Cattle grazing sequester carbon; farmers paid credits.</li>
-                        <li><Link to="/docs/usecases/level-4-complex#c9-building-as-bank">[C9] Building-as-Bank</Link> — Building materials tracked and traded as futures.</li>
-                        <li><Link to="/docs/usecases/level-4-complex#c10-e-waste-mining">[C10] E-Waste Mining</Link> — Robots desolder valuable chips from old boards.</li>
+                        <li><Link to="/docs/usecases/level-4-complex#c1-fiber-to-fiber">[C1] Fiber-to-Fiber</Link> — <span style={tooltipStyle} title="A complete circular journey where discarded shirts are collected, sorted, chemically separated, and re-spun into virgin-quality yarn, which is then used for new garment production, closing the loop entirely within the textile sector.">Full Loop Recycling from Old Shirt Collection to New Yarn Spinning</span></li>
+                        <li><Link to="/docs/usecases/level-4-complex#c2-the-innovation-lab">[C2] The Innovation Lab</Link> — <span style={tooltipStyle} title="The NovaLab ecosystem acts as a concierge, proactively guiding circular startups through complex regulatory permitting processes and matching them with appropriate public and private funding sources based on their maturity and impact potential.">Lab Guides Startups Through Complex Regulatory Permitting and Funding Channels</span></li>
+                        <li><Link to="/docs/usecases/level-4-complex#c3-disaster-relief">[C3] Disaster Relief</Link> — <span style={tooltipStyle} title="Satellite and ground sensor data confirming severe drought conditions via NovaWater Oracle executes a smart contract to release crop insurance funds to farmers instantly, bypassing weeks of bureaucratic claims processing during a crisis.">Drought Detection Automatically Triggers Parametric Insurance Payouts to Farmers</span></li>
+                        <li><Link to="/docs/usecases/level-4-complex#c4-automated-factory">[C4] Automated Factory</Link> — <span style={tooltipStyle} title="An incoming customer order automatically triggers NovaMind to optimize the design topology for material efficiency, which is then sent directly to networked NovaMake printers for on-demand production without human intervention.">Order Triggers Autonomous AI Topology Optimization and 3D Printing Production</span></li>
+                        <li><Link to="/docs/usecases/level-4-complex#c5-the-circular-hospital">[C5] The Circular Hospital</Link> — <span style={tooltipStyle} title="A hospital operates on a full-service circular model, leasing MRI machines to ensure upgrades, using locally sourced renewable power, and ensuring rare earth magnets are recovered by the manufacturer at the equipment's end-of-life.">Circular Hospital Manages Equipment Leasing, Renewable Power, and Recovery</span></li>
+                        <li><Link to="/docs/usecases/level-4-complex#c6-global-supply-chain">[C6] Global Supply Chain</Link> — <span style={tooltipStyle} title="Battery shipments move seamlessly across international borders as the Digital Product Passport automatically proves compliance with EU battery regulations and recycling standards, reducing customs delays and ensuring global traceability.">Automated Supply Chain Compliance Checks Across International Border Crossings</span></li>
+                        <li><Link to="/docs/usecases/level-4-complex#c7-city-wide-loop">[C7] City-Wide Loop</Link> — <span style={tooltipStyle} title="City councils view a live UrbanMiner dashboard showing real-time, aggregated metrics on waste reduction, material recovery rates, and circular economic activity, enabling data-driven policy adjustments and urban planning.">Dashboard Visualizes Real-Time Circularity Metrics for City-Wide Planning</span></li>
+                        <li><Link to="/docs/usecases/level-4-complex#c8-regenerative-beef">[C8] Regenerative Beef</Link> — <span style={tooltipStyle} title="Cattle are managed via rotational grazing patterns that sequester soil carbon, verifiable data which is then used to pay farmers via carbon credit markets, making ecosystem restoration a core part of the business model.">Regenerative Grazing Sequesters Carbon for Farmer Credit Payments</span></li>
+                        <li><Link to="/docs/usecases/level-4-complex#c9-building-as-bank">[C9] Building-as-Bank</Link> — <span style={tooltipStyle} title="Investors trade futures contracts based on the residual value of steel and timber currently in use in standing buildings, effectively treating the city's built environment as a material bank for future resource extraction.">Trading Building Materials as Future Financial Assets in Material Bank</span></li>
+                        <li><Link to="/docs/usecases/level-4-complex#c10-e-waste-mining">[C10] E-Waste Mining</Link> — <span style={tooltipStyle} title="Advanced robotics systems utilize computer vision to identify and desolder high-value microchips from discarded circuit boards, testing them for functionality and preparing them for reuse in new electronics products.">Robotic Systems Salvage Valuable Chips from E-Waste for Reuse</span></li>
+                        <li><Link to="/docs/usecases/level-4-complex#c11-heat-exchange-loop">[C11] Heat Exchange Loop</Link> — <span style={tooltipStyle} title="A systemic energy exchange where waste heat generated by a local data center is piped directly to nearby agricultural greenhouses to reduce heating costs, creating a symbiotic relationship between digital and food sectors.">Industrial Symbiosis Exchange: Data Center Heat Warms Nearby Greenhouses</span></li>
+                        <li><Link to="/docs/usecases/level-4-complex#c12-ocean-plastic-cleanup">[C12] Ocean Plastic Cleanup</Link> — <span style={tooltipStyle} title="A swarm of autonomous drones identifies floating plastic patches using aerial imagery and coordinates collection vessels to harvest the waste, which is then processed and tracked as recycled feedstock.">Autonomous Drone Fleet Coordinates Ocean Plastic Harvest and Collection</span></li>
                     </ul>
                     <p style={{ marginTop: '1rem' }}>
-                        👉 Explore the full elaboration of the use case matrix for <Link to="/docs/usecases/level-4-complex">Level 4: Complex (Systemic Transformation)</Link>
+                        👉 Full matrix: <Link to="/docs/usecases/level-4-complex">Level 4: Complex</Link>
                     </p>
                 </section>
 

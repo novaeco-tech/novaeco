@@ -1,11 +1,13 @@
 import requests
+
 from .config import Config
+
 
 class GatewayClient:
     """
     Standardized client for communicating with the NovaEco API Gateway.
     """
-    
+
     @staticmethod
     def get_health():
         """Checks if the Gateway is online."""
@@ -16,7 +18,7 @@ class GatewayClient:
                 return {"status": "online", "color": "green", "details": response.json()}
         except requests.RequestException:
             pass
-        
+
         return {"status": "offline", "color": "red", "details": "Gateway Unreachable"}
 
     @staticmethod
@@ -27,7 +29,12 @@ class GatewayClient:
         # In a real scenario, this might come from the API/Service Registry.
         # For the prototype, we define the strategic pillars.
         return [
-            {"name": "NovaAgro", "url": "http://agriculture.novaeco.tech", "icon": "🌾", "desc": "Regenerative Agriculture"},
+            {
+                "name": "NovaAgro",
+                "url": "http://agriculture.novaeco.tech",
+                "icon": "🌾",
+                "desc": "Regenerative Agriculture",
+            },
             {"name": "NovaMind", "url": "http://mind.novaeco.tech", "icon": "🧠", "desc": "Artificial Intelligence"},
             {"name": "NovaTrade", "url": "http://trade.novaeco.tech", "icon": "📈", "desc": "Circular Marketplace"},
             {"name": "NovaBuild", "url": "http://build.novaeco.tech", "icon": "🏗️", "desc": "Construction & Materials"},

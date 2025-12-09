@@ -5,7 +5,8 @@ from .config import Config
 
 app = Flask(__name__)
 
-@app.route('/')
+
+@app.route("/")
 def dashboard():
     # 1. Logic Layer
     system = GatewayClient.get_health()
@@ -62,5 +63,6 @@ def dashboard():
     """
     return render_template_string(html)
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)

@@ -3,6 +3,7 @@ services:
   website:
     # USE THE PRE-BUILT IMAGE
     image: ghcr.io/novaeco-tech/dev-node:latest
+    user: root
     volumes:
       - ..:/workspace:cached # Mount the entire monorepo root
     # Set the working directory for this specific service
@@ -11,15 +12,14 @@ services:
       - "3000:3000" # Docusaurus port
     # Installs deps and starts Docusaurus
     command: sh -c "npm install && npm start"
-    # Wait for Docusaurus port to be available
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000"]
       interval: 5s
       timeout: 5s
-      retries: 20
+      retries: 30           #  2.5 mins worth of retries
+      start_period: 30s     #  Don't count failures during first 30s of npm install
 
   app:
-    # USE THE PRE-BUILT IMAGE
     image: ghcr.io/novaeco-tech/dev-python:latest
     volumes:
       - ..:/workspace:cached
@@ -44,7 +44,8 @@ services:
       test: ["CMD", "curl", "-f", "http://localhost:5000/"]
       interval: 5s
       timeout: 5s
-      retries: 20
+      retries: 30           # 2.5 mins worth of retries
+      start_period: 30s     # Grace period
 
   api:
     # USE THE PRE-BUILT IMAGE
@@ -64,7 +65,8 @@ services:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
       interval: 5s
       timeout: 5s
-      retries: 10
+      retries: 30           # 2.5 mins worth of retries
+      start_period: 30s     # Grace period
 
   auth:
     # USE THE PRE-BUILT IMAGE
@@ -77,9 +79,9 @@ services:
       - "9090:9090" # gRPC port (Internal Token Validation) - Added for host debugging
     # Auto-install and START the server
     command: sh -c "pip install -r requirements-dev.txt && python -m src.auth_service"
-    # Wait for Auth Health endpoint
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9000/health"]
       interval: 5s
       timeout: 5s
-      retries: 10
+      retries: 30           # 2.5 mins worth of retries
+      start_period: 30s     # Grace period

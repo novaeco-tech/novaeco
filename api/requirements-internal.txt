@@ -1,3 +1,1 @@
-# Internal NovaEco Dependencies
-# Used by QA to build the dependency graph (DAG)
-novaeco-auth-client>=0.1.0
+# Internal Nova libs used by your dependency graph analyzer

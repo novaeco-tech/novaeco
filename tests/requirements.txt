@@ -1,0 +1,4 @@
+# Import all test requirements in a single file
+-r integration/requirements.txt
+-r e2e/requirements.txt
+-r performance/requirements.txt

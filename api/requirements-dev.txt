@@ -1,2 +1,4 @@
+# Import the production environment
 -r requirements.txt
-# List here all libraries which are specific for this component, and not provided already by the dev Docker container
+
+# Add Dev/Test Tools

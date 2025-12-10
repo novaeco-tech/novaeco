@@ -1,2 +1,1 @@
-# Currently, no internal gRPC clients are required.
-# This file is preserved for architectural consistency (QA Graphing).
+# Internal Nova libs used by your dependency graph analyzer

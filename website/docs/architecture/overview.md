@@ -93,54 +93,111 @@ Flagship applications combining multiple sectors.
 
 ## 👥 Main Actors
 
-- **Contributors** – register via Identity, propose governance changes, build apps.  
-- **Organizations** – manage teams, roles, and compliance dashboards.  
-- **Developers** – generate API keys, integrate external systems, build sector apps.  
-- **Regulators/Auditors** – use compliance dashboards, validate ESG and policy adherence.  
-- **Citizens/End‑Users** – interact with apps (marketplace, dashboards, mobility services).  
+The ecosystem serves a multi-sided marketplace with distinct roles:
+
+- **Contributors** – Participate in governance, register digital identities (DID), and propose protocol improvements.
+- **Organizations** – Manage workspace teams, assign RBAC roles, and oversee compliance reporting.
+- **Developers** – Integrate external systems via API keys, build vertical-specific applications, and contribute to the open-source core.
+- **Regulators & Auditors** – Access read-only compliance nodes to validate ESG metrics, policy adherence, and carbon credits.
+- **End-Users (Citizens)** – Engage with the ecosystem via the marketplace, mobility apps, and circular economy dashboards.
 
 ---
 
 ## 🛠️ Technical Standards
 
-To ensure scalability and decoupling, the ecosystem adheres to strict communication and interface standards:
+To ensure scalability, modularity, and loose coupling, the architecture enforces the following interface standards:
 
 ### Communication Protocols
-- **External (Public):** **REST/JSON** via the API Gateway. All 3rd-party apps and frontend clients consume this.
-- **Internal (Pillar-to-Pillar):** **gRPC/ProtoBuf**. Used for high-performance, type-safe communication between Enablers and Sectors (e.g., NovaAgro API calling NovaFin API).
-- **Asynchronous:** **RabbitMQ/NATS**. Used for Pillar-to-Worker tasks (e.g., triggering an LCA calculation).
+- **External (Ingress):** **REST/JSON** via the API Gateway. Used by third-party integrations, mobile apps, and frontend clients.
+- **Inter-Service (Synchronous):** **gRPC/ProtoBuf**. Used for high-performance, low-latency communication between Core Enablers (e.g., Identity calling Policy).
+- **Event-Driven (Asynchronous):** **NATS JetStream / RabbitMQ**. Used for decoupling domains (e.g., `order.placed` triggers `logistics.schedule`) and offloading heavy computations (LCA calculations).
 
 ### User Interface Strategy
-- **Federated UIs:** Instead of a single monolithic frontend, each Pillar (NovaAgro, NovaHealth, NovaFin) hosts its own dedicated "micro-frontend" or standalone web app.
-- **Unified Identity:** A seamless SSO (Single Sign-On) session persists across all domain boundaries (`*.novaeco.tech`).
+- **Micro-Frontends:** Domain-specific UIs (e.g., *NovaAgro Dashboard*, *NovaFin Wallet*) are composed into a unified shell, allowing independent deployment of verticals.
+- **Unified Identity:** A seamless Single Sign-On (SSO) session persists across all subdomains (`*.novaeco.tech`) using OpenID Connect (OIDC).
 
 ---
 
 ## 🔄 Interaction Flow
 
-1. **Onboarding**: Identity service creates Trust Profiles.  
-2. **Integration**: Gateway issues API keys for external systems.  
-3. **Transactions**: NovaTrade + NovaFin enable secure exchanges.  
-4. **Data Aggregation**: NovaBalance + NovaMaterial + Sector workers provide sustainability metrics.  
-5. **Governance**: NovaPolicy enforces rules; NovaEquity ensures fairness.  
-6. **Visibility**: Dashboard aggregates results; Docs provide transparency.
+1. **Onboarding & Trust**: The **Identity** service issues Decentralized Identifiers (DIDs) and establishes Trust Profiles for all actors.
+2. **Access Control**: The **Gateway** validates JWTs and routes traffic to the appropriate microservices.
+3. **Value Exchange**: **NovaTrade** and **NovaFin** execute atomic transactions (financial or tokenized assets).
+4. **Impact Calculation**: As transactions occur, **NovaBalance** and background workers aggregate sustainability metrics (CO2, Water usage).
+5. **Governance Checks**: **NovaPolicy** intercepts sensitive actions to enforce community-voted rules and compliance standards.
+6. **Visualization**: Aggregated data is pushed to the **Dashboard** and **Public Ledger** for transparency.
 
 ---
 
-## 📊 Diagram (Mermaid)
+## 📊 Architecture Diagram
+
+The system is divided into **Core Enablers** (Horizontal capabilities) and **Industry Sectors** (Vertical implementations).
 
 ```mermaid
 graph TD
+  %% Styles
+  classDef core fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
+  classDef sector fill:#f3e5f5,stroke:#4a148c,stroke-width:2px;
+  classDef user fill:#fff9c4,stroke:#fbc02d,stroke-width:2px;
+
+  subgraph Clients [Client Layer]
+    User((User / Actor))
+    Docs[Documentation]
+    Dash[Unified Dashboard]
+  end
+
+  subgraph Edge [Edge Layer]
+    Gateway{API Gateway}
+    Identity[Identity & Auth]
+  end
+
+  subgraph Platform [Core Enablers]
+    direction TB
+    NovaHub[NovaHub Core]
+    NovaFin[NovaFin]
+    NovaTrade[NovaTrade]
+    NovaPolicy[NovaPolicy]
+    NovaBalance[NovaBalance]
+    NovaInfra[NovaInfra]
+  end
+
+  subgraph Verticals [Industry Sectors]
+    direction TB
+    Agro[NovaAgro]
+    Health[NovaHealth]
+    Mobility[NovaMobility]
+    Energy[NovaEnergy]
+    Material[NovaMaterial]
+    Waste[NovaWaste]
+  end
+
+  subgraph Async [Async Workers]
+    Jobs[Background Jobs]
+    Calc[LCA Calculators]
+    Sync[Data Sync]
+  end
+
+  %% Relationships
   User --> Identity
-  Identity --> Gateway
-  Gateway --> Dashboard
-  Docs --> User
-  Dashboard --> Docs
-  Gateway --> Enablers[NovaHub / NovaFin / NovaTrade / NovaSapien / NovaEnergy / NovaMaterial / NovaMobility / NovaInfra / NovaSkills / NovaPolicy / NovaBalance / NovaEquity]
-  Enablers --> Sectors[NovaAgro / NovaWater / NovaBuild / NovaTextile / NovaWaste / NovaAir / NovaHealth / NovaChem / NovaTronix / NovaPack]
-  Sectors --> Workers[Background Jobs / Calculators / Sync Services]
-  Workers --> Products[Flagship Apps: DurasAGV / Urban Mining / Reusable Packaging / City-Wide Loop / Circular Hospital]
-````
+  User --> Gateway
+  Identity -.-> Gateway
+  Gateway --> Dash
+  Gateway --> Platform
+  Gateway --> Verticals
+
+  %% Inter-service
+  Platform <--> Verticals
+  Platform -- Events --> Async
+  Verticals -- Events --> Async
+  
+  %% Feedback Loop
+  Async -.-> Dash
+  Dash --> Docs
+
+  %% Class Assignments
+  class NovaHub,NovaFin,NovaTrade,NovaPolicy,NovaBalance,NovaInfra core;
+  class Agro,Health,Mobility,Energy,Material,Waste sector;
+  class User,Docs,Dash user;
 
 ---
 

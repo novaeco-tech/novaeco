@@ -1,1 +1,2 @@
 # Internal Nova libs used by your dependency graph analyzer
+# novaeco-auth-client>=0.1.0

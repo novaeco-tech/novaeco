@@ -1,5 +1,6 @@
 import pytest
 
+
 @pytest.mark.benchmark
 def test_performance_infrastructure_ready():
     """

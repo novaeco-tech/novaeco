@@ -1,4 +1,0 @@
-# Import the production environment
--r requirements.txt
-
-# Add Dev/Test Tools

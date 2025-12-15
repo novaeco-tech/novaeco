@@ -39,8 +39,3 @@ Explain the scenario in 2–3 sentences.
 - [Functional Requirements](../requirements/functional.md)  
 - [Architecture Overview](../architecture/overview.md)  
 - [Glossary](../glossary.md)
-
----
-
-[⬅️ Back to Use Cases Overview](./level-1-onboarding.md)  
-[⬅️ Back to Intro](../intro.md)

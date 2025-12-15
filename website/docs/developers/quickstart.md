@@ -1,6 +1,6 @@
 # Quickstart
 
-This guide helps new contributors get started with the NovaEco Core quickly.
+This guide helps new contributors get started with the NovaEco Core Kernel quickly.
 
 ---
 
@@ -13,22 +13,28 @@ This guide helps new contributors get started with the NovaEco Core quickly.
 
 ## Steps
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/novaeco-tech/ecosystem-core.git
-   ```
-2. Open the folder in VS Code.
-3. Reopen in Container when prompted.
-4. Run services locally:
-   - App: http://localhost:5000
-   - Website: http://localhost:3000
-   - API Gateway: http://localhost:8000/health
-   - Auth: http://localhost:9000/health
+```bash
+   git clone https://github.com/novaeco-tech/novaeco.git
+```
+
+2.  Open the folder in VS Code.
+3.  Click **"Reopen in Container"** when the popup appears (or use `F1` \> `Dev Containers: Reopen in Container`).
+4.  Wait for the build to complete. Once running, the following services are available:
+      - **Gateway API:** http://localhost:8000/health
+      - **Identity (Keycloak):** http://localhost:8080 (User: `admin` / Pass: `admin`)
+      - **Auth Verifier:** http://localhost:9000/health
+      - **Documentation:** http://localhost:3000
 
 ---
 
 ## First API Call
+
+Verify the system is healthy by querying the Gateway:
+
 ```bash
-curl -X GET http://localhost:8000/health
+curl -i https://api.novaeco.tech/health
+# Or locally:
+curl -i http://localhost:8000/health
 ```
 
 ---

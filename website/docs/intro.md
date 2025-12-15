@@ -59,8 +59,3 @@ If you’re new:
 3. Explore [Use Cases](./usecases/level-1-onboarding.md).
 4. Try the [API Examples](./api/examples.md).
 5. Follow the [Developer Guide](./guides/dev-guide.md).
-
----
-
-## ➡️ Next Steps
-[Next: Architecture Overview →](./architecture/overview.md)

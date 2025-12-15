@@ -17,6 +17,7 @@ Old shirts are collected via the `RetailLoop` plugin, sorted by `NovaMind` AI vi
 **Sustainability Problem**
 The fashion industry creates massive waste. True circularity requires "closed loops" where materials are infinitely recycled without degrading quality (downcycling), ending the reliance on virgin fibers.
 
+
 **User Interaction**
 Consumer initiates return → `NovaLogistics` delivers to facility → `NovaMind` sorter scans fiber content → `NovaChem` processes feedstock → `NovaTextile` produces virgin-quality yarn.
 
@@ -52,7 +53,7 @@ Founder enters project parameters in `NovaLab` → System checks zoning in `Nova
 
 **Challenges**
 - Ensuring sensor data integrity (the "oracle" problem) for financial triggers.
-- coordinating rapid physical responses across fragmented agencies.
+- Coordinating rapid physical responses across fragmented agencies.
 
 **Sustainability Problem**
 Climate shocks are increasing in frequency. Resilience requires automated, data-driven adaptation to protect food security and livelihoods before a crisis peaks.
@@ -117,6 +118,7 @@ A battery shipment moves through three countries. `NovaPolicy` checks compliance
 **Sustainability Problem**
 Global trade opacity hides environmental costs. Automated compliance ensures that carbon taxes (like CBAM) are applied correctly, incentivizing greener supply chains.
 
+
 **User Interaction**
 Container enters geo-fence → `NovaPolicy` queries Battery Passport → Compliance verified → `NovaTrade` executes tax payment → Goods released.
 
@@ -128,7 +130,7 @@ Container enters geo-fence → `NovaPolicy` queries Battery Passport → Complia
 ## [C7] City-Wide Loop
 
 **Description**
-The Mayor views the `UrbanMiner` dashboard, which aggregates real-time circularity data for Water, Energy, and Waste flows across the entire city to drive policy decisions.
+The Mayor views the `UrbanMiner` dashboard (via `NovaAdmin`), which aggregates real-time circularity data for Water, Energy, and Waste flows across the entire city to drive policy decisions.
 
 **Challenges**
 - Integrating legacy municipal systems with modern IoT.
@@ -137,11 +139,12 @@ The Mayor views the `UrbanMiner` dashboard, which aggregates real-time circulari
 **Sustainability Problem**
 Cities consume the vast majority of global resources. Data-driven governance allows cities to function as metabolisms, optimizing flows to reach Net Zero.
 
+
 **User Interaction**
-Mayor views dashboard → Identifies "High Waste" district → Adjusts collection policy in `NovaRecycle` → Simulates impact on energy recovery.
+Mayor views `NovaAdmin` dashboard → Identifies "High Waste" district → Adjusts collection policy in `NovaRecycle` → Simulates impact on energy recovery.
 
 **Ecosystem Usage**
-`UrbanMiner` (Product), `NovaWater` (Data), `NovaEnergy` (Data), `NovaRecycle` (Data).
+`UrbanMiner` (Product), `NovaWater` (Data), `NovaEnergy` (Data), `NovaRecycle` (Data), `NovaAdmin` (Visualization).
 
 ---
 
@@ -201,7 +204,7 @@ Mining urban e-waste is far more efficient than mining virgin ore. Component reu
 Board scanned by vision system → `NovaTronix` ID's chips → `NovaMake` robot desolders components → `NovaMaterial` updates component status to "Recovered".
 
 **Ecosystem Usage**
-`NovaTronix` ( identification), `NovaMake` (Robotics), `NovaInfra` (Device Control), `NovaMaterial` (Inventory).
+`NovaTronix` (Identification), `NovaMake` (Robotics), `NovaInfra` (Device Control), `NovaMaterial` (Inventory).
 
 ---
 

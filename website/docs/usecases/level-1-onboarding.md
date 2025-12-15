@@ -8,7 +8,7 @@
 ## [O1] The Citizen Passport
 
 **Description**
-A resident registers via the central `auth` service to access city recycling services and green infrastructure. Their Trust Profile is verified via email or local government API integration.
+A resident registers via the central **Identity Provider (Keycloak)** to access city recycling services and green infrastructure. Their Trust Profile is established and synched to the ecosystem.
 
 **Challenges**
 - Balancing ease of access with security (preventing bot accounts).
@@ -18,10 +18,10 @@ A resident registers via the central `auth` service to access city recycling ser
 Without a digital identity, citizens cannot participate in incentive schemes (e.g., getting credits for recycling) or access shared resources securely.
 
 **User Interaction**
-User visits `auth.novaeco.tech` → Registers with email → Clicks verification link → `Core/Auth` issues a standard "Citizen" Trust Profile → User logs into `app.novaeco.tech`.
+User visits `admin.novaeco.tech` → Redirects to `id.novaeco.tech` (Keycloak) → Registers with email → `Core/Auth` issues a standard "Citizen" Trust Profile → User lands on Mission Control Dashboard.
 
 **Ecosystem Usage**
-`Core/Auth` (Identity Provider), `Core/App` (Dashboard)
+`Core/Identity` (Keycloak), `Core/Auth` (Trust Profile), `NovaAdmin` (Dashboard)
 
 ---
 
@@ -101,7 +101,7 @@ Capital often flows to the wrong places. A structured profile helps connect genu
 Founder fills out "Innovation Wizard" in `NovaLab` → Selects "Bioplastics" category → System suggests relevant grants → Profile becomes visible to investors.
 
 **Ecosystem Usage**
-`NovaLab` (Innovation Engine), `Core/App` (Discovery Interface)
+`NovaLab` (Innovation Engine), `NovaAdmin` (Discovery Interface)
 
 ---
 
@@ -198,10 +198,10 @@ A climate-tech developer generates an API Key in the `Gateway` to build a custom
 Open Data democratizes innovation. Allowing third-party devs to build on the platform accelerates solution deployment.
 
 **User Interaction**
-Developer logs into `novahub.network` → navigates to Developer Portal → Requests `read:water` scope → `Core/Gateway` issues a secure API Key.
+Developer logs into `admin.novaeco.tech` → navigates to Developer Portal → Requests `read:water` scope → `Core/Gateway` issues a secure API Key.
 
 **Ecosystem Usage**
-`Core/Gateway` (API Management), `Core/Docs` (Documentation)
+`Core/Gateway` (API Management), `NovaAdmin` (Developer Dashboard)
 
 ---
 

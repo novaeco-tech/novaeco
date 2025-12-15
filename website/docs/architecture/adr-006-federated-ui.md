@@ -4,18 +4,23 @@ Date: 2025-11-26
 Status: Accepted
 
 ## Context
-The ecosystem covers diverse domains (Health, Agriculture, Finance, Construction). A single "Monolithic" Frontend trying to serve all these personas would become bloated, hard to maintain, and confusing for users.
+The NovaEco ecosystem covers diverse domains (Health, Agriculture, Finance, Construction) with vastly different user personas and workflows. 
+
+A single "Monolithic" Frontend application attempting to serve all these needs would inevitably become bloated, difficult to maintain, and confusing to navigate. Users in an agricultural context do not need to load the heavy JavaScript libraries required for financial trading charts.
 
 ## Decision
-We will adopt a **Federated UI** strategy. Each Pillar (e.g., `novaagro`, `novafin`) will develop and host its own lightweight frontend application tailored to its specific user persona.
-These apps will be stitched together via a shared **Identity/SSO** session.
+We will adopt a **Federated UI Strategy**:
+
+1.  **Domain-Specific Apps:** Each Pillar (e.g., `novaagro`, `novafin`) develops and hosts its own lightweight frontend application, tailored specifically to its user persona.
+2.  **Mission Control Hub:** We introduce **NovaAdmin** (`admin.novaeco.tech`) as the central "Launchpad" and dashboard. It provides the unified entry point, discovery mechanism, and cross-domain navigation shell.
+3.  **Shared Identity:** All applications are stitched together via a single **Keycloak SSO Session** (`id.novaeco.tech`), allowing users to jump between the Hub and vertical apps without re-authenticating.
 
 ## Consequences
 ### Positive
-- **Decoupling:** The `Agro` team can update their UI without breaking `Health`.
-- **Performance:** Users only load the JavaScript/Assets relevant to their current context.
-- **Simplicity:** Interfaces remain focused on specific domain tasks.
+- **Decoupling:** The `Agro` team can iterate on their UI independently without risking regressions in `Health` or the central Dashboard.
+- **Performance:** Users only download the assets relevant to their current context (e.g., a farmer doesn't load the 3D rendering engine used by `NovaMake`).
+- **Scalability:** New sectors can be added to the ecosystem simply by registering them in the NovaAdmin launchpad, without redeploying the core platform.
 
 ### Negative
-- **Consistency Risk:** Requires a strong Design System to ensure apps look like they belong to the same family.
-- **Navigation Friction:** Moving between apps requires handling cross-domain navigation and auth persistence.
+- **Consistency Risk:** Requires strict adherence to a shared Design System (UI Kit) to ensure `NovaAgro` looks like it belongs to the same family as `NovaFin`.
+- **Navigation Friction:** Moving between apps involves full browser navigation (cross-domain), which is slightly slower than client-side routing in a monolith.

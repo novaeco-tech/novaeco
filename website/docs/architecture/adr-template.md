@@ -30,7 +30,3 @@ Explain the impact of this decision.
 - Link to relevant Use Cases or Requirements.  
 - External standards or specifications if applicable.
 
----
-
-[⬅️ Back to Architecture Overview](./overview.md)  
-[⬅️ Back to Intro](../intro.md)

@@ -21,8 +21,3 @@ This guide provides practical steps for working with the NovaEco Core.
 - [Testing Guide](./testing-guide.md)
 - [Sustainability Guide](./sustainability-guide.md)
 - [Developers: Setup](../developers/setup.md)
-
-[⬅️ Back to Intro](../intro.md)
-
-[⬅️ Previous: Developer Setup](../developers/setup.md)  
-[Next: Glossary ➡️](../glossary.md)

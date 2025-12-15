@@ -33,7 +33,3 @@ This glossary defines common terms used across the NovaEco.
 - [Use Cases: Level 1 Onboarding](./usecases/level-1-onboarding.md)
 - [API Overview](./api/overview.md)
 - [Developer Guide](./guides/dev-guide.md)
-
-[⬅️ Back to Intro](./intro.md)
-
-[⬅️ Previous: Developer Guide](./guides/dev-guide.md)

@@ -11,9 +11,9 @@ At the heart of the ecosystem is the `novaeco` monorepo, which contains the tigh
 
 | Service | Subdomain | Description | Docs Reference |
 | :--- | :--- | :--- | :--- |
-| **Mission Control** | `app.novaeco.tech` | Unified dashboard and launchpad for all ecosystem applications. | [Use Cases L1](../usecases/level-1-onboarding.md) |
 | **Gateway** | `api.novaeco.tech` | Single public API entry point for all external traffic. | [API Gateway](../api/gateway.md) |
-| **Identity** | `auth.novaeco.tech` | Centralized SSO, MFA, and Trust Profile issuance service. | [API Auth](../api/auth.md) |
+| **Auth** | `auth.novaeco.tech` | Internal Token Verifier for microservices (gRPC). | [API Auth](../api/auth.md) |
+| **Identity** | `id.novaeco.tech` | Public Identity Provider (Keycloak) for SSO. | [API Auth](../api/auth.md) |
 | **Docs** | `novaeco.tech` | Public landing page and technical documentation hub. | [Intro](../intro.md) |
 
 These services provide the foundation for onboarding, governance, API integration, and contributor visibility.
@@ -26,6 +26,7 @@ Cross‑cutting foundational services consumed by all sectors.
 
 | Enabler | Subdomain | Description |
 | :--- | :--- | :--- |
+| **NovaAdmin** | `admin.novaeco.tech` | Mission Control dashboard for onboarding, discovery, and ecosystem management. |
 | **NovaBalance** | `balance.novaeco.tech` | Environmental audit engine for carbon, water, and mass. |
 | **NovaEquity** | `equity.novaeco.tech` | Social audit engine tracking fair wages and labor rights. |
 | **NovaFin** | `finance.novaeco.tech` | Ledger for payments, staking, and ESG token settlements. |
@@ -153,7 +154,7 @@ graph TD
 
   subgraph Platform [Core Enablers]
     direction TB
-    NovaHub[NovaHub Core]
+    NovaAdmin[NovaAdmin]
     NovaFin[NovaFin]
     NovaTrade[NovaTrade]
     NovaPolicy[NovaPolicy]
@@ -195,11 +196,12 @@ graph TD
   Dash --> Docs
 
   %% Class Assignments
-  class NovaHub,NovaFin,NovaTrade,NovaPolicy,NovaBalance,NovaInfra core;
+  class NovaAdmin,NovaFin,NovaTrade,NovaPolicy,NovaBalance,NovaInfra core;
   class Agro,Health,Mobility,Energy,Material,Waste sector;
   class User,Docs,Dash user;
+````
 
----
+-----
 
 ## 🌱 Principles
 
@@ -209,18 +211,18 @@ graph TD
   - **Auditability** – NovaBalance and NovaEquity enablers provide verifiable impact.
   - **Circularity** – every sector and product reinforces sustainable loops.
 
----
+-----
 
 ## 🔗 Related Pages
 
-- [Intro](../intro.md)  
-- [Functional Requirements](../requirements/functional.md)  
-- [Non‑Functional Requirements](../requirements/non-functional.md)  
-- [API Overview](../api/overview.md)  
-- [Use Cases Overview](../usecases/level-1-onboarding.md)  
-- [Glossary](../glossary.md)
+  - [Intro](https://www.google.com/search?q=../intro.md)
+  - [Functional Requirements](https://www.google.com/search?q=../requirements/functional.md)
+  - [Non‑Functional Requirements](https://www.google.com/search?q=../requirements/non-functional.md)
+  - [API Overview](https://www.google.com/search?q=../api/overview.md)
+  - [Use Cases Overview](https://www.google.com/search?q=../usecases/level-1-onboarding.md)
+  - [Glossary](https://www.google.com/search?q=../glossary.md)
 
----
+-----
 
-[⬅️ Back to Intro](../intro.md)  
-[➡️ Next: Requirements](../requirements/functional.md)
+[⬅️ Back to Intro](https://www.google.com/search?q=../intro.md)  
+[➡️ Next: Requirements](https://www.google.com/search?q=../requirements/functional.md)

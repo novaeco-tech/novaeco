@@ -28,7 +28,7 @@ const sidebars = {
         'architecture/adr-002-auth',
         'architecture/adr-003-hybrid-api-access',
         'architecture/adr-004-docs-site',
-        'architecture/adr-005-internal-grpc',
+        'architecture/adr-005-grpc-protobuf',
         'architecture/adr-006-federated-ui',
         'architecture/adr-template',
       ],

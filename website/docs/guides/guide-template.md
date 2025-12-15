@@ -43,8 +43,3 @@ List any tools, knowledge, or setup required before following this guide.
 - [Testing Guide](./testing-guide.md)  
 - [Sustainability Guide](./sustainability-guide.md)  
 - [Glossary](../glossary.md)
-
----
-
-[⬅️ Back to Guides Overview](./dev-guide.md)  
-[⬅️ Back to Intro](../intro.md)

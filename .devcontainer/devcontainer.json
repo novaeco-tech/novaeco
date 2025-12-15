@@ -1,7 +1,7 @@
 {
     "name": "NovaEco Core",
     "dockerComposeFile": "docker-compose.yml",
-    "service": "app",
+    "service": "api", 
     "workspaceFolder": "/workspace",
     "customizations": {
         "vscode": {
@@ -17,11 +17,11 @@
     },
     "forwardPorts": [
         3000,
-        5000,
         8000,
-        9000
+        9000,
+        8080
     ],
-        "remoteEnv": {
+    "remoteEnv": {
         "PATH": "${containerEnv:PATH}:/home/appuser/.local/bin"
     },
     

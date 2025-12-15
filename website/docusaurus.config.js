@@ -66,7 +66,7 @@ const config = {
             items: [
                 { to: '/docs/intro', label: 'Docs', position: 'left' },
                 { to: '/blog', label: 'Blog', position: 'left' },
-                { href: 'https://app.novaeco.tech', label: 'Launch App', position: 'right' },
+                { href: 'https://admin.novaeco.tech', label: 'Launch Admin', position: 'right' },
             ],
         },
         footer: {

@@ -1,28 +1,32 @@
 # API Overview
 
-The NovaEco exposes APIs through the **Gateway** service (`/api`) and the **Auth** service (`/auth`).
+The NovaEco exposes its ecosystem capabilities through a unified **Multiplexed Gateway** (`api.novaeco.tech`) and a split-stack Identity infrastructure.
 
 ## Principles
-- **Unified Gateway:** All requests flow through a single entry point.
-- **Secure Access:** OAuth2 authentication and API keys.
-- **Consistency:** JSON responses, standardized error codes.
-- **Transparency:** Public documentation and versioning.
+- **Unified Entry Point:** All external traffic—whether REST (Web/Mobile) or gRPC (Agents/IoT)—flows through `api.novaeco.tech` on Port 443.
+- **Protocol Multiplexing:** The Gateway automatically routes traffic based on protocol (`HTTP/1.1` vs `HTTP/2`) and content type.
+- **Secure Access:** All requests require a valid JWT issued by the public Identity Provider (`id.novaeco.tech`).
+- **Strong Contracts:** Internal services communicate via strict gRPC ProtoBuf contracts, which are also exposed to external high-performance clients.
 
 ## Available Services
-- **Gateway:** Central REST API for data and orchestration.
-- **Auth:** Identity and access management.
-- **Sector APIs:** Each enabler/sector exposes its own endpoints.
+
+### 1. Core Infrastructure
+| Service | Host | Protocol | Purpose |
+| :--- | :--- | :--- | :--- |
+| **Gateway** | `api.novaeco.tech` | REST & gRPC | Central ingress for data, orchestration, and routing to all sectors. |
+| **Identity** | `id.novaeco.tech` | HTTPS (OIDC) | Public Identity Provider (Keycloak). Handles Login, Sign-up, and Token Issuance. |
+| **Auth** | `auth.novaeco.tech` | gRPC | High-speed Token Verifier and Trust Anchor for microservices. |
+
+### 2. Sector APIs
+Specific verticals (e.g., NovaAgro, NovaTrade) are accessible via the Gateway using path-based routing:
+- **REST:** `https://api.novaeco.tech/api/agro/...`
+- **gRPC:** `novaeco.agro.v1.AgroService` (via `api.novaeco.tech:443`)
 
 ---
 
 ## Related Pages
-- [Auth API](./auth.md)
-- [Gateway API](./gateway.md)
-- [API Examples](./examples.md)
-- [API Testing](./testing.md)
-- [Developers: Setup](../developers/setup.md)
-
-[⬅️ Back to Intro](../intro.md)
-
-[⬅️ Previous: Use Cases (Level 1 Onboarding)](../usecases/level-1-onboarding.md)  
-[Next: Developer Setup ➡️](../developers/setup.md)
+- [Gateway API](./gateway.md) — Endpoints and Routing.
+- [Auth & Identity API](./auth.md) — OIDC Flows and Token Verification.
+- [API Examples](./examples.md) — cURL and Python snippets.
+- [API Testing](./testing.md) — How to validate your integration.
+- [Developers: Setup](../developers/setup.md) — Get your local environment running.

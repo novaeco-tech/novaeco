@@ -1,0 +1,42 @@
+{
+  "realm": "novaeco",
+  "enabled": true,
+  "users": [
+    {
+      "username": "testuser",
+      "enabled": true,
+      "email": "test@novaeco.tech",
+      "credentials": [{ "type": "password", "value": "password" }],
+      "realmRoles": ["user", "admin"],
+      "clientRoles": {
+        "novaeco-core": ["user"]
+      }
+    }
+  ],
+  "roles": {
+    "realm": [
+      { "name": "user", "description": "Standard User" },
+      { "name": "admin", "description": "System Administrator" }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "novaeco-core",
+      "name": "NovaEco Mission Control",
+      "enabled": true,
+      "publicClient": true,
+      "directAccessGrantsEnabled": true,
+      "redirectUris": ["http://localhost:5000/*", "https://app.novaeco.tech/*"],
+      "webOrigins": ["*"]
+    },
+    {
+      "clientId": "novaeco-service",
+      "name": "Internal Service",
+      "enabled": true,
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "service-secret-123",
+      "serviceAccountsEnabled": true
+    }
+  ]
+}

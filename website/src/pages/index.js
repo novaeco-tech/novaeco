@@ -37,10 +37,10 @@ export default function Home() {
                         </Link>
                         <Link
                             className="button button--secondary"
-                            to="https://app.novaeco.tech"
+                            to="https://admin.novaeco.tech"
                             style={{ marginLeft: '0.75rem' }}
                         >
-                            Launch App
+                            Launch Admin
                         </Link>
                     </div>
                 </section>
@@ -53,10 +53,10 @@ export default function Home() {
                         The ecosystem is anchored by <strong>four core services</strong> that provide unified identity, orchestration, and access management:
                     </p>
                     <ul>
-                        <li><strong><a href="https://app.novaeco.tech">App</a></strong> — Mission Control for onboarding, discovery, and ecosystem management.</li>
-                        <li><strong><a href="https://auth.novaeco.tech">Identity</a></strong> — Digital Passport & Trust Profile for unified login.</li>
-                        <li><strong><a href="https://api.novaeco.tech">Gateway</a></strong> — API gateway for secure, managed access to all services.</li>
-                        <li><strong><Link to="/docs/intro">Docs</Link></strong> — Comprehensive documentation hub for architecture, use cases, and developer guides.</li>
+                        <li><strong><a href="https://api.novaeco.tech">Gateway</a></strong> — Multiplexed API gateway (REST/gRPC) for secure access.</li>
+                        <li><strong><a href="https://auth.novaeco.tech">Auth</a></strong> — Internal Token Verifier & Trust Anchor.</li>
+                        <li><strong><a href="https://id.novaeco.tech">Identity</a></strong> — Public Identity Provider (Keycloak) & SSO.</li>
+                        <li><strong><Link to="/docs/intro">Docs</Link></strong> — Comprehensive documentation hub and knowledge base.</li>
                     </ul>
                     <p>
                         It is designed as a <strong>System‑of‑Systems</strong>: interconnected <strong>Horizontal Enablers</strong>, <strong>Vertical Sectors</strong>, <strong>Workers</strong>, and <strong>Products</strong>. <br />
@@ -74,78 +74,91 @@ export default function Home() {
                                 </tr>
                             </thead>
                             <tbody>
+                                {/* Row 1 */}
                                 <tr>
-                                    <td><a href="https://balance.novaeco.tech">NovaBalance</a> <small style={tooltipStyle} title="Environmental audit engine tracking carbon, water, and mass flows.">Tracks Carbon, Water, Mass</small></td>
-                                    <td><a href="https://agriculture.novaeco.tech">NovaAgro</a> <small style={tooltipStyle} title="Regenerative agriculture management and sustainable food system tracking.">Regen-Ag & Food Systems</small></td>
+                                    <td><a href="https://admin.novaeco.tech">NovaAdmin</a> <small style={tooltipStyle} title="Mission Control dashboard for onboarding, discovery, and ecosystem management.">Mission Control</small></td>
+                                    <td><a href="https://agriculture.novaeco.tech">NovaAgro</a> <small style={tooltipStyle} title="Regenerative agriculture management and sustainable food system tracking.">Regen-Ag & Food</small></td>
                                     <td><a href="https://lca.balance.novaeco.tech">LCACalc</a> <small style={tooltipStyle} title="Calculates real-time environmental impact from material BOMs.">Real-time Impact Calc</small></td>
                                     <td><a href="https://duras-agv.novaeco.tech">DurasAGV</a> <small style={tooltipStyle} title="Autonomous agricultural robot for regenerative farming tasks.">Auto-Farming Robot</small></td>
                                 </tr>
+                                {/* Row 2 */}
                                 <tr>
-                                    <td><a href="https://equity.novaeco.tech">NovaEquity</a> <small style={tooltipStyle} title="Social audit engine tracking fair wages and labor rights.">Fair Wage & Rights</small></td>
+                                    <td><a href="https://balance.novaeco.tech">NovaBalance</a> <small style={tooltipStyle} title="Environmental audit engine tracking carbon, water, and mass flows.">Tracks Carbon, Water</small></td>
                                     <td><a href="https://air.novaeco.tech">NovaAir</a> <small style={tooltipStyle} title="Air quality monitoring and carbon capture credit verification.">Quality & Carbon Credits</small></td>
                                     <td><a href="https://quality.air.novaeco.tech">Quality</a> <small style={tooltipStyle} title="Ingests and normalizes data from air quality sensors.">Sensor Data Normalizer</small></td>
                                     <td><a href="https://lab.novaeco.tech">NovaLab</a> <small style={tooltipStyle} title="Innovation engine for designing and launching circular projects.">Circular Project Launchpad</small></td>
                                 </tr>
+                                {/* Row 3 */}
                                 <tr>
-                                    <td><a href="https://finance.novaeco.tech">NovaFin</a> <small style={tooltipStyle} title="Ledger for payments, staking, and ESG token settlements.">Payments & ESG Ledger</small></td>
-                                    <td><a href="https://build.novaeco.tech">NovaBuild</a> <small style={tooltipStyle} title="Management of construction lifecycles and material banks.">Construction & Material Banks</small></td>
+                                    <td><a href="https://equity.novaeco.tech">NovaEquity</a> <small style={tooltipStyle} title="Social audit engine tracking fair wages and labor rights.">Fair Wage & Rights</small></td>
+                                    <td><a href="https://build.novaeco.tech">NovaBuild</a> <small style={tooltipStyle} title="Management of construction lifecycles and material banks.">Construction & Materials</small></td>
                                     <td><a href="https://settle.finance.novaeco.tech">TradeSettlement</a> <small style={tooltipStyle} title="Asynchronously batches and commits transactions to the ledger.">Batch Ledger Commits</small></td>
                                     <td><a href="https://retail-loop.novaeco.tech">RetailLoop</a> <small style={tooltipStyle} title="E-commerce plugin for resale and product take-back.">Resale & Take-back Plugin</small></td>
                                 </tr>
+                                {/* Row 4 */}
                                 <tr>
-                                    <td><a href="https://infrastructure.novaeco.tech">NovaInfra</a> <small style={tooltipStyle} title="Registry for IoT devices and fleet management command.">IoT Fleet Registry</small></td>
-                                    <td><a href="https://chemicals.novaeco.tech">NovaChem</a> <small style={tooltipStyle} title="Chemical leasing models and hazardous material tracking.">Leasing & Hazmat Track</small></td>
+                                    <td><a href="https://finance.novaeco.tech">NovaFin</a> <small style={tooltipStyle} title="Ledger for payments, staking, and ESG token settlements.">Payments & ESG Ledger</small></td>
+                                    <td><a href="https://chemicals.novaeco.tech">NovaChem</a> <small style={tooltipStyle} title="Chemical leasing models and hazardous material tracking.">Leasing & Hazmat</small></td>
                                     <td><a href="https://ingest.infrastructure.novaeco.tech">IoTIngest</a> <small style={tooltipStyle} title="High-throughput processor for raw telemetry from sensors.">Raw Telemetry Processor</small></td>
                                     <td><a href="https://urban-miner.novaeco.tech">UrbanMiner</a> <small style={tooltipStyle} title="Dashboard for city councils to map municipal waste streams.">City Waste Mapper</small></td>
                                 </tr>
+                                {/* Row 5 */}
                                 <tr>
-                                    <td><a href="https://logistics.novaeco.tech">NovaLogistics</a> <small style={tooltipStyle} title="Optimization engine for reverse logistics and circular transport.">Reverse Logistics Engine</small></td>
+                                    <td><a href="https://infrastructure.novaeco.tech">NovaInfra</a> <small style={tooltipStyle} title="Registry for IoT devices and fleet management command.">IoT Fleet Registry</small></td>
                                     <td><a href="https://energy.novaeco.tech">NovaEnergy</a> <small style={tooltipStyle} title="Renewable grid balancing and vehicle-to-grid energy coordination.">Grid & V2G Balance</small></td>
                                     <td><a href="https://bio.nature.novaeco.tech">Bioacoustics</a> <small style={tooltipStyle} title="Identifies species from audio streams using AI models.">AI Species ID</small></td>
+                                    <td><a href="https://slicer.make.novaeco.tech">SlicerCheck</a> <small style={tooltipStyle} title="Verifies 3D model printability for manufacturing jobs.">Printability Verification</small></td>
+                                </tr>
+                                {/* Row 6 */}
+                                <tr>
+                                    <td><a href="https://logistics.novaeco.tech">NovaLogistics</a> <small style={tooltipStyle} title="Optimization engine for reverse logistics and circular transport.">Reverse Logistics</small></td>
+                                    <td><a href="https://make.novaeco.tech">NovaMake</a> <small style={tooltipStyle} title="Distributed manufacturing via 3D printing and CNC networks.">Distributed 3D/CNC</small></td>
+                                    <td></td>
                                     <td></td>
                                 </tr>
+                                {/* Row 7 */}
                                 <tr>
                                     <td><a href="https://materials.novaeco.tech">NovaMaterial</a> <small style={tooltipStyle} title="Engine for Digital Product Passports and material lineage.">Passports & Lineage</small></td>
-                                    <td><a href="https://make.novaeco.tech">NovaMake</a> <small style={tooltipStyle} title="Distributed manufacturing via 3D printing and CNC networks.">Distributed 3D/CNC Mfg</small></td>
-                                    <td><a href="https://slicer.make.novaeco.tech">SlicerCheck</a> <small style={tooltipStyle} title="Verifies 3D model printability for manufacturing jobs.">Printability Verification</small></td>
+                                    <td><a href="https://nature.novaeco.tech">NovaNature</a> <small style={tooltipStyle} title="Biodiversity monitoring and reforestation project management.">Biodiversity & Forests</small></td>
+                                    <td></td>
                                     <td></td>
                                 </tr>
+                                {/* Row 8 */}
                                 <tr>
                                     <td><a href="https://mind.novaeco.tech">NovaMind</a> <small style={tooltipStyle} title="Shared AI models and inference engine for all sectors.">Shared AI Inference</small></td>
-                                    <td><a href="https://nature.novaeco.tech">NovaNature</a> <small style={tooltipStyle} title="Biodiversity monitoring and reforestation project management.">Biodiversity & Reforestation</small></td>
+                                    <td><a href="https://packaging.novaeco.tech">NovaPack</a> <small style={tooltipStyle} title="Reusable packaging systems and deposit return schemes.">Reuse & Deposit</small></td>
                                     <td></td>
                                     <td></td>
                                 </tr>
+                                {/* Row 9 */}
                                 <tr>
-                                    <td><a href="https://policy.novaeco.tech">NovaPolicy</a> <small style={tooltipStyle} title="Policy-as-Code engine for automated regulatory compliance checks.">Automated Compliance Checks</small></td>
-                                    <td><a href="https://packaging.novaeco.tech">NovaPack</a> <small style={tooltipStyle} title="Reusable packaging systems and deposit return schemes.">Reuse & Deposit Schemes</small></td>
+                                    <td><a href="https://policy.novaeco.tech">NovaPolicy</a> <small style={tooltipStyle} title="Policy-as-Code engine for automated regulatory compliance checks.">Automated Compliance</small></td>
+                                    <td><a href="https://recycling.novaeco.tech">NovaRecycle</a> <small style={tooltipStyle} title="Management of recycling centers and urban mining recovery.">Centers & Recovery</small></td>
                                     <td></td>
                                     <td></td>
                                 </tr>
+                                {/* Row 10 */}
                                 <tr>
-                                    <td><a href="https://skills.novaeco.tech">NovaSkills</a> <small style={tooltipStyle} title="Verification system for human labor certifications and degrees.">Labor & Cert Verification</small></td>
-                                    <td><a href="https://recycling.novaeco.tech">NovaRecycle</a> <small style={tooltipStyle} title="Management of recycling centers and urban mining recovery.">Centers & Recovery Ops</small></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="https://trade.novaeco.tech">NovaTrade</a> <small style={tooltipStyle} title="Marketplace for matching orders and discovering circular assets.">Circular Asset Marketplace</small></td>
+                                    <td><a href="https://skills.novaeco.tech">NovaSkills</a> <small style={tooltipStyle} title="Verification system for human labor certifications and degrees.">Labor & Verification</small></td>
                                     <td><a href="https://retail.novaeco.tech">NovaRetail</a> <small style={tooltipStyle} title="Product-as-a-Service management and consumer take-back schemes.">PaaS & Take-back</small></td>
                                     <td></td>
                                     <td></td>
                                 </tr>
+                                {/* Row 11 */}
                                 <tr>
-                                    <td></td>
+                                    <td><a href="https://trade.novaeco.tech">NovaTrade</a> <small style={tooltipStyle} title="Marketplace for matching orders and discovering circular assets.">Asset Marketplace</small></td>
                                     <td><a href="https://electronics.novaeco.tech">NovaTronix</a> <small style={tooltipStyle} title="E-waste management and electronics repair documentation.">E-Waste & Repair</small></td>
                                     <td></td>
                                     <td></td>
                                 </tr>
+                                {/* Row 12 */}
                                 <tr>
                                     <td></td>
                                     <td><a href="https://textiles.novaeco.tech">NovaTextile</a> <small style={tooltipStyle} title="Circular fashion management and fiber-to-fiber recycling loops.">Fashion & Fiber Loops</small></td>
                                     <td></td>
                                     <td></td>
                                 </tr>
+                                {/* Row 13 */}
                                 <tr>
                                     <td></td>
                                     <td><a href="https://water.novaeco.tech">NovaWater</a> <small style={tooltipStyle} title="Management of industrial water cycles and treatment systems.">Industrial Water Cycles</small></td>

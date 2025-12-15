@@ -58,10 +58,10 @@ User uploads STL to `NovaMake` → `SlicerCheck` worker analyzes geometry → `N
 Delayed responses to pollution events cause irreversible ecosystem damage. Real-time alerts enable rapid containment.
 
 **User Interaction**
-Sensor sends telemetry to `NovaInfra` → `NovaWater` logic detects threshold breach → `Core/App` pushes notification to City Admin dashboard.
+Sensor sends telemetry to `NovaInfra` → `NovaWater` logic detects threshold breach → `NovaAdmin` pushes notification to City Dashboard.
 
 **Ecosystem Usage**
-`NovaWater` (Domain Logic), `NovaInfra` (Telemetry), `Core/App` (Notification)
+`NovaWater` (Domain Logic), `NovaInfra` (Telemetry), `NovaAdmin` (Notification)
 
 ---
 
@@ -241,4 +241,4 @@ Single-use packaging is a major waste stream. Deposit Return Schemes (DRS) incen
 User scans cup QR at kiosk → Kiosk validates ID with `NovaPack` → `NovaFin` triggers refund transaction → User notification received.
 
 **Ecosystem Usage**
-`NovaPack` (Item Registry), `NovaFin` (Payment), `Core/Identity` (User Account)
+`NovaPack` (Item Registry), `NovaFin` (Payment), `NovaAdmin` (User Dashboard)

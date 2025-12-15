@@ -15,53 +15,59 @@ NovaEco is designed as a **system‑of‑systems**: interconnected **Horizontal 
 
 ---
 
-## Core Services
+## Core Services (Kernel)
 
-- **App** → [app.novaeco.tech](https://app.novaeco.tech)  
-- **Gateway** → [api.novaeco.tech](https://api.novaeco.tech)  
-- **Identity** → [auth.novaeco.tech](https://auth.novaeco.tech)  
-- **Docs** → [novaeco.tech](https://novaeco.tech)
+The foundational plumbing managed in the central `novaeco` repository:
+
+- **Gateway** → [api.novaeco.tech](https://api.novaeco.tech) (Multiplexed REST/gRPC)
+- **Identity** → [id.novaeco.tech](https://id.novaeco.tech) (Keycloak SSO)
+- **Auth** → [auth.novaeco.tech](https://auth.novaeco.tech) (Internal Verifier)
+- **Docs** → [novaeco.tech](https://novaeco.tech) (Knowledge Base)
 
 ---
 
 ## Horizontal Enablers
 
-Cross‑cutting foundational services:
-- **NovaBalance** (environmental auditing)
-- **NovaEquity** (social auditing)
-- **NovaFin** (ledger, payments, staking)
+Cross‑cutting foundational services consumed by all sectors:
+
+- **NovaAdmin** (Mission Control & Dashboard)
+- **NovaBalance** (Environmental auditing)
+- **NovaEquity** (Social auditing)
+- **NovaFin** (Ledger, payments, staking)
 - **NovaInfra** (IoT registry, fleet command)
-- **NovaLogistics** (optimization, circular transport)
-- **NovaMaterial** (digital product passports)
-- **NovaMind** (shared AI models)
-- **NovaPolicy** (policy-as-code, compliance)
-- **NovaSkills** (labor verification)
-- **NovaTrade** (marketplace, matching)
+- **NovaLogistics** (Optimization, circular transport)
+- **NovaMaterial** (Digital product passports)
+- **NovaMind** (Shared AI models)
+- **NovaPolicy** (Policy-as-code, compliance)
+- **NovaSkills** (Labor verification)
+- **NovaTrade** (Marketplace, matching)
 
 ---
 
 ## Vertical Sectors
 
 Industry‑specific applications:
-- **NovaAgro** (regenerative agriculture)
-- **NovaAir** (air quality, carbon capture)
-- **NovaBuild** (construction, material banks)
-- **NovaChem** (chemical leasing)
-- **NovaEnergy** (renewable grid, V2G)
-- **NovaMake** (distributed manufacturing)
-- **NovaNature** (biodiversity, reforestation)
-- **NovaPack** (reusable packaging)
-- **NovaRecycle** (recycling, urban mining)
-- **NovaRetail** (product-as-a-service)
-- **NovaTronix** (e-waste, repair)
-- **NovaTextile** (circular fashion)
-- **NovaWater** (industrial water cycles)
+
+- **NovaAgro** (Regenerative agriculture)
+- **NovaAir** (Air quality, carbon capture)
+- **NovaBuild** (Construction, material banks)
+- **NovaChem** (Chemical leasing)
+- **NovaEnergy** (Renewable grid, V2G)
+- **NovaMake** (Distributed manufacturing)
+- **NovaNature** (Biodiversity, reforestation)
+- **NovaPack** (Reusable packaging)
+- **NovaRecycle** (Recycling, urban mining)
+- **NovaRetail** (Product-as-a-service)
+- **NovaTronix** (E-waste, repair)
+- **NovaTextile** (Circular fashion)
+- **NovaWater** (Industrial water cycles)
 
 ---
 
 ## Workers
 
 Independent background services for high-throughput tasks, such as:
+
 - **Quality** (NovaAir sensor ingest)
 - **Bioacoustics** (Species identification)
 - **LCACalc** (Real-time impact calculation)
@@ -73,6 +79,7 @@ Independent background services for high-throughput tasks, such as:
 ## Products
 
 Flagship applications that consume multiple enablers/sectors:
+
 - **DurasAGV** (Autonomous agricultural robot)
 - **NovaLab** (Innovation engine for circular projects)
 - **RetailLoop** (E-commerce plugin for resale)

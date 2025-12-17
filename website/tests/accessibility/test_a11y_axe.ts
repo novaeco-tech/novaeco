@@ -1,0 +1,1 @@
+// "Lighthouse score must be 100"

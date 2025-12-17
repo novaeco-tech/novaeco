@@ -24,13 +24,19 @@ const sidebars = {
       },
       items: [
         'architecture/overview',
-        'architecture/adr-001-core-services',
-        'architecture/adr-002-auth',
-        'architecture/adr-003-hybrid-api-access',
-        'architecture/adr-004-docs-site',
-        'architecture/adr-005-grpc-protobuf',
-        'architecture/adr-006-federated-ui',
-        'architecture/adr-template',
+        {
+          type: 'category',
+          label: 'Decisions (ADR)',
+          items: [
+            'architecture/decisions/adr-001-core-services',
+            'architecture/decisions/adr-002-auth',
+            'architecture/decisions/adr-003-hybrid-api-access',
+            'architecture/decisions/adr-004-docs-site',
+            'architecture/decisions/adr-005-grpc-protobuf',
+            'architecture/decisions/adr-006-federated-ui',
+            'architecture/decisions/adr-template',
+          ],
+        },
       ],
     },
     {

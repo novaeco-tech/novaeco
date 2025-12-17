@@ -50,13 +50,13 @@ const sidebars = {
       label: 'Use Cases',
       link: {
         type: 'generated-index',
-        description: 'Real-world scenarios across four levels of complexity.',
+        description: 'Real-world scenarios across four tiers of complexity.',
       },
       items: [
-        'usecases/level-1-onboarding',
-        'usecases/level-2-easy',
-        'usecases/level-3-medium',
-        'usecases/level-4-complex',
+        'usecases/tier-1-onboarding',
+        'usecases/tier-2-easy',
+        'usecases/tier-3-medium',
+        'usecases/tier-4-complex',
         'usecases/usecase-template',
       ],
     },

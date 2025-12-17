@@ -11,7 +11,7 @@ We use **Docusaurus** to build and host the central documentation platform (`nov
 
 This site serves as the **Knowledge Aggregator** for the ecosystem, hosting:
 1.  **Architecture & Governance:** ADRs, Principles, Policies, and interactive Mermaid diagrams.
-2.  **Global Use Cases:** Cross-sector user journeys (Levels 1-4) and the "Use Case Matrix".
+2.  **Global Use Cases:** Cross-sector user journeys (Tiers 1-4) and the "Use Case Matrix".
 3.  **Core API References:** Documentation for the Gateway and Identity services.
 4.  **Developer Guides:** Onboarding, tooling (CLI), and contribution standards.
 5.  **Ecosystem Blog:** Central hub for release notes, announcements, and success stories.

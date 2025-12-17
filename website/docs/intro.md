@@ -19,12 +19,12 @@ Understand the **functional, non‑functional, and sustainability requirements**
 ---
 
 ## 📊 Use Cases
-Explore real‑world scenarios across four levels:
-- **Level 1:** Onboarding & Control  
-- **Level 2:** Transactional Efficiency  
-- **Level 3:** Value Chain Coordination  
-- **Level 4:** Systemic Transformation  
-➡️ See [Use Cases](./usecases/level-1-onboarding.md)
+Explore real‑world scenarios across four tiers:
+- **Tier 1:** Onboarding & Control  
+- **Tier 2:** Transactional Efficiency  
+- **Tier 3:** Value Chain Coordination  
+- **Tier 4:** Systemic Transformation  
+➡️ See [Use Cases](./usecases/tier-1-onboarding.md)
 
 ---
 
@@ -56,6 +56,6 @@ A shared vocabulary of ecosystem terms, from **Enablers** and **Sectors** to **W
 If you’re new:
 1. Start with [Architecture Overview](./architecture/overview.md).
 2. Review [Functional Requirements](./requirements/functional.md).
-3. Explore [Use Cases](./usecases/level-1-onboarding.md).
+3. Explore [Use Cases](./usecases/tier-1-onboarding.md).
 4. Try the [API Examples](./api/examples.md).
 5. Follow the [Developer Guide](./guides/dev-guide.md).

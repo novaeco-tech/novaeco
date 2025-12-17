@@ -1,4 +1,4 @@
-# Level 4: Complex (Systemic Transformation)
+# Tier 4: Complex (Systemic Transformation)
 
 **Focus:** System-of-Systems, Cross-Border, Policy-as-Code, and Full Autonomy.
 **Goal:** Validating the vision of a self-correcting, regenerative planetary computer.

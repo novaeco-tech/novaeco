@@ -1,12 +1,12 @@
 # Use Case Template
 
-This template ensures all new use cases follow a consistent format across Levels 1–4.
+This template ensures all new use cases follow a consistent format across Tiers 1–4.
 
 ---
 
 ## Metadata
 - **ID:** UC-XXX  
-- **Level:** 1 (Onboarding) | 2 (Easy) | 3 (Medium) | 4 (Complex)  
+- **Tier:** 1 (Onboarding) | 2 (Easy) | 3 (Medium) | 4 (Complex)  
 - **Title:** Short descriptive name  
 - **Actors:** Who is involved (user, developer, organization, enabler, sector, worker, product)  
 - **Preconditions:** What must be true before this use case starts  

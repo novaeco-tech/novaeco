@@ -1,4 +1,4 @@
-# Level 1: Onboarding & Control (Foundational Integration)
+# Tier 1: Onboarding & Control (Foundational Integration)
 
 **Focus:** Identity, Access, Device Registry, and Basic Transparency.
 **Goal:** Validating that every entity enters the system securely via the correct component.

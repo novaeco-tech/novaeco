@@ -14,5 +14,5 @@ This page summarizes major updates to the NovaEco documentation and core service
 - Requirements section drafted (functional, non-functional, sustainability).
 
 ## September 2025
-- Use Case taxonomy finalized (Levels 1–4).
+- Use Case taxonomy finalized (Tier 1–4).
 - API reference drafted (Auth, Gateway, Examples, Testing).

@@ -1,4 +1,4 @@
-# Level 2: Easy (Transactional Efficiency)
+# Tier 2: Easy (Transactional Efficiency)
 
 **Focus:** Direct P2P/B2C interactions, Simple Logging, and Alerts.
 **Goal:** Validating that single-step actions work reliably across specific sectors.

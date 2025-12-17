@@ -1,4 +1,4 @@
-# Level 3: Medium (Value Chain Coordination)
+# Tier 3: Medium (Value Chain Coordination)
 
 **Focus:** Orchestration, Background Workers, Audits, and Optimization.
 **Goal:** Validating that multiple enablers can work together to solve a B2B problem.
